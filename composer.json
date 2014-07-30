@@ -1,0 +1,26 @@
+{
+    "name": "teman/cms",
+    "description": "",
+    "authors": [
+        {
+            "name": "Tim Van den Bergh",
+            "email": "tim@fikst.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*",
+        "laracasts/validation": "~1.0",
+        "zizaco/entrust": "~1.2",
+        "anahkiasen/polyglot": "~1.2"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Teman\\Cms\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
