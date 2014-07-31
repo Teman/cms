@@ -21,7 +21,7 @@ class CmsInstall extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Install teman.CMS';
+	protected $description = 'Install teman CMS';
 
     protected $entered_email;
     protected $entered_password;
@@ -31,11 +31,11 @@ class CmsInstall extends Command {
 
     protected $permission_cms_access;
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
+    /**
+     * Create a new command instance.
+     *
+     * @return \Teman\Cms\Commands\CmsInstall
+     */
 	public function __construct()
 	{
 		parent::__construct();
@@ -95,7 +95,7 @@ class CmsInstall extends Command {
 
     private function intro(){
 
-        $this->info('Installing teman.CMS');
+        $this->info('Installing teman CMS');
         $this->info('------------------');
         $this->info('');
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Laracasts\Validation\FormValidationException;
+use Teman\Cms\Commands\CmsInstall;
 
 class CmsServiceProvider extends ServiceProvider {
 
@@ -41,6 +42,11 @@ class CmsServiceProvider extends ServiceProvider {
 
         //register artisan commands
         $this->commands('Teman\Cms\Commands\CmsInstall');
+        $this->app['command.cms.install'] = $this->app->share(function($app)
+            {
+                return new CmsInstall;
+            });
+        $this->commands('command.cms.install');
 
 	}
 
