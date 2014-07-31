@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('admin') }}">Teman CMS</a>
+            <a class="navbar-brand" href="{{ route('admin') }}">{{ $cmsTitle }}</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">

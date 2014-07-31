@@ -2,6 +2,12 @@
 
 
     /*
+     * The default title to display in the menu bar
+     */
+    'cmsTitle' => 'Teman CMS',
+
+
+    /*
      * Menu items for admin interface
      */
     'adminMenuItems' => [
