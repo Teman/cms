@@ -22,7 +22,7 @@
             @include('cms::template.partials.navbar')
         @endif
 
-        <div class="container">
+        <div class="container col-md-6 col-md-offset-3">
 
             @if (Session::has('flash_message'))
                 <div class="alert alert-info" role="alert">{{ Session::get('flash_message') }}</div>
