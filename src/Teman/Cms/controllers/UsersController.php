@@ -58,9 +58,11 @@ class UsersController extends BaseController {
 	public function store()
 	{
 		//
-        $this->userForm->validate( $input = Input::all() );
+        $user = new User;
+        if ( ! $user->save() ){
+            return Redirect::back()->withErrors( $user->errors() );
+        }
 
-        $user = User::create( $input );
         $user->attachRole( Input::get('role_id') );
 
         return Redirect::route('admin.users.index')->withFlashMessage('User created');
@@ -108,7 +110,7 @@ class UsersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		//TODO update: use Ardent
 
         $user = User::findOrFail($id);
 

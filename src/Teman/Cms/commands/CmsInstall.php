@@ -144,13 +144,13 @@ class CmsInstall extends Command {
     private function createUser(){
 
         //create user
-        $user = User::create( [
-                'email' => $this->entered_email,
-                'password' => $this->entered_password
-            ] );
+        $user = new User;
+        $user->email = $this->entered_email;
+        $user->password = $this->entered_password;
+        $user->save();
 
         //attach role to user
-        $user->attachRole($this->role_super_admin->id);
+        $user->attachRole($this->role_super_admin);
 
         $this->info('User created');
 
