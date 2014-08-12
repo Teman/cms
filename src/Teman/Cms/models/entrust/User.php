@@ -6,9 +6,10 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\UserTrait;
 use Illuminate\Support\Facades\Hash;
+use LaravelBook\Ardent\Ardent;
 use Zizaco\Entrust\HasRole;
 
-class User extends \Eloquent implements UserInterface, RemindableInterface{
+class User extends Ardent implements UserInterface, RemindableInterface{
 
     use UserTrait, RemindableTrait;
     use HasRole;
