@@ -21,11 +21,10 @@
             <tr>
                 <td>{{{ $user->email }}}</td>
                 <td>{{{ $user->roles[0]->name }}}</td>
-                <td>{{ link_to_route('admin.users.edit', 'Edit', $user->id, ['class' => 'btn btn-primary']) }}</td>
-
                 <td>
+                    {{ link_to_route('admin.users.edit', 'Edit', $user->id, ['class' => 'btn btn-primary btn-xs']) }}
                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.users.destroy', $user->id]]) }}
-                        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                        {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) }}
                     {{ Form::close() }}
                 </td>
             </tr>
