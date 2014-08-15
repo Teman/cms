@@ -13,7 +13,6 @@
         <link href="{{ asset('packages/teman/cms/css/bootstrap-theme.min.css') }}" rel="stylesheet">
 
         <link href="{{ asset('packages/teman/cms/css/dashboard.css') }}" rel="stylesheet">
-        <link href="{{ asset('packages/teman/cms/css/style.css') }}" rel="stylesheet">
 
     </head>
 
@@ -32,16 +31,14 @@
 
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-                    @section('btn-offcanvas')
-                        <p class="pull-left visible-xs btn-toggle-offcanvas">
-                            <button class="btn btn-link navbar-toggle" data-toggle="offcanvas">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </p>
-                    @show
+                    <p class="visible-xs btn-toggle-offcanvas">
+                        <button class="btn btn-link navbar-toggle" data-toggle="offcanvas">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </p>
 
                     @if (Session::has('flash_message'))
                         <div class="alert alert-info" role="alert">{{ Session::get('flash_message') }}</div>
