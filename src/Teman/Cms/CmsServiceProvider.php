@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Laracasts\Validation\FormValidationException;
+use Laracasts\Flash\Flash;
 use Teman\Cms\Commands\CmsInstall;
 
 class CmsServiceProvider extends ServiceProvider {
@@ -70,10 +71,12 @@ class CmsServiceProvider extends ServiceProvider {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $loader->alias('Entrust', 'Zizaco\Entrust\EntrustFacade');
             $loader->alias('Confide', 'Zizaco\Confide\Facade');
+            $loader->alias('Flash', 'Laracasts\Flash\Flash');
         });
 
         //exception handlers
         $this->registerExceptions();
+
 	}
 
 

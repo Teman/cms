@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Lang;
+//use \Laracasts\Flash\Flash;
 use \Confide;
 
 /**
@@ -16,189 +18,77 @@ class ForgotController extends BaseController
 {
 
     /**
-     * Displays the form for account creation
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return View::make(Config::get('confide::signup_form'));
-    }
-
-    /**
-     * Stores new account
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function store()
-    {
-        $repo = App::make('\Teman\Cms\Models\Entrust\UserRepository');
-        $user = $repo->signup(Input::all());
-
-        if ($user->id) {
-            if (Config::get('confide::signup_email')) {
-                Mail::queueOn(
-                    Config::get('confide::email_queue'),
-                    Config::get('confide::email_account_confirmation'),
-                    compact('user'),
-                    function ($message) use ($user) {
-                        $message
-                            ->to($user->email, $user->username)
-                            ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
-                    }
-                );
-            }
-
-            return Redirect::action('UsersController@login')
-                ->with('notice', Lang::get('confide::confide.alerts.account_created'));
-        } else {
-            $error = $user->errors()->all(':message');
-
-            return Redirect::action('UsersController@create')
-                ->withInput(Input::except('password'))
-                ->with('error', $error);
-        }
-    }
-
-    /**
-     * Displays the login form
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function login()
-    {
-        if (Confide::user()) {
-            return Redirect::to('/');
-        } else {
-            return View::make(Config::get('confide::login_form'));
-        }
-    }
-
-    /**
-     * Attempt to do login
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function doLogin()
-    {
-        $repo = App::make('\Teman\Cms\Models\Entrust\UserRepository');
-        $input = Input::all();
-
-        if ($repo->login($input)) {
-            return Redirect::intended('/');
-        } else {
-            if ($repo->isThrottled($input)) {
-                $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
-            } elseif ($repo->existsButNotConfirmed($input)) {
-                $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
-            } else {
-                $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
-            }
-
-            return Redirect::action('UsersController@login')
-                ->withInput(Input::except('password'))
-                ->with('error', $err_msg);
-        }
-    }
-
-    /**
-     * Attempt to confirm account with code
-     *
-     * @param  string $code
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function confirm($code)
-    {
-        if (Confide::confirm($code)) {
-            $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-            return Redirect::action('UsersController@login')
-                ->with('notice', $notice_msg);
-        } else {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_confirmation');
-            return Redirect::action('UsersController@login')
-                ->with('error', $error_msg);
-        }
-    }
-
-    /**
      * Displays the forgot password form
      *
      * @return  Illuminate\Http\Response
      */
     public function forgotPassword()
     {
-        return View::make(Config::get('confide::forgot_password_form'));
+        Flash::message('test');
+        return View::make('cms::auth.forgot.forgot_password');
     }
 
     /**
-     * Attempt to send change password link to the given email
+     * Handle a POST request to remind a user of their password.
      *
-     * @return  Illuminate\Http\Response
+     * @return Response
      */
-    public function doForgotPassword()
+    public function postRemind()
     {
-        if (Confide::forgotPassword(Input::get('email'))) {
-            $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
-            return Redirect::action('UsersController@login')
-                ->with('notice', $notice_msg);
-        } else {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
-            return Redirect::action('UsersController@doForgotPassword')
-                ->withInput()
-                ->with('error', $error_msg);
+        switch ($response = Password::remind(Input::only('email')))
+        {
+            case Password::INVALID_USER:
+                //Flash::error(Lang::get($response));
+                return Redirect::back();
+
+            case Password::REMINDER_SENT:
+                //Flash::success(Lang::get($response));
+                return Redirect::back();
         }
     }
 
     /**
-     * Shows the change password form with the given token
+     * Display the password reset view for the given token.
      *
-     * @param  string $token
-     *
-     * @return  Illuminate\Http\Response
+     * @param  string  $token
+     * @return Response
      */
-    public function resetPassword($token)
+    public function getReset($token = null)
     {
-        return View::make(Config::get('confide::reset_password_form'))
-                ->with('token', $token);
+        if (is_null($token)) App::abort(404);
+
+        return View::make('cms::auth.forgot.reset_password')->with('token', $token);
     }
 
     /**
-     * Attempt change password of the user
+     * Handle a POST request to reset a user's password.
      *
-     * @return  Illuminate\Http\Response
+     * @return Response
      */
-    public function doResetPassword()
+    public function postReset()
     {
-        $repo = App::make('\Teman\Cms\Models\Entrust\UserRepository');
-        $input = array(
-            'token'                 =>Input::get('token'),
-            'password'              =>Input::get('password'),
-            'password_confirmation' =>Input::get('password_confirmation'),
+        $credentials = Input::only(
+            'email', 'password', 'password_confirmation', 'token'
         );
 
-        // By passing an array with the token, password and confirmation
-        if ($repo->resetPassword($input)) {
-            $notice_msg = Lang::get('confide::confide.alerts.password_reset');
-            return Redirect::action('UsersController@login')
-                ->with('notice', $notice_msg);
-        } else {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
-            return Redirect::action('UsersController@reset_password', array('token'=>$input['token']))
-                ->withInput()
-                ->with('error', $error_msg);
+        $response = Password::reset($credentials, function($user, $password)
+        {
+            $user->password = Hash::make($password);
+
+            $user->save();
+        });
+
+        switch ($response)
+        {
+            case Password::INVALID_PASSWORD:
+            case Password::INVALID_TOKEN:
+            case Password::INVALID_USER:
+                //Flash::error(Lang::get($response));
+                return Redirect::back();
+
+            case Password::PASSWORD_RESET:
+                //Flash::success('Your password has been reset.');
+                return Redirect::to('/');
         }
-    }
-
-    /**
-     * Log the user out of the application.
-     *
-     * @return  Illuminate\Http\Response
-     */
-    public function logout()
-    {
-        Confide::logout();
-
-        return Redirect::to('/');
     }
 }

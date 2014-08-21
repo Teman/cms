@@ -11,6 +11,7 @@
         "php": ">=5.4.0",
         "illuminate/support": "4.2.*",
         "laracasts/validation": "~1.0",
+        "laracasts/flash": "~1.0",
         "laravelbook/ardent": "dev-master#2d1d70ea835b8c53cfe4fc60315a8ee5c672ba19",
         "zizaco/entrust": "1.2.*@dev",
         "zizaco/confide": "~4.0@dev",
