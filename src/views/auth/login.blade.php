@@ -49,6 +49,10 @@
                     {{ Form::submit('Log in', ['class' => 'btn btn-primary']) }}
                 </div>
 
+                <div class="form-group">
+                    {{ link_to_route('forgot.password.form', 'Forgot your password?') }}
+                </div>
+
             {{ Form::close() }}
 
         </div>

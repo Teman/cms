@@ -61,6 +61,7 @@ class CmsServiceProvider extends ServiceProvider {
         //register service providers we depend on
         $this->app->register('Laracasts\Validation\ValidationServiceProvider');
         $this->app->register('Zizaco\Entrust\EntrustServiceProvider');
+        $this->app->register('Zizaco\Confide\ServiceProvider');
         $this->app->register('Polyglot\PolyglotServiceProvider');
 
         //alias facades
@@ -68,6 +69,7 @@ class CmsServiceProvider extends ServiceProvider {
         {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
             $loader->alias('Entrust', 'Zizaco\Entrust\EntrustFacade');
+            $loader->alias('Confide', 'Zizaco\Confide\Facade');
         });
 
         //exception handlers

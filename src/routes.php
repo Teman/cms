@@ -20,6 +20,17 @@ Route::get('/cms/logout', array( 'as' => 'cms.logout', 'uses' => 'Teman\Cms\Cont
 
 
 /*
+ * Forgot password routes
+ */
+Route::get('/cms/forgot_password', ['as'=> 'forgot.password.form', 'uses'=>'Teman\Cms\Controllers\ForgotController@forgotPassword']);
+Route::post('/cms/forgot_password', ['as'=>'forgot.password.process', 'uses'=>'Teman\Cms\Controllers\ForgotController@doForgotPassword']);
+Route::get('/cms/confirm/{code}', ['as'=>'forgot.confirm', 'uses'=>'Teman\Cms\Controllers\ForgotController@confirm']);
+Route::get('/cms/reset_password/{token}', ['as'=>'forgot.resettoken', 'uses'=>'Teman\Cms\Controllers\ForgotController@resetPassword']);
+Route::post('/cms/reset_password', ['as'=>'forgot.reset', 'uses'=>'Teman\Cms\Controllers\ForgotController@doResetPassword']);
+
+
+
+/*
  * General admin route
  */
 Route::get('/admin', array('as' => 'admin', 'uses' => 'Teman\Cms\Controllers\AdminController@index'));

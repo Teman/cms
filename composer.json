@@ -12,6 +12,7 @@
         "illuminate/support": "4.2.*",
         "laracasts/validation": "~1.0",
         "zizaco/entrust": "~1.2",
+        "zizaco/confide": "~4.0@dev",
         "anahkiasen/polyglot": "~1.2"
     },
     "autoload": {

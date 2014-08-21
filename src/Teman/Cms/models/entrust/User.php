@@ -8,11 +8,14 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use LaravelBook\Ardent\Ardent;
 use Zizaco\Entrust\HasRole;
+use Zizaco\Confide\ConfideUser;
+use Zizaco\Confide\ConfideUserInterface;
 
-class User extends Ardent implements UserInterface, RemindableInterface{
+class User extends Ardent implements UserInterface, RemindableInterface, ConfideUserInterface{
 
     use UserTrait, RemindableTrait;
     use HasRole;
+    use ConfideUser;
 
     /**
      * The database table used by the model.
