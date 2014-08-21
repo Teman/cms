@@ -11,11 +11,11 @@ use Zizaco\Entrust\HasRole;
 use Zizaco\Confide\ConfideUser;
 use Zizaco\Confide\ConfideUserInterface;
 
-class User extends Ardent implements UserInterface, RemindableInterface, ConfideUserInterface{
+class User extends \Eloquent  implements UserInterface, RemindableInterface, ConfideUserInterface{
 
-    use UserTrait, RemindableTrait;
     use HasRole;
-    use ConfideUser;
+    use ConfideUser; //replaces UserTrait, RemindableTrait
+
 
     /**
      * The database table used by the model.

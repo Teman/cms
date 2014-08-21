@@ -4,6 +4,9 @@
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+use \Confide;
+
 /**
  * ForgotController Class
  *
