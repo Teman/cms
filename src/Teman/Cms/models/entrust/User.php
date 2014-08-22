@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use LaravelBook\Ardent\Ardent;
 use Zizaco\Entrust\HasRole;
 
-class User extends \Eloquent  implements UserInterface, RemindableInterface{
+class User extends Ardent  implements UserInterface, RemindableInterface{
 
     use HasRole;
     use UserTrait, RemindableTrait;
@@ -48,11 +48,18 @@ class User extends \Eloquent  implements UserInterface, RemindableInterface{
     }
 
     /**
-     * USername =  email
+     * Username =  email
      * @param $password
      */
     public function getUsernameAttribute(){
         return $this->email;
     }
 
+    /**
+     * Set username to email before save
+     */
+   /* public function save(array $options = array()){
+        $this->username = $this->email;
+        parent::save();
+    }*/
 }
