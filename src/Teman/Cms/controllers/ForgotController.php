@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Lang;
-//use \Laracasts\Flash\Flash;
-use \Confide;
+use Illuminate\Support\Facades\Password;
+use Laracasts\Flash\Flash;
 
 /**
  * ForgotController Class
@@ -24,7 +24,6 @@ class ForgotController extends BaseController
      */
     public function forgotPassword()
     {
-        Flash::message('test');
         return View::make('cms::auth.forgot.forgot_password');
     }
 
@@ -38,11 +37,11 @@ class ForgotController extends BaseController
         switch ($response = Password::remind(Input::only('email')))
         {
             case Password::INVALID_USER:
-                //Flash::error(Lang::get($response));
+                Flash::error(Lang::get($response));
                 return Redirect::back();
 
             case Password::REMINDER_SENT:
-                //Flash::success(Lang::get($response));
+                Flash::success(Lang::get($response));
                 return Redirect::back();
         }
     }
@@ -73,7 +72,7 @@ class ForgotController extends BaseController
 
         $response = Password::reset($credentials, function($user, $password)
         {
-            $user->password = Hash::make($password);
+            $user->password = $password;
 
             $user->save();
         });
@@ -83,12 +82,12 @@ class ForgotController extends BaseController
             case Password::INVALID_PASSWORD:
             case Password::INVALID_TOKEN:
             case Password::INVALID_USER:
-                //Flash::error(Lang::get($response));
+                Flash::error(Lang::get($response));
                 return Redirect::back();
 
             case Password::PASSWORD_RESET:
-                //Flash::success('Your password has been reset.');
-                return Redirect::to('/');
+                Flash::success('Your password has been reset.');
+                return Redirect::route('cms.login');
         }
     }
 }

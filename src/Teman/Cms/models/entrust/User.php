@@ -8,13 +8,11 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use LaravelBook\Ardent\Ardent;
 use Zizaco\Entrust\HasRole;
-use Zizaco\Confide\ConfideUser;
-use Zizaco\Confide\ConfideUserInterface;
 
-class User extends \Eloquent  implements UserInterface, RemindableInterface, ConfideUserInterface{
+class User extends \Eloquent  implements UserInterface, RemindableInterface{
 
     use HasRole;
-    use ConfideUser; //replaces UserTrait, RemindableTrait
+    use UserTrait, RemindableTrait;
 
 
     /**
@@ -41,8 +39,20 @@ class User extends \Eloquent  implements UserInterface, RemindableInterface, Con
     protected $fillable = ['email', 'password'];
 
 
+    /**
+     * Passwords must always be hashed
+     * @param $password
+     */
     public function setPasswordAttribute($password){
         $this->attributes['password'] = Hash::make($password);
+    }
+
+    /**
+     * USername =  email
+     * @param $password
+     */
+    public function getUsernameAttribute(){
+        return $this->email;
     }
 
 }

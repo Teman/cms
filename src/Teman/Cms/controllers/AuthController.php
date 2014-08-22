@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Laracasts\Validation\FormValidationException;
+use Laracasts\Flash\Flash;
 
 class AuthController extends BaseController
 {
@@ -44,8 +45,8 @@ class AuthController extends BaseController
         }
 
 
-
-        return Redirect::back()->withInput()->withFlashMessage('Invalid credentials');
+        Flash::error('Invalid credentials');
+        return Redirect::back()->withInput();
     }
 
 

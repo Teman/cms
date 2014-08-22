@@ -24,10 +24,7 @@
     <div class="row">
 
         <div class="col-sm-4 col-sm-offset-4">
-
-            @if (Session::has('flash_message'))
-            <div class="alert alert-info" role="alert">{{ Session::get('flash_message') }}</div>
-            @endif
+            @include('flash::message')
 
             @yield('content')
 
