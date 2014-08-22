@@ -14,6 +14,7 @@
                 <input class="btn btn-default" type="submit" value="Reset">
             </span>
         </div>
+        {{ $errors->first('email', '<span class="help-block">:message</span>') }}
     </div>
 
 {{ Form::close() }}

@@ -1,6 +1,10 @@
 <?php namespace Teman\Cms\Controllers;
 
 
+use Teman\Cms\Forms\ForgotForm;
+use Teman\Cms\Forms\ResetPasswordForm;
+use Laracasts\Validation\FormValidationException;
+
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
@@ -16,6 +20,15 @@ use Laracasts\Flash\Flash;
  */
 class ForgotController extends BaseController
 {
+
+    protected $forgotForm;
+    protected $resetPasswordForm;
+
+    function __construct(ForgotForm $forgotForm, ResetPasswordForm $resetPasswordForm)
+    {
+        $this->forgotForm = $forgotForm;
+        $this->resetPasswordForm = $resetPasswordForm;
+    }
 
     /**
      * Displays the forgot password form
@@ -34,7 +47,10 @@ class ForgotController extends BaseController
      */
     public function postRemind()
     {
-        switch ($response = Password::remind(Input::only('email')))
+        $input = Input::only('email');
+        $this->forgotForm->validate($input);
+
+        switch ($response = Password::remind($input))
         {
             case Password::INVALID_USER:
                 Flash::error(Lang::get($response));
@@ -69,6 +85,8 @@ class ForgotController extends BaseController
         $credentials = Input::only(
             'email', 'password', 'password_confirmation', 'token'
         );
+
+        $this->resetPasswordForm->validate($credentials);
 
         $response = Password::reset($credentials, function($user, $password)
         {
