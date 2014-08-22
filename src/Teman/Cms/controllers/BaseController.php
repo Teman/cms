@@ -5,12 +5,18 @@ use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller{
 
-    public $currentUser;
-
-    function __construct()
+    /**
+     * Setup the layout used by the controller.
+     *
+     * @return void
+     */
+    protected function setupLayout()
     {
-        //set the current logged in user
-        $this->currentUser = Auth::user();
-    }
+        if ( ! is_null($this->layout))
+        {
+            $this->layout = View::make($this->layout);
+        }
 
+        View::share("currentUser", Auth::user());
+    }
 }

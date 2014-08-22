@@ -19,7 +19,12 @@ class Authentication {
         $loginForm->validate($input = Input::only('email', 'password'));
 
         if (Auth::attempt($input)) {
-            return Redirect::intended(route(Config::get('cms::auth.login_route')));
+            if($redirect = Input::get("redirect")){
+                Redirect::to($redirect);
+            }else{
+                //Default redirect
+                return  Redirect::intended(route(Config::get('cms::auth.login_route')));
+            }
         }
 
 
