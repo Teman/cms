@@ -13,7 +13,10 @@ return array(
     //redirect after password change
     'success_route'     => 'cms.login',
     //fallback for "intended" route
-    'login_route'       => 'admin'
+    'login_route'       => 'admin',
 
+    //Use the cms User Model
+    //If set to false User model must extend Teman\Cms\Models\Entrust\User
+    'use_cms_model'     => true
 
 );

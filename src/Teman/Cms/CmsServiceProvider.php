@@ -36,7 +36,9 @@ class CmsServiceProvider extends ServiceProvider {
         include __DIR__ . '/helpers.php';
 
         //make Auth use our own User model
-        $this->app['config']->set('auth.model', '\Teman\Cms\Models\Entrust\User');
+        if(\Config::get('cms::auth.use_cms_model')){
+            $this->app['config']->set('auth.model', '\Teman\Cms\Models\Entrust\User');
+        }
 
         $this->app['config']->set('entrust::role', '\Teman\Cms\Models\Entrust\Role');
         $this->app['config']->set('entrust::permission', '\Teman\Cms\Models\Entrust\Permission');
@@ -73,6 +75,8 @@ class CmsServiceProvider extends ServiceProvider {
             $loader->alias('Confide', 'Zizaco\Confide\Facade');
             $loader->alias('Flash', 'Laracasts\Flash\Flash');
             $loader->alias('Authentication', 'Teman\Cms\Authentication');
+
+            $loader->alias('BaseController', 'Teman\Cms\Controllers\BaseController');
         });
 
         //exception handlers
