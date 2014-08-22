@@ -72,7 +72,7 @@ class ForgotController extends BaseController
     {
         if (is_null($token)) App::abort(404);
 
-        return View::make('cms::auth.forgot.reset_password')->with('token', $token);
+        return View::make(Config::get('cms::auth.reset_view'))->with('token', $token);
     }
 
     /**

@@ -6,6 +6,7 @@ return array(
      */
     'login_view'        => 'cms::auth.login',
     'forgot_view'       => 'cms::auth.forgot.forgot_password',
+    'reset_view'       => 'cms::auth.forgot.reset_password',
 
     /**
      * Default routes
