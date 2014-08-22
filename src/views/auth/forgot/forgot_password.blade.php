@@ -3,7 +3,7 @@
 @section('content')
 
 
-<h1>Reset your password</h1>
+<h1>{{ Lang::get('cms::auth.forgot_password') }}</h1>
 
 @include('cms::auth.partials.forgot-form')
 
