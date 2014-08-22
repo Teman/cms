@@ -19,6 +19,7 @@ Route::post('/cms/login', array( 'as' => 'cms.login', 'uses' => 'Teman\Cms\Contr
 Route::get('/cms/logout', array( 'as' => 'cms.logout', 'uses' => 'Teman\Cms\Controllers\AuthController@destroy'));
 
 
+Route::get('/cms/test', ['as'=> 'forgot.password.form', 'uses'=>'Teman\Cms\Controllers\FrontendLoginController@test']);
 /*
  * Forgot password routes
  */

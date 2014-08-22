@@ -24,7 +24,7 @@ class ForgotController extends BaseController
      */
     public function forgotPassword()
     {
-        return View::make('cms::auth.forgot.forgot_password');
+        return View::make(Config::get('cms::auth.forgot_view'));
     }
 
     /**
@@ -73,7 +73,6 @@ class ForgotController extends BaseController
         $response = Password::reset($credentials, function($user, $password)
         {
             $user->password = $password;
-
             $user->save();
         });
 
@@ -87,7 +86,7 @@ class ForgotController extends BaseController
 
             case Password::PASSWORD_RESET:
                 Flash::success('Your password has been reset.');
-                return Redirect::route('cms.login');
+                return Redirect::route(Config::get('cms::success_route'));
         }
     }
 }

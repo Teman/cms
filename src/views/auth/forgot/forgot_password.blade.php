@@ -8,21 +8,14 @@
 {{ Form::open( ['route' => 'forgot.password.process'] ) }}
     <div class="form-group">
         <div class="input-append input-group">
-            {{ Form::text('email', null, ['class' => 'form-control', 'placeholder'=>Lang::get('confide::confide.e_mail')]) }}
+            {{ Form::text('email', null, ['class' => 'form-control', 'placeholder'=>'E-mail address']) }}
 
             <span class="input-group-btn">
-                <input class="btn btn-default" type="submit" value="{{{ Lang::get('confide::confide.forgot.submit') }}}">
+                <input class="btn btn-default" type="submit" value="Reset">
             </span>
         </div>
     </div>
 
-    @if (Session::get('error'))
-    <div class="alert alert-error alert-danger">{{{ Session::get('error') }}}</div>
-    @endif
-
-    @if (Session::get('notice'))
-    <div class="alert">{{{ Session::get('notice') }}}</div>
-    @endif
-</form>
+{{ Form::close() }}
 
 @stop

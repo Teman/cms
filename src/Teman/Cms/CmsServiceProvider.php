@@ -65,7 +65,6 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app->register('Polyglot\PolyglotServiceProvider');
         $this->app->register('Laracasts\Flash\FlashServiceProvider');
 
-
         //alias facades
         $this->app->booting(function()
         {
@@ -73,6 +72,7 @@ class CmsServiceProvider extends ServiceProvider {
             $loader->alias('Entrust', 'Zizaco\Entrust\EntrustFacade');
             $loader->alias('Confide', 'Zizaco\Confide\Facade');
             $loader->alias('Flash', 'Laracasts\Flash\Flash');
+            $loader->alias('Authentication', 'Teman\Cms\Authentication');
         });
 
         //exception handlers

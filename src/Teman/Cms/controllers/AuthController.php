@@ -1,23 +1,16 @@
 <?php namespace Teman\Cms\Controllers;
 
+use Teman\Cms\Libraries\Authentication;
 use Teman\Cms\Forms\LoginForm;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\View;
-use Laracasts\Validation\FormValidationException;
-use Laracasts\Flash\Flash;
 
 class AuthController extends BaseController
 {
-
     protected $loginForm;
 
     function __construct(LoginForm $loginForm)
     {
         $this->loginForm = $loginForm;
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -26,8 +19,7 @@ class AuthController extends BaseController
      */
     public function create()
     {
-
-        return View::make('cms::auth.login');
+        return \View::make(\Config::get('cms::auth.login_view'));
     }
 
 
@@ -38,15 +30,7 @@ class AuthController extends BaseController
      */
     public function store()
     {
-        $this->loginForm->validate($input = Input::only('email', 'password'));
-
-        if (Auth::attempt($input)) {
-            return Redirect::intended('admin');
-        }
-
-
-        Flash::error('Invalid credentials');
-        return Redirect::back()->withInput();
+        return Authentication::doLogin($this->loginForm);
     }
 
 
@@ -57,9 +41,7 @@ class AuthController extends BaseController
      */
     public function destroy()
     {
-        Auth::logout();
-
-        return Redirect::to('/');
+        return Authentication::logout();
     }
 
 
