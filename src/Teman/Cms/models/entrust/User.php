@@ -56,10 +56,11 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
     }
 
     /**
-     * Set username to email before save
+     * Set username to email before save & force lowercase+trim
      */
-   /* public function save(array $options = array()){
-        $this->username = $this->email;
-        parent::save();
-    }*/
+    public function setEmailAttribute($email){
+        $email = trim(strtolower($email));
+        $this->attributes['email'] = $email;
+        $this->attributes['username'] = $email;
+    }
 }
