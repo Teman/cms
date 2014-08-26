@@ -50,8 +50,11 @@ class ForgotController extends BaseController
         $input = Input::only('email');
         $this->forgotForm->validate($input);
 
-        switch ($response = Password::remind($input))
-        {
+        $response = Password::remind($input, function($message){
+                        $message->subject(Lang::get('cms::forgot.remind_subject'));
+                    });
+
+        switch ($response){
             case Password::INVALID_USER:
                 Flash::error(Lang::get($response));
                 return Redirect::back();
@@ -103,7 +106,7 @@ class ForgotController extends BaseController
                 return Redirect::back();
 
             case Password::PASSWORD_RESET:
-                Flash::success('Your password has been reset.');
+                Flash::success(Lang::get('cms::forgot.success'));
                 return Redirect::route(Config::get('cms::auth.success_route'));
         }
     }
