@@ -43,14 +43,6 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app['config']->set('entrust::role', '\Teman\Cms\Models\Entrust\Role');
         $this->app['config']->set('entrust::permission', '\Teman\Cms\Models\Entrust\Permission');
 
-        //register artisan commands
-        $this->commands('Teman\Cms\Commands\CmsInstall');
-        $this->app['command.cms.install'] = $this->app->share(function($app)
-            {
-                return new CmsInstall;
-            });
-        $this->commands('command.cms.install');
-
 	}
 
 	/**
@@ -78,6 +70,10 @@ class CmsServiceProvider extends ServiceProvider {
 
             $loader->alias('BaseController', 'Teman\Cms\Controllers\BaseController');
         });
+
+        //register artisan commands
+        $this->app->bind('command.cms.install', 'Teman\Cms\Commands\CmsInstall');
+        $this->commands(['command.cms.install']);
 
         //exception handlers
         $this->registerExceptions();
