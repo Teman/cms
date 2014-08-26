@@ -91,7 +91,7 @@ class ForgotController extends BaseController
         $response = Password::reset($credentials, function($user, $password)
         {
             $user->password = $password;
-            $user->save();
+            $user->forceSave();
         });
 
         switch ($response)
