@@ -104,7 +104,7 @@ class ForgotController extends BaseController
 
             case Password::PASSWORD_RESET:
                 Flash::success('Your password has been reset.');
-                return Redirect::route(Config::get('cms::success_route'));
+                return Redirect::route(Config::get('cms::auth.success_route'));
         }
     }
 }
