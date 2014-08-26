@@ -19,8 +19,8 @@
         "classmap": [
             "src/migrations"
         ],
-        "psr-0": {
-            "Teman\\Cms\\": "src/"
+        "psr-4": {
+            "Teman\\Cms\\": "src/Teman/Cms"
         }
     },
     "minimum-stability": "stable"
