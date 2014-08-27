@@ -3,6 +3,7 @@
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Laracasts\Flash\Flash;
 
 class BaseController extends Controller{
 

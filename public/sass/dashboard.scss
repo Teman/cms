@@ -1,3 +1,5 @@
+@import "colors";
+
 /*
  * Base structure
  */
@@ -40,7 +42,7 @@ body {
   padding: 20px;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  background-color: #f5f5f5;
+  background-color: #333333;
   border-right: 1px solid #eee;
 
   @media (min-width: 768px) {
@@ -48,10 +50,11 @@ body {
     display: block;
   }
 
+ h4 {
+   color: #666;
+ }
+
 }
-
-
-
 
 @media (max-width: 768px){
 
@@ -60,11 +63,14 @@ body {
   }
 
   .sidebar{
+
     .active &{
       display: block;
       position: static;
     }
   }
+
+
 
 
 
@@ -150,4 +156,43 @@ body {
     display: inline-block;
     border-radius: 50%;
   }
+}
+
+.userAddbtn
+{
+  color : $blue-color;
+}
+
+.fa
+{
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.userPageHeader
+{
+  border: none;
+}
+
+.btnEdit{
+
+  float:left;
+  background: none;
+}
+.checkboxUserPage
+{
+  width: 20px;
+  float:left;
+}
+.btnSelectUsers
+{
+  margin-right: 30px;
+  background: none;
+}
+.btn-toolbar
+{
+  margin-bottom: 20px;
 }

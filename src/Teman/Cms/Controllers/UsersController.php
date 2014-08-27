@@ -56,8 +56,12 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+
         $user = new User;
+
+        $user->email = Input::get('email');
+        $user->password = Input::get('password');
+
         if ( ! $user->save() ){
             return Redirect::back()->withErrors( $user->errors() );
         }
