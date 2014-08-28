@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="page-header userPageHeader">
+    <div id="flashBar"></div>
   <h1>
        <a href="/admin/users/create">
          <i class="fa fa-plus-circle userAddbtn ">

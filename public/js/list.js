@@ -21,12 +21,10 @@ btnDelete.click(function(){
                 success:function(){
                     $('#item_' + id).fadeOut('fast', function () {
                         $(this).remove();
-                       /* nombreElementsTraites++;
-                        if (nombreElementsSelectionnes == nombreElementsTraites) {
-                            console.log('succes');
-                            $(':checkbox').change();
-                        }
-                        */
+
+                        $( ".alert" ).remove();
+                        //insert a flash message at the top
+                        $("#flashBar").append('<div class="alert alert-danger" role="alert">User deleted</div>');
                        })
                 },
                 error:function(){
@@ -40,6 +38,9 @@ function cleanUrl () {
     return document.URL.split('?')[0];
 }
 
+
+
+//Select and Deselect from the users on the user page
 btnSelectAll.click(function(){
 
     var checkedCheckboxes = listForm.find(':checkbox');
@@ -52,11 +53,11 @@ btnSelectAll.click(function(){
 
 btnDeselectAll.click(function(){
     var checkedCheckboxes = listForm.find(':checkbox');
-    
+
     checkedCheckboxes.each(function(){
         this.checked = false;
     });
-
+    deActivateBtn();
 });
 
 $(document).ready(function() {
@@ -75,10 +76,12 @@ function deActivateBtn()
 
     if(checkedCheckboxes.length >0)
     {
+        btnDelete.prop('disabled',false);
         btnDeselectAll.prop('disabled', false);
     }
     else
     {
+        btnDelete.prop('disabled',true);
         btnDeselectAll.prop('disabled', true);
     }
 }
