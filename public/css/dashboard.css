@@ -3,7 +3,7 @@
  */
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+  padding-top: 51px;
 }
 
 /*
@@ -29,7 +29,7 @@ body {
 .sidebar {
   display: none;
   position: fixed;
-  top: 51px;
+  top: 50px;
   bottom: 0;
   left: 0;
   z-index: 1000;
@@ -48,6 +48,17 @@ body {
 .sidebar h4 {
   color: #666;
 }
+.sidebar ul li a div {
+  margin-left: 30px;
+  width: 155px;
+  position: absolute;
+  float: left;
+  color: #ffffff;
+}
+.sidebar ul li a i {
+  float: left;
+  color: #ffffff;
+}
 
 @media (max-width: 768px) {
   .row-offcanvas-left.active {
@@ -59,6 +70,13 @@ body {
     position: static;
   }
 }
+.listItem:hover div {
+  color: #000000;
+}
+.listItem:hover i {
+  color: #000000;
+}
+
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px;
@@ -73,7 +91,7 @@ body {
 .nav-sidebar > .active a,
 .nav-sidebar > .active a:hover,
 .nav-sidebar > .active a:focus {
-  color: #fff;
+  color: #428bca;
   background-color: #428bca;
 }
 

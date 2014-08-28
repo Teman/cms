@@ -6,7 +6,7 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+  padding-top: 51px;
 }
 
 
@@ -35,7 +35,7 @@ body {
 .sidebar {
   display: none;
   position: fixed;
-  top: 51px;
+  top: 50px;
   bottom: 0;
   left: 0;
   z-index: 1000;
@@ -53,6 +53,21 @@ body {
  h4 {
    color: #666;
  }
+ ul li a div
+  {
+    margin-left: 30px;
+    width:155px;
+    position: absolute;
+    float: left;
+    color : #ffffff;
+  }
+
+  ul li a i
+  {
+    float: left;
+    color: #ffffff;
+  }
+
 
 }
 
@@ -70,11 +85,19 @@ body {
     }
   }
 
-
-
-
-
 }
+
+.listItem {
+  &:hover{
+    div{
+      color:#000000;
+    }
+    i{
+      color: #000000;
+    }
+  }
+}
+
 
 
 /* Sidebar navigation */
@@ -92,11 +115,12 @@ body {
     a,
     a:hover,
     a:focus{
-      color: #fff;
+      color: #428bca;
       background-color: #428bca;
     }
 
   }
+
 
 }
 
