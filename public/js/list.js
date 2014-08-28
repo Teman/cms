@@ -1,6 +1,8 @@
 var listForm = $('.list-form'),
-btnDelete = $('#btnDelete');
-
+btnDelete = $('#btnDelete'),
+btnSelectAll = $('#btnSelectAll'),
+btnDeselectAll = $('#btnDeselectAll');
+var checkbxCounter;
 
 btnDelete.click(function(){
     var checkedCheckboxes = listForm.find(':checkbox:checked'),
@@ -36,4 +38,47 @@ btnDelete.click(function(){
 
 function cleanUrl () {
     return document.URL.split('?')[0];
+}
+
+btnSelectAll.click(function(){
+
+    var checkedCheckboxes = listForm.find(':checkbox');
+
+    checkedCheckboxes.each(function(){
+        this.checked = true;
+    });
+    deActivateBtn();
+});
+
+btnDeselectAll.click(function(){
+    var checkedCheckboxes = listForm.find(':checkbox');
+    
+    checkedCheckboxes.each(function(){
+        this.checked = false;
+    });
+
+});
+
+$(document).ready(function() {
+
+    console.log("load");
+    deActivateBtn();
+    var checkedCheckboxes = listForm.find(':checkbox');
+
+    checkedCheckboxes.click(function(){
+        deActivateBtn();
+    });
+});
+function deActivateBtn()
+{
+    var checkedCheckboxes = listForm.find(':checkbox:checked');
+
+    if(checkedCheckboxes.length >0)
+    {
+        btnDeselectAll.prop('disabled', false);
+    }
+    else
+    {
+        btnDeselectAll.prop('disabled', true);
+    }
 }

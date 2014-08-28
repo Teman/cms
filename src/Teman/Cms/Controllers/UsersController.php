@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Teman\Cms\Models\Entrust\User;
 
+
 use \Laracasts\Validation\FormValidationException;
 
 class UsersController extends BaseController {
@@ -29,7 +30,8 @@ class UsersController extends BaseController {
 	{
 		//
 
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->simplePaginate(20 );
+
 
         return View::make('cms::admin.users.index')->withUsers($users);
 	}
@@ -83,7 +85,6 @@ class UsersController extends BaseController {
 		//
 
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.

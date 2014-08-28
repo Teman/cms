@@ -211,10 +211,12 @@ body {
   width: 20px;
   float:left;
 }
-.btnSelectUsers
+.btnSelectUsers, .btnDeselectusers
 {
-  margin-right: 30px;
   background: none;
+}
+.btnDeselectusers{
+  margin-right: 30px;
 }
 .btn-toolbar
 {
