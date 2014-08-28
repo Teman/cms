@@ -8,10 +8,16 @@
         @endif
     </ul>
 
-
     <h4>Users</h4>
     <ul class="nav nav-sidebar">
-        <li class="{{ set_active_route('admin.users.index') }}"><a href="{{ route('admin.users.index') }}">Users</a></li>
+        <li class="{{ set_active_route('admin.users.index') }} ">
+            <a href="{{ route('admin.users.index') }}" class="clearfix listItem">
+                <i class="fa fa-user"></i>
+                <div>
+                    Users
+                </div>
+               </a>
+        </li>
     </ul>
 
 </div>

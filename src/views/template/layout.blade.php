@@ -18,7 +18,7 @@
 
     </head>
 
-    <body>
+    <body class="has-navbar">
 
         @if ( ! Auth::guest() )
             @include('cms::template.partials.navbar')
@@ -31,7 +31,7 @@
 
             @include('cms::template.partials.sidebar')
 
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="col-xs-12 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
                     <p class="visible-xs btn-toggle-offcanvas">
                         <button class="btn btn-link navbar-toggle" data-toggle="offcanvas">
