@@ -164,11 +164,11 @@ body {
   float: left;
 }
 
-.btnSelectUsers, .btnDeselectusers {
+.btnSelectAll, .btnDeselectAll {
   background: none;
 }
 
-.btnDeselectusers {
+.btnDeselectAll {
   margin-right: 30px;
 }
 

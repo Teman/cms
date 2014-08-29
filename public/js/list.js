@@ -1,5 +1,5 @@
 var listForm = $('.list-form'),
-btnDelete = $('#btnDelete'),
+btnDelete = $('#btnDeleteAll'),
 btnSelectAll = $('#btnSelectAll'),
 btnDeselectAll = $('#btnDeselectAll');
 var checkbxCounter;

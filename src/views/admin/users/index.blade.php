@@ -17,9 +17,9 @@
 <div class="list-form">
     <div class="btn-toolbar">
     {{ Form::open() }}
-        <button type="button" id="btnSelectAll" class="btnSelectUsers btn btn-default btn-sm">Select all</button>
-        <button type="button" id="btnDeselectAll" class="btnDeselectusers btn btn-default btn-sm">Deselect all</button>
-        <button type="button" id="btnDelete" class="btnDeleteUsers btn btn-danger btn-xs">Delete</button>
+        <button type="button" id="btnSelectAll" class="btnSelectAll btn btn-default btn-sm">Select all</button>
+        <button type="button" id="btnDeselectAll" class="btnDeselectAll btn btn-default btn-sm">Deselect all</button>
+        <button type="button" id="btnDeleteAll" class="btnDeleteAll btn btn-danger btn-xs">Delete</button>
     {{ Form::close() }}
     </div>
 
@@ -47,7 +47,7 @@
                             {{ link_to_route('admin.users.edit', 'Edit', $user->id, ['class' => 'btnEdit btn btn-default btn-xs']) }}
 
                         </td>
-                            <td>{{{ $user->email }}}</td>
+                            <td>{{ $user->email }}</td>
                             <td>{{ $user->roles[0]->name }}</td
                     </tr>
                 @endforeach
