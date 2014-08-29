@@ -41,6 +41,4 @@ Route::get('/admin', array('as' => 'admin', 'uses' => 'Teman\Cms\Controllers\Adm
  * User management routes
  */
 Route::resource('/admin/users', 'Teman\Cms\Controllers\UsersController');
-
-
-
+Route::resource('/admin/textbox', 'Teman\Cms\Controllers\textboxsController');

@@ -48,7 +48,7 @@
 
                         </td>
                             <td>{{{ $user->email }}}</td>
-                            <td>{{{ $user->roles[0]->name }}}</td
+                            <td>{{ $user->roles[0]->name }}</td
                     </tr>
                 @endforeach
              </div>
