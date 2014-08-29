@@ -1,3 +1,4 @@
+
 var listForm = $('.list-form'),
 btnDelete = $('#btnDeleteAll'),
 btnSelectAll = $('#btnSelectAll'),
@@ -60,9 +61,39 @@ btnDeselectAll.click(function(){
     deActivateBtn();
 });
 
+
+
 $(document).ready(function() {
 
-    console.log("load");
+    //automaticly search for all richtextbox editors on the page with classname
+
+    var richtextboxes = $('.richTextBoxEditor');
+
+    richtextboxes.each( function(){
+        console.log('test');
+        var textbox = $(this);
+        console.log(textbox);
+        var type = textbox.data('editor-template');
+
+        if ( ! type || type == 'simple' ){
+            CKEDITOR.replace('richTextBoxEditorSimple',{
+                customConfig: 'ckeditor_custom_configSimple.js'
+            });
+        }
+
+        if ( type == 'basic' ){
+            CKEDITOR.replace('richTextBoxEditorBasic' ,{
+                customConfig: 'ckeditor_custom_configBasic.js'
+            });
+        }
+        if ( type == 'advanced' ){
+            CKEDITOR.replace('richTextBoxEditorAdvanced' ,{
+                customConfig: 'ckeditor_custom_configAdvanced.js'
+            });
+        }
+
+    });
+
     deActivateBtn();
     var checkedCheckboxes = listForm.find(':checkbox');
 

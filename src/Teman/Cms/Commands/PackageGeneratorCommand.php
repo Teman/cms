@@ -31,10 +31,10 @@ class PackageGeneratorCommand extends Command {
         $name = $this->ask('What is the model name ? ');
 
 
-        $pathView ='workbench/teman/cms/src/views/'.$name.'s';
-        $viewTemplate='workbench/teman/cms/src/Teman/Cms/viewTemplate/view.txt';
+        $pathView =app_path('../workbench/teman/cms/src/views/'.$name.'s');
+        $viewTemplate=app_path('../workbench/teman/cms/src/Teman/Cms/viewTemplate/view.txt');
 
-        $pathController='workbench/teman/cms/src/Teman/Cms/Controllers/';
+        $pathController=app_path('../workbench/teman/cms/src/Teman/Cms/Controllers/');
 
 
         //create the folder defined in the path

@@ -1,0 +1,52 @@
+@extends('cms::template.layout')
+
+
+@section('content')
+<!--
+<div class="list-form">
+    <div class="btn-toolbar">
+    {{ Form::open() }}
+        <button type="button" id="btnSelectAll" class="btnSelectAll btn btn-default btn-sm">Select all</button>
+        <button type="button" id="btnDeselectAll" class="btnDeselectAll btn btn-default btn-sm">Deselect all</button>
+        <button type="button" id="btnDeleteAll" class="btnDeleteAll btn btn-danger btn-xs">Delete</button>
+    {{ Form::close() }}
+    </div>
+
+    <div id="wrapper" class="table-responsive">
+        <table id="keywords" class="tablesorter table table-condensed table-main">
+            <thead>
+                 <tr>
+                    <th>AddHere</th>
+                    <th>AddHere</th>
+                    <th>AddHere</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+            @foreach (AddHere->chunk(4) as $row)
+            <div class="row"
+                   @foreach($row as AddHere)
+                    <tr id="item_{{AddHere->id}}">
+                        <td>
+                            <div class="AddHere">
+                                {{ Form::checkbox('AddHere', AddHere->id)}}
+                            </div>
+
+                            {{ link_to_route('AddHere', 'Edit', $user->id, ['class' => 'btnEdit btn btn-default btn-xs']) }}
+
+                        </td>
+                            <td>{{ AddHere }}</td>
+                            <td>{{ AddHere }}</td
+                    </tr>
+                @endforeach
+             </div>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+{{AddHere->links()}}
+</div>
+-->
+
+@stop
