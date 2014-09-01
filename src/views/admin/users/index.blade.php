@@ -6,7 +6,7 @@
     <div id="flashBar"></div>
   <h1>
        <a href="/admin/users/create">
-         <i class="fa fa-plus-circle userAddbtn ">
+         <i class="fa fa-plus-circle Addbtn ">
 
           </i>
        </a>

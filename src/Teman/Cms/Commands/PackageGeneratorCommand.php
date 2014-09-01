@@ -34,8 +34,11 @@ class PackageGeneratorCommand extends Command {
         $pathController=app_path('/controllers');
         $pathView =app_path('/views/'.$name);
 
-        $viewTemplate=(__DIR__.'/../viewTemplate/view.txt');
-        $this->info($viewTemplate);
+        $viewTemplateIndex=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
+        //$viewTemplateCreate=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
+        //$viewTemplateShow=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
+
+
 
         //create the folder defined in the path
         if (!file_exists($pathView)) {
@@ -43,12 +46,12 @@ class PackageGeneratorCommand extends Command {
         }
 
         //generate the views based on a template
-        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplate,'viewName'=>'index'));
-        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplate,'viewName'=>'show'));
-        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplate,'viewName'=>'create'));
+        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateIndex,'viewName'=>'index'));
+        // $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplate,'viewName'=>'show'));
+        // $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplate,'viewName'=>'create'));
 
         //generate the controller
-        $this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));
+        //$this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));
 
 
     }
