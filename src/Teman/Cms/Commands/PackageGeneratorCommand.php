@@ -1,4 +1,4 @@
-<?php
+<?php namespace Teman\Cms\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
