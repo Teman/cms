@@ -48,7 +48,7 @@ class PackageGeneratorCommand extends Command {
         //generate the views based on a template
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateIndex,'viewName'=>'index'));
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateCreate,'viewName'=>'create'));
-        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateShow,'viewName'=>'edit'));
+        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateEdit,'viewName'=>'edit'));
 
         //generate the controller
         $this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));
