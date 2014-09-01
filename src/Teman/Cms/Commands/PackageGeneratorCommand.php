@@ -36,7 +36,7 @@ class PackageGeneratorCommand extends Command {
 
         $viewTemplateIndex=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
         $viewTemplateCreate=(__DIR__.'/../viewTemplate/ViewTemplateCreate.txt');
-        $viewTemplateShow=(__DIR__.'/../viewTemplate/ViewTemplateShow.txt');
+        $viewTemplateEdit=(__DIR__.'/../viewTemplate/ViewTemplateEdit.txt');
 
 
 
@@ -48,14 +48,14 @@ class PackageGeneratorCommand extends Command {
         //generate the views based on a template
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateIndex,'viewName'=>'index'));
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateCreate,'viewName'=>'create'));
-        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateShow,'viewName'=>'show'));
+        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateShow,'viewName'=>'edit'));
 
         //generate the controller
         $this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));
 
         $this->str_replace_in_views($pathView.'/index.blade.php',array('VAR','TITLE'),array('$'.$name.'s',$name));
         $this->str_replace_in_views($pathView.'/create.blade.php',array('TITLE'),array($name));
-        $this->str_replace_in_views($pathView.'/show.blade.php',array('TITLE'),array($name));
+        $this->str_replace_in_views($pathView.'/edit.blade.php',array('TITLE'),array($name));
     }
 
     private function str_replace_in_views($viewPathFile,$OldKeyWords,$newKeyWords)

@@ -40,7 +40,7 @@
                             <div class="AddHere">
                                 {{ Form::checkbox('TITLE', $item->id)}}
                             </div>
-                            {{ link_to_route('TITLE', 'Edit', $item->id, ['class' => 'btnEdit btn btn-default btn-xs']) }}
+                            {{ link_to_route('admin.TITLE.edit', 'Edit', $item->id, ['class' => 'btnEdit btn btn-default btn-xs']) }}
                         </td>
                             <td>{{ $item }}</td>
                             <td>{{ $item }}</td
