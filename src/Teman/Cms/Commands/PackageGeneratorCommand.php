@@ -35,8 +35,8 @@ class PackageGeneratorCommand extends Command {
         $pathView =app_path('/views/'.$name);
 
         $viewTemplateIndex=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
-        //$viewTemplateCreate=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
-        //$viewTemplateShow=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
+        $viewTemplateCreate=(__DIR__.'/../viewTemplate/ViewTemplateCreate.txt');
+        $viewTemplateShow=(__DIR__.'/../viewTemplate/ViewTemplateShow.txt');
 
 
 
@@ -47,14 +47,36 @@ class PackageGeneratorCommand extends Command {
 
         //generate the views based on a template
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateIndex,'viewName'=>'index'));
-        // $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplate,'viewName'=>'show'));
-        // $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplate,'viewName'=>'create'));
+        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateCreate,'viewName'=>'create'));
+        $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateShow,'viewName'=>'show'));
 
         //generate the controller
-        //$this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));
+        $this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));
 
+        $this->str_replace_in_views($pathView.'/index.blade.php',array('VAR','TITLE'),array('$'.$name.'s',$name));
+        $this->str_replace_in_views($pathView.'/create.blade.php',array('TITLE'),array($name));
+        $this->str_replace_in_views($pathView.'/show.blade.php',array('TITLE'),array($name));
+    }
+
+    private function str_replace_in_views($viewPathFile,$OldKeyWords,$newKeyWords)
+    {
+
+        $path_to_file = $viewPathFile;
+        $file_contents = file_get_contents($path_to_file);
+
+        $maximumKeywords = sizeof($OldKeyWords);
+
+
+        for($i=0 ; $i < $maximumKeywords ; $i++)
+        {
+
+            $file_contents = str_replace($OldKeyWords[$i],$newKeyWords[$i],$file_contents);
+
+        }
+        file_put_contents($path_to_file,$file_contents);
 
     }
+
 
     /**
      * Get the console command arguments.
