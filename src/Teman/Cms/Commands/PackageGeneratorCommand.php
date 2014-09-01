@@ -7,17 +7,17 @@ use Symfony\Component\Console\Input\InputArgument;
 class PackageGeneratorCommand extends Command {
 
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'generate:package';
+    protected $name = 'cms:package';
 
     /**
      * The console command description.
@@ -28,14 +28,14 @@ class PackageGeneratorCommand extends Command {
 
     public function fire()
     {
+
         $name = $this->ask('What is the model name ? ');
 
+        $pathController=app_path('/controllers');
+        $pathView =app_path('/views/'.$name);
 
-        $pathView =app_path(__DIR__ . '../../../views/'.$name);
-        $viewTemplate=app_path(__DIR__.'../viewTemplate/view.txt');
-
-        $pathController=app_path(__DIR__.'../Controllers/');
-
+        $viewTemplate=(__DIR__.'/../viewTemplate/view.txt');
+        $this->info($viewTemplate);
 
         //create the folder defined in the path
         if (!file_exists($pathView)) {
@@ -53,28 +53,28 @@ class PackageGeneratorCommand extends Command {
 
     }
 
-	/**
-	 * Get the console command arguments.
-	 *
-	 * @return array
-	 */
-	protected function getArguments()
-	{
-		return array(
-			array('example', InputArgument::OPTIONAL, 'An example argument.'),
-		);
-	}
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return array(
+            array('example', InputArgument::OPTIONAL, 'An example argument.'),
+        );
+    }
 
-	/**
-	 * Get the console command options.
-	 *
-	 * @return array
-	 */
-	protected function getOptions()
-	{
-		return array(
-			array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
-	}
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return array(
+            array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
+        );
+    }
 
 }
