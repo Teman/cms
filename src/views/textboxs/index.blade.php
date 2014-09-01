@@ -5,18 +5,21 @@
 
 
 
-<h6>this is a test</h6>
-<form>
+<h2>this is a testpage</h2>
+
+    {{ Form::open(['method'=>'post','route' => 'admin.textbox.store']) }}
 
         <textarea name="richTextBoxEditorSimple" class="richTextBoxEditor" data-editor-template="simple" rows="10" cols="80">
             This is my textarea to be replaced with CKEditor.
         </textarea>
-        <textarea name="richTextBoxEditorBasic" class="richTextBoxEditor" data-editor-template="basic" rows="10" cols="80">
-                 This is my textarea to be replaced with CKEditor.
-         </textarea>
-         <textarea name="richTextBoxEditorAdvanced" class="richTextBoxEditor" data-editor-template="advanced" rows="10" cols="80">
-                 This is my textarea to be replaced with CKEditor.
-         </textarea>
 
-</form>
+    <div class="form-group">
+        {{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
+    </div>
+    {{Form::close()}}
+
+
+
+
+
 @stop

@@ -59,6 +59,7 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app->register('Polyglot\PolyglotServiceProvider');
         $this->app->register('Laracasts\Flash\FlashServiceProvider');
         $this->app->register('Way\Generators\GeneratorsServiceProvider');
+        $this->app->register('Mews\Purifier\PurifierServiceProvider');
         //alias facades
         $this->app->booting(function()
         {
@@ -67,15 +68,15 @@ class CmsServiceProvider extends ServiceProvider {
             $loader->alias('Confide', 'Zizaco\Confide\Facade');
             $loader->alias('Flash', 'Laracasts\Flash\Flash');
             $loader->alias('Authentication', 'Teman\Cms\Authentication');
-
+            $loader->alias('Purifier', 'Mews\Purifier\Facades\Purifier');
             $loader->alias('BaseController', 'Teman\Cms\Controllers\BaseController');
         });
 
         //register artisan commands
         $this->app->bind('command.cms.install', 'Teman\Cms\Commands\CmsInstall');
         $this->commands(['command.cms.install']);
-        $this->app->bind('command.cms.packageCreator','Teman\Cms\Commands\PackageGeneratorCommand');
-        $this->commands(['command.cms.packageCreator']);
+        //$this->app->bind('command.cms.packageCreator','Teman\Cms\Commands\PackageGeneratorCommand');
+        //$this->commands(['command.cms.packageCreator']);
 
         //exception handlers
         $this->registerExceptions();

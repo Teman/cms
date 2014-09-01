@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Teman\Cms\Models\Entrust\User;
+use Mews\Purifier\Facades\Purifier;
+
 
 class TextboxsController extends BaseController {
 
@@ -40,7 +42,27 @@ class TextboxsController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+        /*
+             * Purifier the input given in the richtextbox editor
+             * for extra config see mews/purifier/src/config/config.php
+        */
+
+
+		$input = Input::only('richTextBoxEditorSimple');
+        //dd($input);
+        $output = \Mews\Purifier\Purifier::clean($input,'simple');
+
+
+        /*
+             * As second param you can chose between 'simple','basic','advanced'
+             * according to the textbx editor
+             * $output = \Mews\Purifier\Purifier::clean($input,'simple');
+             * $output = \Mews\Purifier\Purifier::clean($input,'basic');
+             * $output = \Mews\Purifier\Purifier::clean($input,'advanced');
+         */
+
+        dd($output);
+
 	}
 
 	/**
