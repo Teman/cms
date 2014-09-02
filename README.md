@@ -37,10 +37,10 @@ cms
 <li>Step 11 : Browse to 127.0.0.1:8000/admin and login with the credentials you made during the install</li>
 </ul>
 
-h5. Installation is complete
+###### Installation is complete
+======
 
-
-h3. Creating a view with controller
+### Creating a view with controller
 <ul>
   <li>In the terminal enter 'php artisan cms:package'</li>
   <li>Enter the desired name</li>
@@ -54,11 +54,11 @@ h3. Creating a view with controller
       <li>Again there is a lot of template code, there will be places where the code is in comment or ot sais "ADDHERE". Make sure you fill them in according to your model and needs</li>
     </ul>
 </ul>
-h6. To edit this code you can go to : "vendor/teman/cms/src/Teman/Cms/Commands/PackageGeneratorCommand.php
+###### To edit this code you can go to : "vendor/teman/cms/src/Teman/Cms/Commands/PackageGeneratorCommand.php
+======
 
 
-
-h3. Adding items to the sidebar
+### Adding items to the sidebar
 <ul>
   <li> </li>
 </ul>
