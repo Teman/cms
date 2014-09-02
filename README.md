@@ -5,7 +5,7 @@ cms
 
 <ul>
   <li>Step 1 : Add a new folder into your desired directory</li>
-  <li>Step 2 : Go to <a href="www.github.com/Bagaar/homestead">www.github.com/Bagaar/homestead</a></li>
+  <li>Step 2 : Go to www.github.com/Bagaar/homestead</li>
   <li>Step 3 : Clone the repository in to your folder</li>
   <li>Step 4 : Navigate in the terminal to the directory and run vagrant up. This should create a Code folder in your directory</li>
   <li>Step 5 : Navigate with the terminal within the Code folder and run 'composer create-project laravel/laravel'</li>
