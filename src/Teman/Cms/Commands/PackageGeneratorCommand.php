@@ -40,6 +40,7 @@ class PackageGeneratorCommand extends Command {
         $viewTemplateCreate=(__DIR__.'/../viewTemplate/ViewTemplateCreate.txt');
         $viewTemplateEdit=(__DIR__.'/../viewTemplate/ViewTemplateEdit.txt');
         $formTemplate=(__DIR__.'/../viewTemplate/formTemplate.txt');
+        $controllerTemlate=(__DIR__.'/../viewTemplate/controllerTemplate.txt');
 
 
 
@@ -65,7 +66,7 @@ class PackageGeneratorCommand extends Command {
         $this->call('generate:view', array('--path' => $formFolderPath,'--templatePath'=>$formTemplate,'viewName'=>'form'));
 
         //generate the controller
-        $this->call('generate:controller',array('--path'=>$pathController,'--templatePath'=>$formTemplate,'controllerName'=>$name.'sController'));
+        $this->call('generate:controller',array('--path'=>$pathController,'--templatePath'=>$controllerTemlate,'controllerName'=>$name.'sController'));
 
 
         //replace the dummy variabels and titles to the correct name
@@ -73,7 +74,24 @@ class PackageGeneratorCommand extends Command {
         $this->str_replace_in_views($pathView.'/create.blade.php',array('TITLE'),array($name));
         $this->str_replace_in_views($formFolderPath.'/form.blade.php',array('TITLE'),array($name));
         $this->str_replace_in_views($pathView.'/edit.blade.php',array('VAR','TITLE'),array('$'.$name,$name));
-        $this->str_replace_in_views($pathController.'/'.$name.'sController',array('TITLE','TITLES','VARMULTIPLE','VARMULTIPLETXT','VARSINGLE'),array($name,$name.'s','$'.$name.'s',$name.'s','$'.$name));
+        $this->str_replace_in_views($pathController.'/'.$name.'sController.php',
+            array('CLASSTITLE','INDEXDOC','INDEXVAR','INDEXTXT','INDEXTITLE',
+                  'CREATEDOC','CREATETITLE',
+                  'STOREDOC','STOREVAR','STORETITLE',
+                  'SHOWDOC',
+                  'EDITDOC','EDITVAR','EDITTITLE','EDITTXT',
+                  'UPDATEDOC','UPDATEVAR','UPDATETITLE',
+                  'DESTROYDOC','DESTROYVAR','DESTROYTITLE'
+
+            ),
+            array($name.'sController',$name.'s','$'.$name.'s',$name.'s',$name,
+                  $name,$name,
+                  $name,'$'.$name,$name,
+                  $name,
+                  $name,'$'.$name,$name,$name,
+                  $name,'$'.$name,$name,
+                  $name,'$name',$name
+            ));
 
     }
 
