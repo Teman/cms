@@ -67,10 +67,13 @@ class PackageGeneratorCommand extends Command {
         //generate the controller
         $this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));
 
+
+        //replace the dummy variabels and titles to the correct name
         $this->str_replace_in_views($pathView.'/index.blade.php',array('VAR','TITLE'),array('$'.$name.'s',$name));
         $this->str_replace_in_views($pathView.'/create.blade.php',array('TITLE'),array($name));
         $this->str_replace_in_views($formFolderPath.'/form.blade.php',array('TITLE'),array($name));
-        $this->str_replace_in_views($pathView.'/edit.blade.php',array('TITLE'),array($name));
+        $this->str_replace_in_views($pathView.'/edit.blade.php',array('VAR','TITLE'),array('$'.$name,$name));
+        $this->str_replace_in_views($pathController.'/'.$name.'sController',array('TITLE','TITLES','VARMULTIPLE','VARMULTIPLETXT','VARSINGLE'),array($name,$name.'s','$'.$name.'s',$name.'s','$'.$name));
 
     }
 
