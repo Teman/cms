@@ -42,7 +42,7 @@ cms
 
 
 ### Adding items to the sidebar
-1. Go to Code/app/config/packages/teman/cms
+1. Go to Code/app/config/packages/teman/cms/config.php
 2. Here you can see 1 big array named "categorieItems"
  - In this array you can place multiple arrays, for example for a section of users or a section of pages. Each having its own subcategories.
  - each "categorieItems" has 3 properties 
