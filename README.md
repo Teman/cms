@@ -39,6 +39,22 @@ cms
 <h5>Installation is complete</h5>
 
 
+<h3>Creating a view with controller</h3>
+<ul>
+  <li>In the terminal enter 'php artisan cms:package'</li>
+  <li>Enter the desired name</li>
+  <li>If you check your project you will see that in views it created a folder with your given name</li>
+    <ul>
+      <li>Here you will find a index/create/edit page</li>
+      <li>If you open the pages you will see that there already is a lot of template code, modify the code to your        needs</li>
+    </ul>
+    <li>Next to the views there will be a controller created in 'Controllers' this should have the name : "name"Controller</li>
+    <ul>
+      <li>Again there is a lot of template code, there will be places where the code is in comment or ot sais "ADDHERE". Make sure you fill them in according to your model and needs</li>
+    </ul>
+</ul>
+
+
 
 
 
