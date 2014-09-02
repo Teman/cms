@@ -25,14 +25,14 @@ cms
   </ul>
   <li>Step 8 : Open the app.php file </li>
   <ul>
-    <li>add to 'providers' : 'Teman\Cms\CmsServiceProvider'
+    <li>add to 'providers' : 'Teman\Cms\CmsServiceProvider'</li>
   </ul>
 
 <li>Step 9 : In the terminal execute the command : 'composer update'</li>
   <ul>
-  <li>Now if you run php artisan, you should see 'cms:install' and 'cms:package'
+  <li>Now if you run php artisan, you should see 'cms:install' and 'cms:package'</li>
   </ul>
   
-<li>Step 10 : In the terminal execute the command : 'php artisan cms:install'
+<li>Step 10 : In the terminal execute the command : 'php artisan cms:install' and follow the terminal </li>
 </ul>
 <h5>Installation is complete</h5>
