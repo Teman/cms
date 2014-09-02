@@ -39,7 +39,7 @@ class PackageGeneratorCommand extends Command {
         $viewTemplateIndex=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
         $viewTemplateCreate=(__DIR__.'/../viewTemplate/ViewTemplateCreate.txt');
         $viewTemplateEdit=(__DIR__.'/../viewTemplate/ViewTemplateEdit.txt');
-        $viewTemplateEdit=(__DIR__.'/../viewTemplate/formTemplate.txt');
+        $formTemplate=(__DIR__.'/../viewTemplate/formTemplate.txt');
 
 
 
@@ -62,7 +62,7 @@ class PackageGeneratorCommand extends Command {
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateIndex,'viewName'=>'index'));
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateCreate,'viewName'=>'create'));
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateEdit,'viewName'=>'edit'));
-        $this->call('generate:view', array('--path' => $formFolderPath,'--templatePath'=>$viewTemplateEdit,'viewName'=>'form'));
+        $this->call('generate:view', array('--path' => $formFolderPath,'--templatePath'=>$formTemplate,'viewName'=>'form'));
 
         //generate the controller
         $this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));

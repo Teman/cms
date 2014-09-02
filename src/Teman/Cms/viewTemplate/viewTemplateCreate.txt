@@ -6,7 +6,7 @@
 
     {{ Form::open(['route' => 'admin.TITLE.store']) }}
 
-        @include('cms::admin.TITLE.partials.form')
+        @include('TITLE.partials.form')
 
     {{ Form::close() }}
 </div>
