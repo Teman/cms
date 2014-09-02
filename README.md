@@ -1,7 +1,7 @@
 cms
 ===
 
-<h3>installation</h3>
+h3. installation
 
 <ul>
   <li>Step 1 : Add a new folder into your desired directory</li>
@@ -36,10 +36,11 @@ cms
 <li>Step 10 : In the terminal execute the command : 'php artisan cms:install' and follow the terminal </li>
 <li>Step 11 : Browse to 127.0.0.1:8000/admin and login with the credentials you made during the install</li>
 </ul>
-<h5>Installation is complete</h5>
+
+h5. Installation is complete
 
 
-<h3>Creating a view with controller</h3>
+h3. Creating a view with controller
 <ul>
   <li>In the terminal enter 'php artisan cms:package'</li>
   <li>Enter the desired name</li>
@@ -53,6 +54,15 @@ cms
       <li>Again there is a lot of template code, there will be places where the code is in comment or ot sais "ADDHERE". Make sure you fill them in according to your model and needs</li>
     </ul>
 </ul>
+h6. To edit this code you can go to : "vendor/teman/cms/src/Teman/Cms/Commands/PackageGeneratorCommand.php
+
+
+
+h3. Adding items to the sidebar
+<ul>
+  <li> </li>
+</ul>
+
 
 
 
