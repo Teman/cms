@@ -1,33 +1,12 @@
 @extends('cms::template.layout')
 
 @section('content')
-
 <div class="col-md-6">
     <h1>Create new TITLE</h1>
 
     {{ Form::open(['route' => 'admin.TITLE.store']) }}
 
-       <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-           {{ Form::label('ADDHERE') }}
-           {{ Form::text('ADDHERE', null, ['class' => 'form-control']) }}
-           {{ $errors->first('ADDHERE', '<span class="help-block">:message</span>') }}
-       </div>
-
-        <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-            {{ Form::label('ADDHERE') }}
-            {{ Form::text('ADDHERE', null, ['class' => 'form-control']) }}
-            {{ $errors->first('ADDHERE', '<span class="help-block">:message</span>') }}
-        </div>
-
-        <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-            {{ Form::label('ADDHERE') }}
-            {{ Form::text('ADDHERE', null, ['class' => 'form-control']) }}
-            {{ $errors->first('ADDHERE', '<span class="help-block">:message</span>') }}
-        </div>
-
-       <div class="form-group">
-           {{ Form::submit(isset($edit) ? 'Update TITLE' : 'Add TITLE', ['class' => 'btn btn-primary']) }}
-       </div>
+        @include('cms::admin.TITLE.partials.form')
 
     {{ Form::close() }}
 </div>

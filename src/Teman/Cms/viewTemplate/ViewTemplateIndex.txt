@@ -6,7 +6,7 @@
 <div class="page-header userPageHeader">
     <div id="flashBar"></div>
   <h1>
-         <a href="/TITLE/create">
+        <a href={{route('admin.TITLE.create')}}>
          <i class="fa fa-plus-circle Addbtn "></i>
        </a>
        Create new TITLE

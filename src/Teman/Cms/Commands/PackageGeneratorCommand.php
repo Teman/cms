@@ -32,30 +32,46 @@ class PackageGeneratorCommand extends Command {
         $name = $this->ask('What is the model name ? ');
 
         $pathController=app_path('/controllers');
-        $pathView =app_path('/views/'.$name);
+
+
+        $ViewTemplatePartial =(__DIR__.'/../viewTemplate/ViewTemplateCreate.txt');
 
         $viewTemplateIndex=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
         $viewTemplateCreate=(__DIR__.'/../viewTemplate/ViewTemplateCreate.txt');
         $viewTemplateEdit=(__DIR__.'/../viewTemplate/ViewTemplateEdit.txt');
+        $viewTemplateEdit=(__DIR__.'/../viewTemplate/formTemplate.txt');
 
 
 
         //create the folder defined in the path
+        $pathView =app_path('/views/'.$name);
         if (!file_exists($pathView)) {
             mkdir($pathView, 0775, true);
         }
+
+
+        //create the partials folder defined in the path
+        $formFolderPath = $pathView.'/partials';
+        if (!file_exists($formFolderPath)) {
+            mkdir($formFolderPath, 0775, true);
+        }
+
+
 
         //generate the views based on a template
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateIndex,'viewName'=>'index'));
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateCreate,'viewName'=>'create'));
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateEdit,'viewName'=>'edit'));
+        $this->call('generate:view', array('--path' => $formFolderPath,'--templatePath'=>$viewTemplateEdit,'viewName'=>'form'));
 
         //generate the controller
         $this->call('generate:controller',array('--path'=>$pathController,'controllerName'=>$name.'sController'));
 
         $this->str_replace_in_views($pathView.'/index.blade.php',array('VAR','TITLE'),array('$'.$name.'s',$name));
         $this->str_replace_in_views($pathView.'/create.blade.php',array('TITLE'),array($name));
+        $this->str_replace_in_views($formFolderPath.'/form.blade.php',array('TITLE'),array($name));
         $this->str_replace_in_views($pathView.'/edit.blade.php',array('TITLE'),array($name));
+
     }
 
     private function str_replace_in_views($viewPathFile,$OldKeyWords,$newKeyWords)
