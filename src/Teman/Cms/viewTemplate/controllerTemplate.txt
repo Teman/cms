@@ -1,0 +1,130 @@
+<?php
+
+class CLASSTITLE extends \BaseController {
+
+	/**
+	 * Display a listing of the resource.
+	 * GET /INDEXDOC
+	 *
+	 * @return Response
+	 */
+    public function index()
+    {
+        INDEXVAR = ADDHERE::SimplePaginate();
+        return View::make('INDEXTITLE.index',compact('INDEXTXT'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * GET /CREATEDOC/create
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return View::make('CREATETITLE.create');
+    }
+
+
+	/**
+	 * Store a newly created resource in storage.
+	 * POST /STOREDOC
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+	/*
+       //add model HERE
+        STOREVAR = new ADDHERE;
+
+       //add input HERE
+
+
+
+        if ( ! ADDHERE->save() ){
+            return Redirect::back()->withErrors( STOREVAR->errors() );
+        }
+
+        return Redirect::route('admin.STORETITLE.index')->withFlashMessage('STORETITLE created');
+        */
+	}
+
+	/**
+	 * Display the specified resource.
+	 * GET /SHOWDOC/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /EDITDOC/{id}/edit
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+        EDITVAR = ADDHERE::find($id);
+		return View::make('EDITTITLE.edit',compact('EDITTXT'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 * PUT /UPDATEDOC/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+
+		/*
+
+                UPDATEVAR = ADDHERE::findOrFail($id);
+
+                //if no password is set, keep previous
+                $input = Input::all();
+
+
+                //own validator because unique rule is different for create or update
+                $validator = Validator::make( $input, [
+                       //ADDHERE
+                    ] );
+
+                if ( $validator->fails() ){
+                    throw new FormValidationException('Validation failed', $validator->errors());
+                }
+
+                UPDATEVAR->update($input);
+
+
+                return Redirect::route('admin.UPDATETITLE.index')->withFlashMessage('UPDATETITLE updated');
+
+                */
+       }
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 * DELETE /DESTROYDOC/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		   DESTROYVAR = ADDHERE::findOrFail($id);
+
+                DESTROYVAR->delete();
+
+                return Redirect::route('admin.DESTROYTITLE.index')->withFlashMessage('DESTROYTITLE removed');
+	}
+
+}

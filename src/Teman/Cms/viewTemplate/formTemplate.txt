@@ -1,0 +1,9 @@
+<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+           {{ Form::label('ADDHERE') }}
+           {{ Form::text('ADDHERE', null, ['class' => 'form-control']) }}
+           {{ $errors->first('ADDHERE', '<span class="help-block">:message</span>') }}
+</div>
+
+<div class="form-group">
+           {{ Form::submit(isset($edit) ? 'Update TITLE' : 'Add TITLE', ['class' => 'btn btn-primary']) }}
+</div>
