@@ -32,19 +32,25 @@ cms
   1. In the terminal enter 'php artisan cms:package'
   1. Enter the desired name
   1. If you check your project you will see that in views it created a folder with your given name
-    
       - Here you will find a index/create/edit page
-        * If you open the pages you will see that there already is a lot of template code, modify the code to your        needs
-    
+         * If you open the pages you will see that there already is a lot of template code, modify the code to your needs
       - Next to the views there will be a controller created in 'Controllers' this should have the name : "name"Controller
-    
-     * Again there is a lot of template code, there will be places where the code is in comment or ot sais "ADDHERE". Make sure you fill them in according to your model and needs
+         * Again there is a lot of template code, there will be places where the code is in comment or ot sais "ADDHERE". Make sure you fill them in according to your model and needs
 
 ###### To edit this code you can go to : "vendor/teman/cms/src/Teman/Cms/Commands/PackageGeneratorCommand.php
 ======
 
 
 ### Adding items to the sidebar
+1. Go to Code/app/config/packages/teman/cms
+2. Here you can see 1 big array named "categorieItems"
+ - In this array you can place multiple arrays, for example for a section of users or a section of pages. Each having its own subcategories.
+ - each "categorieItems" has 3 properties 
+    * The first is : 'title', this is the text displayed in the menu
+    * Second : 'permission', you can give it a level of permission in order to view the menu item
+    * Third : "subCategorieItems", you can give each category multiple subcategories. Also being able to give it a permission, giving it the according route to the page, giving it the itemText wich displays on the menu and giving it the Iclass(the icon before the word, FontAwesomme)
+    
+
 
 
 
