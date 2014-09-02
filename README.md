@@ -1,7 +1,7 @@
 cms
 ===
 
-h3. installation
+### Installation
 
 <ul>
   <li>Step 1 : Add a new folder into your desired directory</li>
