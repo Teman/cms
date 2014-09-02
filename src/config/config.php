@@ -6,23 +6,32 @@
      */
     'cmsTitle' => 'Teman CMS',
 
-
     /*
      * Menu items for admin interface
+     *
      */
-    'adminMenuItems' => [
-//        [
-//            'route' => 'admin.products.index',
-//            'title' => 'Products'
-//        ],
-//        [
-//            'route' => 'admin.news.index',
-//            'title' => 'News'
-//        ],
-//        [
-//            'route' => 'admin.faq.index',
-//            'title' => 'Faq'
-//        ]
-    ]
+    'categorieItems' => [
+        [
+            'title' => 'Users',
+            'subCategorieItems' => [
+                [
+                    'route' => 'admin.users.index',
+                    'itemText'=>'Users',
+                    'Iclass'=>'fa fa-user'
+                ],
+            ],
+        ],
+
+        [
+            'title' => 'Textbox',
+            'subCategorieItems' => [
+                [
+                    'route' => 'admin.textbox.index',
+                    'itemText'=>'Rich Textbox Editor',
+                    'Iclass'=>'fa fa-file-text'
+                ],
+            ]
+        ]
+    ],
 
 );

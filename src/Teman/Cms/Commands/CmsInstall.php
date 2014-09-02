@@ -111,15 +111,12 @@ class CmsInstall extends Command {
 
 
     }
-
-
     private function publishAssets(){
 
         $this->info('Publishing CMS assets');
         $this->call('asset:publish', array('package' => 'teman/cms'));
 
     }
-
 
     private function publishConfigs(){
 

@@ -30,7 +30,7 @@ class UsersController extends BaseController {
 	{
 		//
 
-        $users = User::with('roles')->simplePaginate(20 );
+        $users = User::with('roles')->simplePaginate(20);
 
 
         return View::make('cms::admin.users.index')->withUsers($users);
