@@ -13,19 +13,24 @@
     'categorieItems' => [
         [
             'title' => 'Users',
+            'permission'=>'acces_cms',
             'subCategorieItems' => [
                 [
+                    'permission'=>'acces_cms',
                     'route' => 'admin.users.index',
                     'itemText'=>'Users',
-                    'Iclass'=>'fa fa-user'
+                    'Iclass'=>'fa fa-user',
+
                 ],
             ],
         ],
 
         [
             'title' => 'Textbox',
+            'permission'=>'acces_cms',
             'subCategorieItems' => [
                 [
+                    'permission'=>'acces_cms',
                     'route' => 'admin.textbox.index',
                     'itemText'=>'Rich Textbox Editor',
                     'Iclass'=>'fa fa-file-text'

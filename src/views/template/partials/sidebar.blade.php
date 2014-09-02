@@ -3,18 +3,22 @@
 
     @if(isset($categorieItems))
          @foreach($categorieItems as $categorieItem)
+           @if($categorieItem['permission'] == 'acces_cms')
              <h4>{{$categorieItem['title']}}</h4>
                 <ul class="nav nav-sidebar">
                     @foreach($categorieItem['subCategorieItems'] as $subCat)
-                    <li>
-                           <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
-                                    <i class="{{$subCat['Iclass']}}"></i>
-                                    <div>{{$subCat['itemText'] }}</div>
-                           </a>
-                   </li>
+                        @if($subCat['permission'] == 'acces_cms')
+                            <li>
+                                   <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                            <i class="{{$subCat['Iclass']}}"></i>
+                                            <div>{{$subCat['itemText'] }}</div>
+                                   </a>
+                           </li>
+                        @endif
                     @endforeach
                 </ul>
-            @endforeach
+           @endif
+         @endforeach
     @endif
 
 </div>
