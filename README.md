@@ -34,5 +34,11 @@ cms
   </ul>
   
 <li>Step 10 : In the terminal execute the command : 'php artisan cms:install' and follow the terminal </li>
+<li>Step 11 : Browse to 127.0.0.1:8000/admin and login with the credentials you made during the install</li>
 </ul>
 <h5>Installation is complete</h5>
+
+
+
+
+
