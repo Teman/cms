@@ -142,8 +142,6 @@ class CmsInstall extends Command {
 
     }
 
-
-
     private function createUser(){
 
         //create user
