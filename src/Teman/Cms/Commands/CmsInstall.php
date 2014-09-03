@@ -54,10 +54,10 @@ class CmsInstall extends Command {
             return;
         }
 
-        $this->intro();
-        // $this->migrateDatabase();
-        // $this->publishAssets();
-        // $this->publishConfigs();
+         $this->intro();
+         $this->migrateDatabase();
+         $this->publishAssets();
+         $this->publishConfigs();
 
         $this->askUserData();
 
@@ -71,14 +71,15 @@ class CmsInstall extends Command {
             }
 
             $this->line('');
+
             $this->askUserData();
             $validator = $this->validate($this->entered_email,$this->entered_password);
         }
 
-       // $this->createRolesAndPermissions();
-       // $this->createUser();
+        $this->createRolesAndPermissions();
+        $this->createUser();
 
-       // $this->markInstalled();
+        $this->markInstalled();
 
 
         $this->done();
