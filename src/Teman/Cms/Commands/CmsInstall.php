@@ -52,9 +52,9 @@ class CmsInstall extends Command {
         }
 
          $this->intro();
-         $this->migrateDatabase();
          $this->publishAssets();
          $this->publishConfigs();
+         $this->migrateDatabase();
 
         $this->askUserData();
 
