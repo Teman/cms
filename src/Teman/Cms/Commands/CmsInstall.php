@@ -55,20 +55,13 @@ class CmsInstall extends Command {
         }
 
         $this->intro();
-
-        $this->migrateDatabase();
-        $this->publishAssets();
-        $this->publishConfigs();
+        // $this->migrateDatabase();
+        // $this->publishAssets();
+        // $this->publishConfigs();
 
         $this->askUserData();
 
-        $validator = Validator::make([
-                'email' => $this->entered_email,
-                'password' => $this->entered_password
-            ], [
-                'email' => 'required|email',
-                'password' => 'required|min:6'
-            ]);
+        $validator = $this->validate($this->entered_email,$this->entered_password);
 
 
         while ( $validator->fails() ){
@@ -78,20 +71,32 @@ class CmsInstall extends Command {
             }
 
             $this->line('');
-
             $this->askUserData();
+            $validator = $this->validate($this->entered_email,$this->entered_password);
         }
 
-        $this->createRolesAndPermissions();
-        $this->createUser();
+       // $this->createRolesAndPermissions();
+       // $this->createUser();
 
-        $this->markInstalled();
+       // $this->markInstalled();
+
 
         $this->done();
 
 	}
 
+    private function validate($enterd_email, $enterd_password)
+    {
+        $validator = Validator::make([
+            'email' => $enterd_email,
+            'password' => $enterd_password
+        ], [
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
 
+        return $validator;
+    }
 
     private function intro(){
 
