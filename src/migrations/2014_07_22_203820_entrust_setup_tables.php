@@ -10,6 +10,14 @@ class EntrustSetupTables extends Migration {
      *
      * @return  void
      */
+
+    protected $role_super_admin;
+    protected $role_admin;
+    protected $role_user;
+
+    protected $permission_cms_access;
+    protected $permission_manage_users;
+
     public function up()
     {
         // Creates the roles table
@@ -50,6 +58,23 @@ class EntrustSetupTables extends Migration {
             $table->foreign('role_id')->references('id')->on('roles');
         });
 
+
+        //create roles
+        $this->role_super_admin = Role::create(['name' => 'Super admin']);
+        $this->role_admin = Role::create(['name' => 'Admin']);
+        $this->role_user = Role::create(['name'=>'User']);
+
+
+
+        //create permission
+        $this->permission_cms_access = Permission::create(['name' => 'access_cms', 'display_name' => 'Access CMS']);
+        $this->permission_manage_users = Permission::create(['name'=> 'manage_users','display_name' => 'Manage Users']);
+
+
+        //attach permission to role
+        $this->permission_cms_access->roles()->attach( $this->role_super_admin );
+        $this->permission_cms_access->roles()->attach( $this->role_admin );
+        $this->permission_manage_users->roles()->attach( $this->role_user );
 
     }
 

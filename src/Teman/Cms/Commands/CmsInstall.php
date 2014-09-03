@@ -26,10 +26,7 @@ class CmsInstall extends Command {
     protected $entered_email;
     protected $entered_password;
 
-    protected $role_super_admin;
-    protected $role_admin;
 
-    protected $permission_cms_access;
 
     /**
      * Create a new command instance.
@@ -156,26 +153,6 @@ class CmsInstall extends Command {
         $this->info('User created');
 
     }
-
-
-    private function createRolesAndPermissions(){
-        //create roles
-        $this->role_super_admin = Role::create(['name' => 'Super admin']);
-        $this->role_admin = Role::create(['name' => 'Admin']);
-        //user -->acces cms
-
-
-        //create permission
-        $this->permission_cms_access = Permission::create(['name' => 'access_cms', 'display_name' => 'Access CMS']);
-        //manage users, gekoppeld aan super admin /admin
-
-        //attach permission to role
-        $this->permission_cms_access->roles()->attach( $this->role_super_admin );
-        $this->permission_cms_access->roles()->attach( $this->role_admin );
-        //
-
-    }
-
 
     private function isCmsInstalled(){
 
