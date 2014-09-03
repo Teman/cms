@@ -74,9 +74,10 @@ class CmsServiceProvider extends ServiceProvider {
 
         //register artisan commands
         $this->app->bind('command.cms.install', 'Teman\Cms\Commands\CmsInstall');
-        $this->commands(['command.cms.install']);
+        $this->app->bind('command.cms.adduser', 'Teman\Cms\Commands\CmsAddUser');
         $this->app->bind('command.cms.packageCreator','Teman\Cms\Commands\PackageGeneratorCommand');
-        $this->commands(['command.cms.packageCreator']);
+
+	$this->commands(['command.cms.install', 'command.cms.adduser', 'command.cms.packageCreator']);
 
         //exception handlers
         $this->registerExceptions();
