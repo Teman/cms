@@ -51,6 +51,34 @@ cms
     * Third : "subCategorieItems", you can give each category multiple subcategories. Also being able to give it a permission, giving it the according route to the page, giving it the itemText wich displays on the menu and giving it the Iclass(the icon before the word, FontAwesomme)
     
 
+====== 
+
+
+### Adding/Using the Richtextbox Editor
+#### Adding it to your view
+1. First of all open a form (and close it)
+2. Inside the form put : @include('cms::sandbox.partials.richTextBoxEditor',array('txtbxName'=>'Simple'))
+  - this will add the partial to your view. The second argument is the definition of your configuration (Simple,        Basic or Advanced). We will come back to that later
+3. Your code should look something like this
+<!-- 
+
+    {{ Form::open(['method'=>'post','route' => 'admin.textbox.store']) }}
+
+        @include('cms::sandbox.partials.richTextBoxEditor',array('txtbxName' => 'Simple'))
+
+
+        </br>
+        </br>
+
+        @include('cms::sandbox.partials.datePicker')
+
+        @include('cms::sandbox.partials.submit')
+    {{Form::close()}}
+-->
+
+
+    
+
 
 
 
