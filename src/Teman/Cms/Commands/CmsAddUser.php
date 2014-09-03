@@ -48,16 +48,7 @@ class CmsAddUser extends Command {
      */
     public function fire()
     {
-
-        if ( $this->isCmsInstalled() ){
-            $this->comment('CMS already installed');
-            return;
-        }
-
         $this->intro();
-        $this->migrateDatabase();
-        $this->publishAssets();
-        $this->publishConfigs();
 
         $this->askUserData();
 
@@ -79,13 +70,24 @@ class CmsAddUser extends Command {
         $this->createRolesAndPermissions();
         $this->createUser();
 
-        $this->markInstalled();
+
 
 
         $this->done();
 
     }
+    private function intro(){
 
+        $this->info('Creating a new User');
+        $this->info('------------------');
+        $this->info('');
+
+
+    }
+    private function done(){
+        $this->info('');
+        $this->info('User Created ! Have fun');
+    }
     private function validate($enterd_email, $enterd_password)
     {
         $validator = Validator::make([

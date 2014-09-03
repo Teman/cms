@@ -148,8 +148,8 @@ class CmsInstall extends Command {
         $user->save();
 
         //attach role to user
-        $user->attachRole($this->role_super_admin);
-
+        $role_super_admin = Role::where('name', 'Super admin')->first();
+        $user->attachRole( $role_super_admin->id );
         $this->info('User created');
 
     }
