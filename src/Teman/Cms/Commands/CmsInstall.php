@@ -73,7 +73,7 @@ class CmsInstall extends Command {
             $validator = $this->validate($this->entered_email,$this->entered_password);
         }
 
-        $this->createRolesAndPermissions();
+        
         $this->createUser();
 
         $this->markInstalled();

@@ -2,6 +2,10 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Role;
+use Permission;
+use User;
+
 
 class EntrustSetupTables extends Migration {
 
