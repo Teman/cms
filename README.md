@@ -82,7 +82,7 @@ cms
 1. You can also make a new config file. To link it to your RTE do the following :
   - open list.js. Located in : 'public/teman/cms/js'
   - Scroll down to this piece of code :
-```javascript
+````
         var richtextboxes = $('.richTextBoxEditor');
         richtextboxes.each( function(){
         var textbox = $(this);
@@ -107,8 +107,17 @@ cms
         }
 
     });
-```
+````
+   
+   
     - Here add another if statement and fill in the correct names and paths       
+    
+    
+## Using a dateTimePicker
+1. There is a template for a datetimepicker located in the "cms::sandbox.partials.datePicker.php"
+2. To use it in your view add (between form tags) : @include('cms::sandbox.partials.datePicker')
+  - To give the datePicker a default date (maybe refering to when the user was created) the share with the view(trough the controller) the variabel $date, it will then automaticly set the date.
+
        
 
     
