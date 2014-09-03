@@ -52,9 +52,9 @@ class CmsInstall extends Command {
         }
 
          $this->intro();
+         $this->migrateDatabase();
          $this->publishAssets();
          $this->publishConfigs();
-         $this->migrateDatabase();
 
         $this->askUserData();
 
@@ -73,7 +73,7 @@ class CmsInstall extends Command {
             $validator = $this->validate($this->entered_email,$this->entered_password);
         }
 
-        
+
         $this->createUser();
 
         $this->markInstalled();

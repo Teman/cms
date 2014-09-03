@@ -2,9 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Role;
-use Permission;
-use User;
+use Teman\Cms\Models\Entrust\Permission;
+use Teman\Cms\Models\Entrust\Role;
 
 
 class EntrustSetupTables extends Migration {
@@ -21,6 +20,8 @@ class EntrustSetupTables extends Migration {
 
     protected $permission_cms_access;
     protected $permission_manage_users;
+
+
 
     public function up()
     {
