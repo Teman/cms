@@ -111,7 +111,32 @@ cms
    
    
     - Here add another if statement and fill in the correct names and paths       
-    
+
+### HTML Purifier
+1. To clean up the submitten html from the textbox add the following to the controller
+````
+    $input = Input::only('richTextBoxEditorSimple')
+    $output = \Mews\Purifier\Purifier::clean($input,'simple');
+
+````
+  - $input represents the input given from the RTE unpurified
+  - $output is the cleaned HTML, as the second param give it the extension of your RTE
+       * $output = \Mews\Purifier\Purifier::clean($input,'simple');
+       * $output = \Mews\Purifier\Purifier::clean($input,'basic');
+       * $output = \Mews\Purifier\Purifier::clean($input,'advanced');
+  - When you have made your own configuration of a RTE (see previous) you must also make a config for the HTML purifier, so unwanted tags (options you haven't enabled) don't get passed trough
+       * Go to vendor/mews/purifier/src/config/config.php
+       * Add to the settings array your config
+       * Should look like this (variabel HTML.allowed ofcourse)
+````
+'simple' => array(
+            'HTML.Doctype'             => 'XHTML 1.0 Strict',
+            'HTML.Allowed'             => 'p[style],br,strong,h1,h2,h3,h4,h5,h6,strong,em,ol,li,ul,a[href|title],span[style]',
+            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
+            'AutoFormat.AutoParagraph' => false,
+            'AutoFormat.RemoveEmpty'   => true,
+        ),
+````
     
 ## Using a dateTimePicker
 1. There is a template for a datetimepicker located in the "cms::sandbox.partials.datePicker.php"
