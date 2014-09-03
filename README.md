@@ -60,16 +60,21 @@ cms
 2. Inside the form put : @include('cms::sandbox.partials.richTextBoxEditor',array('txtbxName'=>'Simple'))
   - this will add the partial to your view. The second argument is the definition of your configuration (Simple,        Basic or Advanced). We will come back to that later
 3. Your code should look something like this
-     > {{ Form::open(['method'=>'post','route' => 'admin.textbox.store']) }}
+````
+    {{ Form::open(['method'=>'post','route' => 'admin.textbox.store']) }}
 
-     >   @include('cms::sandbox.partials.richTextBoxEditor',array('txtbxName' => 'Simple'))
-
-     >   @include('cms::sandbox.partials.datePicker')
-
-     >   @include('cms::sandbox.partials.submit')
-     >   {{Form::close()}}
+        @include('cms::sandbox.partials.richTextBoxEditor',array('txtbxName' => 'Simple'))
 
 
+        </br>
+        </br>
+
+        @include('cms::sandbox.partials.datePicker')
+
+        @include('cms::sandbox.partials.submit')
+    {{Form::close()}}
+
+````
 #### Configuration of your own RTE
 1. Every RTE links to a configuration file, at this moment there are 3. Located in : 'public/teman/cms/js/richTextBoxConfigs'
   - in this file you will find config.toolbar array. In this array there are multiple other arrays representing a   group of items.
@@ -77,33 +82,33 @@ cms
 1. You can also make a new config file. To link it to your RTE do the following :
   - open list.js. Located in : 'public/teman/cms/js'
   - Scroll down to this piece of code :
-      > //automaticly search for all richtextbox editors on the page with classname
-         var richtextboxes = $('.richTextBoxEditor');
-         richtextboxes.each( function(){
-         var textbox = $(this);
-         console.log(textbox);
-         var type = textbox.data('editor-template');
+```javascript
+        var richtextboxes = $('.richTextBoxEditor');
+        richtextboxes.each( function(){
+        var textbox = $(this);
+        console.log(textbox);
+        var type = textbox.data('editor-template');
 
-      > if ( ! type || type == 'Simple' ){
+        if ( ! type || type == 'Simple' ){
             CKEDITOR.replace('richTextBoxEditorSimple',{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configSimple.js'
             });
-         }
+        }
 
-      >if ( type == 'Basic' ){
-           CKEDITOR.replace('richTextBoxEditorBasic' ,{
+        if ( type == 'Basic' ){
+            CKEDITOR.replace('richTextBoxEditorBasic' ,{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configBasic.js'
             });
         }
-      > if ( type == 'Advanced' ){
+        if ( type == 'Advanced' ){
             CKEDITOR.replace('richTextBoxEditorAdvanced' ,{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configAdvanced.js'
             });
         }
 
-       > });
-       
-       
+    });
+```
+    - Here add another if statement and fill in the correct names and paths       
        
 
     
