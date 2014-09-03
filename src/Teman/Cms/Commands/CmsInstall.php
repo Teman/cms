@@ -162,13 +162,17 @@ class CmsInstall extends Command {
         //create roles
         $this->role_super_admin = Role::create(['name' => 'Super admin']);
         $this->role_admin = Role::create(['name' => 'Admin']);
+        //user -->acces cms
+
 
         //create permission
         $this->permission_cms_access = Permission::create(['name' => 'access_cms', 'display_name' => 'Access CMS']);
+        //manage users, gekoppeld aan super admin /admin
 
         //attach permission to role
         $this->permission_cms_access->roles()->attach( $this->role_super_admin );
         $this->permission_cms_access->roles()->attach( $this->role_admin );
+        //
 
     }
 
