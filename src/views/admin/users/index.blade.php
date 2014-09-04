@@ -40,7 +40,7 @@
                    @foreach($row as $user)
                     <tr id="item_{{$user->id}}">
                         <td>
-                            <div class="checkboxUserPage">
+                            <div class="checkboxPage">
                                 {{ Form::checkbox('user', $user->id)}}
                             </div>
 

@@ -39,8 +39,8 @@ class PackageGeneratorCommand extends Command {
         $viewTemplateIndex=(__DIR__.'/../viewTemplate/ViewTemplateIndex.txt');
         $viewTemplateCreate=(__DIR__.'/../viewTemplate/ViewTemplateCreate.txt');
         $viewTemplateEdit=(__DIR__.'/../viewTemplate/ViewTemplateEdit.txt');
-        $formTemplate=(__DIR__.'/../viewTemplate/formTemplate.txt');
-        $controllerTemlate=(__DIR__.'/../viewTemplate/controllerTemplate.txt');
+        $formTemplate=(__DIR__.'/../viewTemplate/FormTemplate.txt');
+        $controllerTemlate=(__DIR__.'/../viewTemplate/ControllerTemplate.txt');
 
 
 

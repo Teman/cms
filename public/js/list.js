@@ -2,8 +2,9 @@
 var listForm = $('.list-form'),
 btnDelete = $('#btnDeleteAll'),
 btnSelectAll = $('#btnSelectAll'),
-btnDeselectAll = $('#btnDeselectAll');
-var checkbxCounter;
+btnDeselectAll = $('#btnDeselectAll'),
+date = $('#date');
+
 
 btnDelete.click(function(){
     var checkedCheckboxes = listForm.find(':checkbox:checked'),
@@ -62,33 +63,81 @@ btnDeselectAll.click(function(){
 });
 
 
-
 $(document).ready(function() {
 
+ var datepickers =$('.dp');
+
+    datepickers.each(function(){
+
+        var dateP = $(this);
+        dateP.datepicker();
+
+        dateP.keydown(function(e){
+            dateP.ForceNumericOnly();
+            if (e.keyCode != 8){
+                if ($(this).val().length == 2){
+                    $(this).val($(this).val() + "/");
+                }else if ($(this).val().length == 5){
+                    $(this).val($(this).val() + "/");
+                }
+                else if($(this).val().length >9 && e.keyCode>47 && e.keyCode <58)
+                {
+                    $(this).val($(this).val().substring(0,$(this).val().length-1));
+                }
+            }
+        });
+ })
+
+jQuery.fn.ForceNumericOnly =
+        function()
+        {
+            return this.each(function()
+            {
+                $(this).keydown(function(e)
+                {
+                    var key = e.charCode || e.keyCode || 0;
+                    // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
+                    // home, end, period, and numpad decimal
+                    return (
+                        key == 8 ||
+                            key == 9 ||
+                            key == 13 ||
+                            key == 46 ||
+                            key == 110 ||
+                            key == 190 ||
+                            (key >= 35 && key <= 40) ||
+                            (key >= 48 && key <= 57) ||
+                            (key >= 96 && key <= 105));
+                });
+            });
+        };
+
+
+
+
+
+
+
     //automaticly search for all richtextbox editors on the page with classname
-
     var richtextboxes = $('.richTextBoxEditor');
-
     richtextboxes.each( function(){
-        console.log('test');
         var textbox = $(this);
-        console.log(textbox);
         var type = textbox.data('editor-template');
 
-        if ( ! type || type == 'simple' ){
+        if ( ! type || type == 'Simple' ){
             CKEDITOR.replace('richTextBoxEditorSimple',{
-                customConfig: 'ckeditor_custom_configSimple.js'
+                customConfig: 'richTextBoxConfigs/ckeditor_custom_configSimple.js'
             });
         }
 
-        if ( type == 'basic' ){
+        if ( type == 'Basic' ){
             CKEDITOR.replace('richTextBoxEditorBasic' ,{
-                customConfig: 'ckeditor_custom_configBasic.js'
+                customConfig: 'richTextBoxConfigs/ckeditor_custom_configBasic.js'
             });
         }
-        if ( type == 'advanced' ){
+        if ( type == 'Advanced' ){
             CKEDITOR.replace('richTextBoxEditorAdvanced' ,{
-                customConfig: 'ckeditor_custom_configAdvanced.js'
+                customConfig: 'richTextBoxConfigs/ckeditor_custom_configAdvanced.js'
             });
         }
 
@@ -100,7 +149,10 @@ $(document).ready(function() {
     checkedCheckboxes.click(function(){
         deActivateBtn();
     });
+
+
 });
+
 function deActivateBtn()
 {
     var checkedCheckboxes = listForm.find(':checkbox:checked');

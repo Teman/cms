@@ -182,9 +182,10 @@ body {
   }
 }
 
-.userAddbtn
+.Addbtn
 {
   color : $blue-color;
+  text-decoration: none;
 }
 
 .fa
@@ -206,7 +207,7 @@ body {
   float:left;
   background: none;
 }
-.checkboxUserPage
+.checkboxPage
 {
   width: 20px;
   float:left;
@@ -222,6 +223,10 @@ body {
 {
   margin-bottom: 20px;
 
+}
+.formTextArea
+{
+  width: 100%;
 }
 
 

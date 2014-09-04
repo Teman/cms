@@ -138,8 +138,9 @@ body {
   border-radius: 50%;
 }
 
-.userAddbtn {
+.Addbtn {
   color: #428bca;
+  text-decoration: none;
 }
 
 .fa {
@@ -159,7 +160,7 @@ body {
   background: none;
 }
 
-.checkboxUserPage {
+.checkboxPage {
   width: 20px;
   float: left;
 }
@@ -174,4 +175,8 @@ body {
 
 .btn-toolbar {
   margin-bottom: 20px;
+}
+
+.formTextArea {
+  width: 100%;
 }

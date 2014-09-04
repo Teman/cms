@@ -26,7 +26,7 @@
         <table id="keywords" class="tablesorter table table-condensed table-main">
             <thead>
                  <tr>
-                    <th>TITLE</th>
+                    <th>Select</th>
                     <th>TITLE</th>
                     <th>TITLE</th>
 
@@ -37,7 +37,7 @@
                    @foreach(VAR as $item)
                     <tr id="item_{{$item->id}}">
                         <td>
-                            <div class="AddHere">
+                            <div class="checkboxPage">
                                 {{ Form::checkbox('TITLE', $item->id)}}
                             </div>
                             {{ link_to_route('admin.TITLE.edit', 'Edit', $item->id, ['class' => 'btnEdit btn btn-default btn-xs']) }}
