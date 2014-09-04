@@ -16,6 +16,8 @@
 
         <link href="{{ asset('packages/teman/cms/css/font-awesome.css') }}" rel="stylesheet">
 
+        @yield('links')
+
     </head>
 
     <body class="has-navbar">
@@ -64,6 +66,8 @@
         <script src="{{ asset('packages/teman/cms/js/ckeditor.js') }}"></script>
         <script src="{{ asset('packages/teman/cms/js/ckeditor_custom_config.js') }}"></script>
 
+
+        @yield('scripts')
 
     </body>
 
