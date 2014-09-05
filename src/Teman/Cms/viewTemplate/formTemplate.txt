@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-           {{ Form::label('ADDHERE') }}
+           {{ Form::label('ADDHERE','ADDHERE') }}
            {{ Form::text('ADDHERE', null, ['class' => 'form-control']) }}
            {{ $errors->first('ADDHERE', '<span class="help-block">:message</span>') }}
 </div>

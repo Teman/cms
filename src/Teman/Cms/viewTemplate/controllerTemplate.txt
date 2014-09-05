@@ -38,11 +38,13 @@ class CLASSTITLE extends \BaseController {
        //add model HERE
         STOREVAR = new ADDHERE;
 
-       //add input HERE
+
+        //add the inputs to the model instance
+        STOREVAR->ADDHERE = Input::get('ADDHERE');
 
 
-
-        if ( ! ADDHERE->save() ){
+        //Extend Ardent in your model class and define the rules
+        if ( !STOREVAR->save() ){
             return Redirect::back()->withErrors( STOREVAR->errors() );
         }
 
@@ -84,28 +86,19 @@ class CLASSTITLE extends \BaseController {
 	 */
 	public function update($id)
 	{
-
 		/*
+        UPDATEVAR = ADDHERE::findOrFail($id);
 
-                UPDATEVAR = ADDHERE::findOrFail($id);
+       //add the inputs to the model instance
+       UPDATEVAR->ADDHERE = Input::get('ADDHERE');
 
-                //if no password is set, keep previous
-                $input = Input::all();
-
-
-                //own validator because unique rule is different for create or update
-                $validator = Validator::make( $input, [
-                       //ADDHERE
-                    ] );
-
-                if ( $validator->fails() ){
-                    throw new FormValidationException('Validation failed', $validator->errors());
-                }
-
-                UPDATEVAR->update($input);
+        if ( !UPDATEVAR->save() ){
+           return Redirect::back()->withErrors( UPDATEVAR->errors() );
+        }
 
 
-                return Redirect::route('admin.UPDATETITLE.index')->withFlashMessage('UPDATETITLE updated');
+
+         return Redirect::route('admin.UPDATETITLE.index')->withFlashMessage('UPDATETITLE updated');
 
                 */
        }
