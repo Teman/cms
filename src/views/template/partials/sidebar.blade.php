@@ -1,24 +1,54 @@
-
 <div class="col-sm-3 col-md-2 sidebar" role="navigation">
 
-    @if(isset($categorieItems))
-         @foreach($categorieItems as $categorieItem)
-           @if($categorieItem['permission'] == 'acces_cms')
-             <h4>{{$categorieItem['title']}}</h4>
+         @foreach( $adminMenuItems as $adminMenuItem)
+           @if(isset($adminMenuItem['permission']))
+                @if($currentUser->can($adminMenuItem['permission']))
+                     <h4>{{ $adminMenuItem['title'] }}</h4>
+                     <ul class="nav nav-sidebar">
+                      @foreach($adminMenuItem['adminMenuItems_subCategory'] as $subCat)
+                        @if(isset($subCat['permission']))
+                            @if($currentUser->can($subCat['permission']))
+                                <li>
+                                       <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                                <i class="{{$subCat['iconClass']}}"></i>
+                                                <div>{{$subCat['title'] }}</div>
+                                       </a>
+                               </li>
+                            @endif
+                        @else
+                             <li>
+                                 <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                     <i class="{{$subCat['iconClass']}}"></i>
+                                     <div>{{$subCat['title'] }}</div>
+                                 </a>
+                             </li>
+                        @endif
+                    @endforeach
+                       </ul>
+                @endif
+           @else
+                <h4>{{ $adminMenuItem['title'] }}</h4>
                 <ul class="nav nav-sidebar">
-                    @foreach($categorieItem['subCategorieItems'] as $subCat)
-                        @if($subCat['permission'] == 'acces_cms')
-                            <li>
-                                   <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
-                                            <i class="{{$subCat['Iclass']}}"></i>
-                                            <div>{{$subCat['itemText'] }}</div>
-                                   </a>
-                           </li>
+                    @foreach($adminMenuItem['adminMenuItems_subCategory'] as $subCat)
+                        @if(isset($subCat['permission']))
+                            @if($currentUser->can($subCat['permission']))
+                                <li>
+                                    <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                        <i class="{{$subCat['iconClass']}}"></i>
+                                        <div>{{$subCat['title'] }}</div>
+                                    </a>
+                                </li>
+                            @endif
+                        @else
+                        <li>
+                            <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                <i class="{{$subCat['iconClass']}}"></i>
+                                <div>{{$subCat['title'] }}</div>
+                            </a>
+                        </li>
                         @endif
                     @endforeach
                 </ul>
-           @endif
+            @endif
          @endforeach
-    @endif
-
 </div>

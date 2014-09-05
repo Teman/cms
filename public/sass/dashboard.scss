@@ -45,6 +45,7 @@ body {
   background-color: #333333;
   border-right: 1px solid #eee;
 
+
   @media (min-width: 768px) {
 
     display: block;
@@ -52,6 +53,7 @@ body {
 
  h4 {
    color: #666;
+   margin-bottom:5px;
  }
  ul li a div
   {
@@ -60,17 +62,32 @@ body {
     position: absolute;
     float: left;
     color : #ffffff;
+   line-height: 18px;
   }
 
   ul li a i
   {
+    font-size: 18px;
     float: left;
     color: #ffffff;
   }
 
 
 }
+.nav-sidebar li a{
+  &:focus{
+    text-decoration: none;
+    outline: none;
 
+    div{
+      color: #000000;
+    }
+    i{
+      color: black;
+    }
+  }
+
+}
 @media (max-width: 768px){
 
   .row-offcanvas-left.active{
@@ -79,7 +96,7 @@ body {
 
   .sidebar{
 
-    .active &{
+    &:active{
       display: block;
       position: static;
     }
@@ -244,8 +261,5 @@ body {
   width: 100%;
 }
 
-.first_row_of_table{
-  width:85px;
-}
 
 

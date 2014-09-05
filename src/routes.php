@@ -3,7 +3,7 @@
 /*
  * Set menu items
  */
-View::share('categorieItems', Config::get('cms::categorieItems'));
+View::share('adminMenuItems', Config::get('cms::adminMenuItems'));
 
 /*
  * Set CMS title

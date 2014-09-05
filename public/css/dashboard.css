@@ -47,6 +47,7 @@ body {
 }
 .sidebar h4 {
   color: #666;
+  margin-bottom: 5px;
 }
 .sidebar ul li a div {
   margin-left: 30px;
@@ -54,10 +55,23 @@ body {
   position: absolute;
   float: left;
   color: #ffffff;
+  line-height: 18px;
 }
 .sidebar ul li a i {
+  font-size: 18px;
   float: left;
   color: #ffffff;
+}
+
+.nav-sidebar li a:focus {
+  text-decoration: none;
+  outline: none;
+}
+.nav-sidebar li a:focus div {
+  color: #000000;
+}
+.nav-sidebar li a:focus i {
+  color: black;
 }
 
 @media (max-width: 768px) {
@@ -65,7 +79,7 @@ body {
     left: 70%;
   }
 
-  .active .sidebar {
+  .sidebar:active {
     display: block;
     position: static;
   }
@@ -194,8 +208,4 @@ body {
 
 .formTextArea {
   width: 100%;
-}
-
-.first_row_of_table{
-  width: 85px;
 }
