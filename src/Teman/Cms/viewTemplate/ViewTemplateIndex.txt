@@ -9,8 +9,8 @@
 <div class="page-header userPageHeader">
     <div id="flashBar"></div>
   <h1>
-        <a href={{route('admin.TITLE.create')}}>
-         <i class="fa fa-plus-circle Addbtn "></i>
+        <a href={{route('admin.TITLE.create') class="Addbtn"}}>
+         <i class="fa fa-plus-circle"></i>
        </a>
        Create new TITLE
    </h1>

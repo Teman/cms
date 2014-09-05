@@ -5,8 +5,8 @@
 <div class="page-header userPageHeader">
     <div id="flashBar"></div>
   <h1>
-       <a href="/admin/users/create">
-         <i class="fa fa-plus-circle Addbtn ">
+       <a href="/admin/users/create" class="Addbtn">
+         <i class="fa fa-plus-circle">
 
           </i>
        </a>
