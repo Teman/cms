@@ -65,10 +65,8 @@ class PackageGeneratorCommand extends Command {
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateEdit,'viewName'=>'edit'));
         $this->call('generate:view', array('--path' => $formFolderPath,'--templatePath'=>$formTemplate,'viewName'=>'form'));
 
-        $name = ucwords($name);
-
         //generate the controller
-        $this->call('generate:controller',array('--path'=>$pathController,'--templatePath'=>$controllerTemlate,'controllerName'=>$name.'sController'));
+        $this->call('generate:controller',array('--path'=>$pathController,'--templatePath'=>$controllerTemlate,'controllerName'=>ucwords($name).'sController'));
 
 
         //replace the dummy variabels and titles to the correct name
@@ -76,7 +74,7 @@ class PackageGeneratorCommand extends Command {
         $this->str_replace_in_views($pathView.'/create.blade.php',array('TITLE'),array($name));
         $this->str_replace_in_views($formFolderPath.'/form.blade.php',array('TITLE'),array($name));
         $this->str_replace_in_views($pathView.'/edit.blade.php',array('VAR','TITLE'),array('$'.$name,$name));
-        $this->str_replace_in_views($pathController.'/'.$name.'sController.php',
+        $this->str_replace_in_views($pathController.'/'.ucwords($name).'sController.php',
             array('CLASSTITLE','INDEXDOC','INDEXVAR','INDEXTXT','INDEXTITLE',
                   'CREATEDOC','CREATETITLE',
                   'STOREDOC','STOREVAR','STORETITLE',
