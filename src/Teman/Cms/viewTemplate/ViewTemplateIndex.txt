@@ -3,11 +3,6 @@
 
 @section('content')
 
-<script>
-    var index_view_model_name = 'TITLE';
-</script>
-
-
 <div class="page-header userPageHeader">
     <div id="flashBar"></div>
   <h1>
@@ -56,4 +51,10 @@
     </div>
 {{VAR->links()}}
 </div>
+@stop
+
+@section('scripts')
+<script>
+    var index_view_model_name = 'TITLE';
+</script>
 @stop
