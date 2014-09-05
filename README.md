@@ -12,9 +12,9 @@ cms
   1. Relocate the content of the laravel folder to Code
   1. Open the application and go to Composer.json
      - Here add at the bottom :  
-          *repositories": [{"type": "composer","url": "http://composer.teman.be"}]
+          * repositories": [{"type": "composer","url": "http://composer.teman.be"}]
      - At the top in "require" add : 
-          *"teman/cms"=>"dev-master"
+          * "teman/cms"=>"dev-master"
   8. Open the app.php file 
     - add to 'providers' : 
      *'Teman\Cms\CmsServiceProvider'
@@ -43,12 +43,39 @@ cms
 
 ### Adding items to the sidebar
 1. Go to Code/app/config/packages/teman/cms/config.php
-2. Here you can see 1 big array named "categorieItems"
+2. Here you can see 1 big array named "adminMenuItems"
  - In this array you can place multiple arrays, for example for a section of users or a section of pages. Each having its own subcategories.
  - each "categorieItems" has 3 properties 
     * The first is : 'title', this is the text displayed in the menu
-    * Second : 'permission', you can give it a level of permission in order to view the menu item
-    * Third : "subCategorieItems", you can give each category multiple subcategories. Also being able to give it a permission, giving it the according route to the page, giving it the itemText wich displays on the menu and giving it the Iclass(the icon before the word, FontAwesomme)
+    * Second : 'permission',if you want restricted acces to a menu item you can give it a permission. 
+    * Third : "adminMenuItems_subCategory", you can give each category multiple subcategories. Also being able to give it a permission, giving it the according route to the page, giving it the title wich displays on the menu and giving it the Iconclass(the icon before the word, FontAwesomme)
+  
+Here is an example of user with permission to the category and sub category. Below that you find a menu item with subItems that are open to everybody
+````
+ 'adminMenuItems' => [
+        [
+            'title' => 'Users',
+            'permission'=>'access_cms',
+            'adminMenuItems_subCategory' => [
+                [
+                    'permission'=>'access_cms',
+                    'route' => 'admin.users.index',
+                    'title'=>'Users',
+                    'iconClass'=>'fa fa-user',
+                ],
+            ],
+        ],
+        [
+            'title' => 'Users',
+            'adminMenuItems_subCategory' => [
+                [
+                    'route' => 'admin.users.index',
+                    'title'=>'Users',
+                    'iconClass'=>'fa fa-user',
+                ],
+            ],
+        ],
+````
     
 
 ====== 
