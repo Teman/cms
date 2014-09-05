@@ -27,7 +27,7 @@
         <table id="keywords" class="tablesorter table table-condensed table-main">
             <thead>
                  <tr>
-                    <th>Select</th>
+                    <th class="first_row_of_table">Select</th>
                     <th>Email</th>
                     <th>Role</th>
 
@@ -38,7 +38,7 @@
             @foreach ($users->chunk(4) as $row)
             <div class="row"
                    @foreach($row as $user)
-                    <tr id="item_{{$user->id}}">
+                    <tr id="item_{{$user->id}}" class="first_row_of_table">
                         <td>
                             <div class="checkboxPage">
                                 {{ Form::checkbox('user', $user->id)}}

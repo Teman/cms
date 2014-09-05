@@ -39,7 +39,7 @@
             <tbody>
                    @foreach(VAR as $item)
                     <tr id="item_{{$item->id}}">
-                        <td>
+                        <td class="first_row_of_table">
                             <div class="checkboxPage">
                                 {{ Form::checkbox('TITLE', $item->id)}}
                             </div>
