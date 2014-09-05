@@ -9,7 +9,7 @@
 <div class="page-header userPageHeader">
     <div id="flashBar"></div>
   <h1>
-        <a href={{route('admin.TITLE.create') class="Addbtn"}}>
+        <a href={{route('admin.TITLE.create')}} class="Addbtn">
          <i class="fa fa-plus-circle"></i>
        </a>
        Create new TITLE
@@ -46,7 +46,7 @@
                             {{ link_to_route('admin.TITLE.edit', 'Edit', $item->id, ['class' => 'btnEdit btn btn-default btn-xs']) }}
                         </td>
                             <td>{{ $item }}</td>
-                            <td>{{ $item }}</td
+                            <td>{{ $item }}</td>
                     </tr>
                     @endforeach
             </tbody>
