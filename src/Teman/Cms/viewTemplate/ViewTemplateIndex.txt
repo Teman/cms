@@ -26,7 +26,7 @@
         <table id="keywords" class="tablesorter table table-condensed table-main">
             <thead>
                  <tr>
-                    <th class="first_row_of_table">Select</th>
+
                     <th>TITLE</th>
                     <th>TITLE</th>
 

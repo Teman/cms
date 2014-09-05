@@ -30,7 +30,6 @@ class PackageGeneratorCommand extends Command {
     {
 
         $name = $this->ask('What is the model name ? ');
-
         $pathController=app_path('/controllers');
 
 
@@ -56,8 +55,6 @@ class PackageGeneratorCommand extends Command {
         if (!file_exists($formFolderPath)) {
             mkdir($formFolderPath, 0775, true);
         }
-
-
 
         //generate the views based on a template
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateIndex,'viewName'=>'index'));
