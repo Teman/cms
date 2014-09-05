@@ -40,7 +40,7 @@ class CLASSTITLE extends \BaseController {
 
 
         //add the inputs to the model instance
-        STOREVAR->ADDHERE = Input::get('ADDHERE');
+        STOREVAR->fill(Input::all);
 
 
         //Extend Ardent in your model class and define the rules
@@ -90,7 +90,7 @@ class CLASSTITLE extends \BaseController {
         UPDATEVAR = ADDHERE::findOrFail($id);
 
        //add the inputs to the model instance
-       UPDATEVAR->ADDHERE = Input::get('ADDHERE');
+       UPDATEVAR->fill(Input::all());
 
         if ( !UPDATEVAR->save() ){
            return Redirect::back()->withErrors( UPDATEVAR->errors() );
