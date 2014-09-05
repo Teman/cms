@@ -65,8 +65,10 @@ class PackageGeneratorCommand extends Command {
         $this->call('generate:view', array('--path' => $pathView,'--templatePath'=>$viewTemplateEdit,'viewName'=>'edit'));
         $this->call('generate:view', array('--path' => $formFolderPath,'--templatePath'=>$formTemplate,'viewName'=>'form'));
 
+        $name = ucwords($name);
+
         //generate the controller
-        $this->call('generate:controller',array('--path'=>$pathController,'--templatePath'=>$controllerTemlate,'controllerName'=>ucwords($name).'sController'));
+        $this->call('generate:controller',array('--path'=>$pathController,'--templatePath'=>$controllerTemlate,'controllerName'=>$name.'sController'));
 
 
         //replace the dummy variabels and titles to the correct name
