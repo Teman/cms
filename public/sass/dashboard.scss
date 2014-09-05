@@ -159,7 +159,6 @@ body {
   }
 }
 
-
 /*
  * Placeholder dashboard ideas
  */
@@ -186,7 +185,23 @@ body {
 {
   color : $blue-color;
   text-decoration: none;
+  &:hover{
+    color: #428bca;
+    text-decoration: none;
+    outline: none;
+  }
+  &:target{
+    color: #428bca;
+    text-decoration: none;
+    outline: none;
+  }
+  &:focus{
+    color: #428bca;
+    text-decoration: none;
+    outline: none;
+  }
 }
+
 
 .fa
 {

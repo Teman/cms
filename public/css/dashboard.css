@@ -142,6 +142,21 @@ body {
   color: #428bca;
   text-decoration: none;
 }
+.Addbtn:hover {
+  color: #428bca;
+  text-decoration: none;
+  outline: none;
+}
+.Addbtn:target {
+  color: #428bca;
+  text-decoration: none;
+  outline: none;
+}
+.Addbtn:focus {
+  color: #428bca;
+  text-decoration: none;
+  outline: none;
+}
 
 .fa {
   display: inline-block;

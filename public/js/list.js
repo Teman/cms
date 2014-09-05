@@ -26,7 +26,7 @@ btnDelete.click(function(){
 
                         $( ".alert" ).remove();
                         //insert a flash message at the top
-                        $("#flashBar").append('<div class="alert alert-danger" role="alert">User deleted</div>');
+                        $("#flashBar").append('<div class="alert alert-danger" role="alert">'+index_view_model_name+' deleted</div>');
                        })
                 },
                 error:function(){
