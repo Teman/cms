@@ -92,13 +92,6 @@ Here is an example of user with permission to the category and sub category. Bel
 
         @include('cms::sandbox.partials.richTextBoxEditor',array('txtbxName' => 'Simple'))
 
-
-        </br>
-        </br>
-
-        @include('cms::sandbox.partials.datePicker')
-
-        @include('cms::sandbox.partials.submit')
     {{Form::close()}}
 
 ````
