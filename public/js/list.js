@@ -1,17 +1,19 @@
-
 var listForm = $('.list-form'),
 btnDelete = $('#btnDeleteAll'),
 btnSelectAll = $('#btnSelectAll'),
 btnDeselectAll = $('#btnDeselectAll'),
-date = $('#date');
+date = $('#date'),
+cropper = $(".cropper"),
+dataX = $("#dataX"),
+dataY = $("#dataY"),
+dataH = $("#dataH"),
+dataW = $("#dataW"),
+CroppedImagedata;
+
 
 
 btnDelete.click(function(){
-    var checkedCheckboxes = listForm.find(':checkbox:checked'),
-        nombreElementsTraites = 0,
-        nombreElementsSelectionnes = checkedCheckboxes.length;
-
-
+    var checkedCheckboxes = listForm.find(':checkbox:checked');
 
     var url = cleanUrl();
         checkedCheckboxes.each(function(){
@@ -62,8 +64,55 @@ btnDeselectAll.click(function(){
     deActivateBtn();
 });
 
+function SaveCroppedImage(src_filename, extension)
+{
+   console.log(CroppedImagedata);
+
+    CroppedImagedata['src_filename'] = src_filename;
+    CroppedImagedata['extension'] = extension;
+    console.log(CroppedImagedata);
+
+    $.ajax({
+        type: 'post',
+        data:CroppedImagedata,
+        url: '/crop',
+        success:function(){
+
+        }
+});
+}
 
 $(document).ready(function() {
+    cropper.cropper({
+        aspectRatio: 16 / 9,
+        done:function(data)
+        {
+            CroppedImagedata = data;
+
+        }
+    });
+
+    $("#cropper_reset").click(function() {
+        cropper.cropper("reset");
+    });
+    $("#cropper_free_ratio").click(function() {
+        cropper.cropper("setAspectRatio","auto");
+    });
+    $("#cropper_set_data").click(function() {
+        cropper.cropper("setData", {
+            x: dataX.val(),
+            y: dataY.val(),
+            width: dataW.val(),
+            height:dataH.val()
+        });
+    });
+
+ var dropzone = $('#my-awesome-dropzone');
+ dropzone.options = {
+     paramName:"file",
+     maxFilesize:2
+
+ }
 
  var datepickers =$('.dp');
 
@@ -88,37 +137,7 @@ $(document).ready(function() {
         });
  })
 
-jQuery.fn.ForceNumericOnly =
-        function()
-        {
-            return this.each(function()
-            {
-                $(this).keydown(function(e)
-                {
-                    var key = e.charCode || e.keyCode || 0;
-                    // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
-                    // home, end, period, and numpad decimal
-                    return (
-                        key == 8 ||
-                            key == 9 ||
-                            key == 13 ||
-                            key == 46 ||
-                            key == 110 ||
-                            key == 190 ||
-                            (key >= 35 && key <= 40) ||
-                            (key >= 48 && key <= 57) ||
-                            (key >= 96 && key <= 105));
-                });
-            });
-        };
-
-
-
-
-
-
-
-    //automaticly search for all richtextbox editors on the page with classname
+ //automaticly search for all richtextbox editors on the page with classname
     var richtextboxes = $('.richTextBoxEditor');
     richtextboxes.each( function(){
         var textbox = $(this);
@@ -168,3 +187,26 @@ function deActivateBtn()
         btnDeselectAll.prop('disabled', true);
     }
 }
+jQuery.fn.ForceNumericOnly =
+    function()
+    {
+        return this.each(function()
+        {
+            $(this).keydown(function(e)
+            {
+                var key = e.charCode || e.keyCode || 0;
+                // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
+                // home, end, period, and numpad decimal
+                return (
+                    key == 8 ||
+                        key == 9 ||
+                        key == 13 ||
+                        key == 46 ||
+                        key == 110 ||
+                        key == 190 ||
+                        (key >= 35 && key <= 40) ||
+                        (key >= 48 && key <= 57) ||
+                        (key >= 96 && key <= 105));
+            });
+        });
+    };

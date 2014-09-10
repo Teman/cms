@@ -198,6 +198,10 @@ body {
   background: none;
 }
 
+.first_row_of_table {
+  width: 80px;
+}
+
 .checkboxPage {
   width: 20px;
   float: left;
@@ -217,4 +221,9 @@ body {
 
 .formTextArea {
   width: 100%;
+}
+
+.create_edit_back_btn a button {
+  margin-top: 0px;
+  margin-bottom: 30px;
 }
