@@ -57,12 +57,7 @@ body {
  }
  ul li a div
   {
-    margin-left: 30px;
-    width:155px;
-    position: absolute;
-    float: left;
-    color : #ffffff;
-   line-height: 18px;
+
   }
 
   ul li a i
@@ -114,7 +109,23 @@ body {
     }
   }
 }
-
+.sidebar_hasIcon
+{
+  margin-left: 30px;
+  width:155px;
+  position: absolute;
+  float: left;
+  color : #ffffff;
+  line-height: 18px;
+}
+.sidebar_noIcon
+{
+  margin-left :30px;
+  width:155px;
+  float: left;
+  color : #ffffff;
+  line-height: 18px;
+}
 
 
 /* Sidebar navigation */
@@ -260,6 +271,5 @@ body {
 {
   width: 100%;
 }
-
 
 

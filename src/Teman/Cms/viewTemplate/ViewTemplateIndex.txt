@@ -26,7 +26,7 @@
         <table id="keywords" class="tablesorter table table-condensed table-main">
             <thead>
                  <tr>
-
+                    <th></th>
                     <th>TITLE</th>
                     <th>TITLE</th>
 

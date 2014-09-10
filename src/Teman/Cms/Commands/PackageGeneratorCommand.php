@@ -44,7 +44,7 @@ class PackageGeneratorCommand extends Command {
 
 
         //create the folder defined in the path
-        $pathView =app_path('/views/'.$name);
+        $pathView =app_path('/views/admin/'.$name);
         if (!file_exists($pathView)) {
             mkdir($pathView, 0775, true);
         }

@@ -2,11 +2,16 @@
 
 @section('content')
 <div class="col-md-6">
-    <h1>Edit TITLE</h1>
+   <div class="create_edit_back_btn">
+      <h1>Create new TITLE</h1>
+       <a href={{route('admin.TITLE.index')}}>
+            <button type="button" class="btn btn-primary btn-xs">Back</button>
+       </a>
+    </div>
 
     {{ Form::model(VAR, ['method' => 'PATCH', 'route' => ['admin.TITLE.update', VAR->id]]) }}
 
-        @include('TITLE.partials.form',['edit' => true])
+        @include('admin.TITLE.partials.form',['edit' => true])
 
     {{ Form::close() }}
 </div>

@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Input;
 
 class CLASSTITLE extends \BaseController {
 
@@ -11,7 +14,7 @@ class CLASSTITLE extends \BaseController {
     public function index()
     {
         INDEXVAR = ADDHERE::SimplePaginate();
-        return View::make('INDEXTITLE.index',compact('INDEXTXT'));
+        return View::make('admin.INDEXTITLE.index',compact('INDEXTXT'));
     }
 
     /**
@@ -22,7 +25,7 @@ class CLASSTITLE extends \BaseController {
      */
     public function create()
     {
-        return View::make('CREATETITLE.create');
+        return View::make('admin.CREATETITLE.create');
     }
 
 
@@ -34,13 +37,13 @@ class CLASSTITLE extends \BaseController {
 	 */
 	public function store()
 	{
-	/*
+
        //add model HERE
         STOREVAR = new ADDHERE;
 
 
         //add the inputs to the model instance
-        STOREVAR->fill(Input::all);
+        STOREVAR->fill(Input::all());
 
 
         //Extend Ardent in your model class and define the rules
@@ -49,7 +52,7 @@ class CLASSTITLE extends \BaseController {
         }
 
         return Redirect::route('admin.STORETITLE.index')->withFlashMessage('STORETITLE created');
-        */
+
 	}
 
 	/**
@@ -74,7 +77,7 @@ class CLASSTITLE extends \BaseController {
 	public function edit($id)
 	{
         EDITVAR = ADDHERE::find($id);
-		return View::make('EDITTITLE.edit',compact('EDITTXT'));
+		return View::make('admin.EDITTITLE.edit',compact('EDITTXT'));
 	}
 
 	/**
@@ -86,13 +89,13 @@ class CLASSTITLE extends \BaseController {
 	 */
 	public function update($id)
 	{
-		/*
+
         UPDATEVAR = ADDHERE::findOrFail($id);
 
        //add the inputs to the model instance
        UPDATEVAR->fill(Input::all());
 
-        if ( !UPDATEVAR->save() ){
+       if ( !UPDATEVAR->save() ){
            return Redirect::back()->withErrors( UPDATEVAR->errors() );
         }
 
@@ -100,7 +103,7 @@ class CLASSTITLE extends \BaseController {
 
          return Redirect::route('admin.UPDATETITLE.index')->withFlashMessage('UPDATETITLE updated');
 
-                */
+
        }
 
 
@@ -113,11 +116,11 @@ class CLASSTITLE extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		   DESTROYVAR = ADDHERE::findOrFail($id);
+	     DESTROYVAR = ADDHERE::findOrFail($id);
 
-                DESTROYVAR->delete();
+         DESTROYVAR->delete();
 
-                return Redirect::route('admin.DESTROYTITLE.index')->withFlashMessage('DESTROYTITLE removed');
+          return Redirect::route('admin.DESTROYTITLE.index')->withFlashMessage('DESTROYTITLE removed');
 	}
 
 }
