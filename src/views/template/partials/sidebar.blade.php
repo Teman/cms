@@ -10,16 +10,25 @@
                             @if($currentUser->can($subCat['permission']))
                                 <li>
                                        <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                           @if(isset($subCat['iconClass']))
                                                 <i class="{{$subCat['iconClass']}}"></i>
-                                                <div>{{$subCat['title'] }}</div>
+                                                 <div class="sidebar_hasIcon">{{$subCat['title'] }}</div>
+                                           @else
+                                             <div class="sidebar_noIcon">{{$subCat['title'] }}</div>
+                                           @endif
+
                                        </a>
                                </li>
                             @endif
                         @else
                              <li>
                                  <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                     @if(isset($subCat['iconClass']))
                                      <i class="{{$subCat['iconClass']}}"></i>
-                                     <div>{{$subCat['title'] }}</div>
+                                     <div class="sidebar_hasIcon">{{$subCat['title'] }}</div>
+                                     @else
+                                     <div class="sidebar_noIcon">{{$subCat['title'] }}</div>
+                                     @endif
                                  </a>
                              </li>
                         @endif
@@ -34,16 +43,24 @@
                             @if($currentUser->can($subCat['permission']))
                                 <li>
                                     <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                        @if(isset($subCat['iconClass']))
                                         <i class="{{$subCat['iconClass']}}"></i>
-                                        <div>{{$subCat['title'] }}</div>
+                                        <div class="sidebar_hasIcon">{{$subCat['title'] }}</div>
+                                        @else
+                                        <div class="sidebar_noIcon">{{$subCat['title'] }}</div>
+                                        @endif
                                     </a>
                                 </li>
                             @endif
                         @else
                         <li>
                             <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
+                                @if(isset($subCat['iconClass']))
                                 <i class="{{$subCat['iconClass']}}"></i>
-                                <div>{{$subCat['title'] }}</div>
+                                <div class="sidebar_hasIcon">{{$subCat['title'] }}</div>
+                                @else
+                                <div class="sidebar_noIcon">{{$subCat['title'] }}</div>
+                                @endif
                             </a>
                         </li>
                         @endif
