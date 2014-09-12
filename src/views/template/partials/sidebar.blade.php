@@ -10,7 +10,7 @@
                             @if($currentUser->can($subCat['permission']))
                                 <li>
                                        <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
-                                           @if(isset($subCat['iconClass']))
+                                           @if(isset($subCat['iconClass']) AND $subCat['iconClass'])
                                                 <i class="{{$subCat['iconClass']}}"></i>
                                                  <div class="sidebar_hasIcon">{{$subCat['title'] }}</div>
                                            @else
@@ -23,7 +23,7 @@
                         @else
                              <li>
                                  <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
-                                     @if(isset($subCat['iconClass']))
+                                     @if(isset($subCat['iconClass']) AND $subCat['iconClass'])
                                      <i class="{{$subCat['iconClass']}}"></i>
                                      <div class="sidebar_hasIcon">{{$subCat['title'] }}</div>
                                      @else
@@ -43,7 +43,7 @@
                             @if($currentUser->can($subCat['permission']))
                                 <li>
                                     <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
-                                        @if(isset($subCat['iconClass']))
+                                        @if(isset($subCat['iconClass']) AND $subCat['iconClass'])
                                         <i class="{{$subCat['iconClass']}}"></i>
                                         <div class="sidebar_hasIcon">{{$subCat['title'] }}</div>
                                         @else
@@ -55,7 +55,7 @@
                         @else
                         <li>
                             <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
-                                @if(isset($subCat['iconClass']))
+                                @if(isset($subCat['iconClass']) AND $subCat['iconClass'])
                                 <i class="{{$subCat['iconClass']}}"></i>
                                 <div class="sidebar_hasIcon">{{$subCat['title'] }}</div>
                                 @else
