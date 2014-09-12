@@ -8,7 +8,7 @@
                       @foreach($adminMenuItem['adminMenuItems_subCategory'] as $subCat)
                         @if(isset($subCat['permission']))
                             @if($currentUser->can($subCat['permission']))
-                                <li>
+                                <li class="{{ Route::currentRouteName() == 'home.index'}}">
                                        <a href="{{ route($subCat['route']) }}" class="clearfix listItem">
                                            @if(isset($subCat['iconClass']) AND $subCat['iconClass'])
                                                 <i class="{{$subCat['iconClass']}}"></i>
