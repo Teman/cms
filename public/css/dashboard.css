@@ -55,6 +55,11 @@ body {
   color: #ffffff;
 }
 
+.active {
+  background: #428bca;
+  color: #ffffff;
+}
+
 .nav-sidebar li a:focus {
   text-decoration: none;
   outline: none;

@@ -83,6 +83,21 @@ function SaveCroppedImage(src_filename, extension)
 }
 
 $(document).ready(function() {
+
+    $(".listItem").each(function(){
+        console.log($(this).attr('href'));
+
+        var aHref = $(this).attr('href')
+        var windowURL = window.location;
+
+        if(aHref == windowURL)
+        {
+            $(this).addClass('active');
+        }
+
+
+    });
+
     cropper.cropper({
         aspectRatio: 16 / 9,
         done:function(data)
