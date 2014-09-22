@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ $cmsTitle }}</title>
+        <title>{{{ $pageTitle or $cmsTitle }}}</title>
 
         <link href="{{ asset('packages/teman/cms/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('packages/teman/cms/css/bootstrap-theme.min.css') }}" rel="stylesheet">

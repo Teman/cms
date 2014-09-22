@@ -37,3 +37,15 @@ if ( ! function_exists('set_active_route') ){
     }
 
 }
+
+
+if ( ! function_exists('set_page_title') ){
+
+    function set_page_title($title, $useCmsName=true)
+    {
+        if ($useCmsName) {
+            $title .= ' | ' . Config::get('cms::cmsTitle');
+        }
+        View::share('pageTitle', $title);
+    }
+}

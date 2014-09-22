@@ -29,9 +29,7 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-		//
-
-
+        set_page_title('Users overview');
         $users = User::has('roles')->simplePaginate(20);
 
 
