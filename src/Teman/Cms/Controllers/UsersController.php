@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Teman\Cms\Models\Entrust\User;
+use Laracasts\Flash\Flash;
 
 
 use \Laracasts\Validation\FormValidationException;
@@ -70,8 +71,8 @@ class UsersController extends BaseController {
         }
 
         $user->attachRole( Input::get('role_id') );
-
-        return Redirect::route('admin.users.index')->withFlashMessage('User created');
+        Flash::success('User created');
+        return Redirect::route('admin.users.index');
 	}
 
 
@@ -143,8 +144,8 @@ class UsersController extends BaseController {
             $user->detachRoles( $user->roles );
             $user->attachRole( $role->id );
         }
-
-        return Redirect::route('admin.users.index')->withFlashMessage('User updated');
+        Flash::success('User updated');
+        return Redirect::route('admin.users.index');
 	}
 
 
@@ -161,8 +162,8 @@ class UsersController extends BaseController {
         $user = User::findOrFail($id);
 
         $user->delete();
-
-        return Redirect::route('admin.users.index')->withFlashMessage('User removed');
+        Flash::success('User removed');
+        return Redirect::route('admin.users.index');
 	}
 
 
