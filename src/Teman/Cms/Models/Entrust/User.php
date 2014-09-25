@@ -8,6 +8,7 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use LaravelBook\Ardent\Ardent;
 use Zizaco\Entrust\HasRole;
+use Illuminate\Support\Facades\Config;
 
 class User extends Ardent  implements UserInterface, RemindableInterface{
 
@@ -61,6 +62,8 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
     public function setEmailAttribute($email){
         $email = trim(strtolower($email));
         $this->attributes['email'] = $email;
-        $this->attributes['username'] = $email;
+        if(Config::get('cms::auth.has_username')) {
+            $this->attributes['username'] = $email;
+        }
     }
 }

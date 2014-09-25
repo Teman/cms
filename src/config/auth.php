@@ -18,6 +18,7 @@ return array(
 
     //Use the cms User Model
     //If set to false User model must extend Teman\Cms\Models\Entrust\User
+    'has_username'      => true,
     'use_cms_model'     => true
 
 );
