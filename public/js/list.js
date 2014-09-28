@@ -1,14 +1,14 @@
 var listForm = $('.list-form'),
-btnDelete = $('#btnDeleteAll'),
-btnSelectAll = $('#btnSelectAll'),
-btnDeselectAll = $('#btnDeselectAll'),
-date = $('#date'),
-cropper = $(".cropper"),
-dataX = $("#dataX"),
-dataY = $("#dataY"),
-dataH = $("#dataH"),
-dataW = $("#dataW"),
-CroppedImagedata;
+    btnDelete = $('#btnDeleteAll'),
+    btnSelectAll = $('#btnSelectAll'),
+    btnDeselectAll = $('#btnDeselectAll'),
+    date = $('#date'),
+    cropper = $(".cropper"),
+    dataX = $("#dataX"),
+    dataY = $("#dataY"),
+    dataH = $("#dataH"),
+    dataW = $("#dataW"),
+    CroppedImagedata;
 
 
 
@@ -16,25 +16,25 @@ btnDelete.click(function(){
     var checkedCheckboxes = listForm.find(':checkbox:checked');
 
     var url = cleanUrl();
-        checkedCheckboxes.each(function(){
-            var id = $(this).val();
-            $.ajax({
-                type: 'post',
-                data:{_method:'delete'},
-                url: url + '/' + id,
-                success:function(){
-                    $('#item_' + id).fadeOut('fast', function () {
-                        $(this).remove();
+    checkedCheckboxes.each(function(){
+        var id = $(this).val();
+        $.ajax({
+            type: 'post',
+            data:{_method:'delete'},
+            url: url + '/' + id,
+            success:function(){
+                $('#item_' + id).fadeOut('fast', function () {
+                    $(this).remove();
 
-                        $( ".alert" ).remove();
-                        //insert a flash message at the top
-                        $("#flashBar").append('<div class="alert alert-danger" role="alert">'+index_view_model_name+' deleted</div>');
-                       })
-                },
-                error:function(){
-                   console.log('an error occured');
-                }
-            });
+                    $( ".alert" ).remove();
+                    //insert a flash message at the top
+                    $("#flashBar").append('<div class="alert alert-danger" role="alert">'+index_view_model_name+' deleted</div>');
+                })
+            },
+            error:function(){
+                //console.log('an error occured');
+            }
+        });
     });
 });
 
@@ -64,28 +64,28 @@ btnDeselectAll.click(function(){
     deActivateBtn();
 });
 
-function SaveCroppedImage(src_filename, extension)
-{
-   console.log(CroppedImagedata);
-
-    CroppedImagedata['src_filename'] = src_filename;
-    CroppedImagedata['extension'] = extension;
-    console.log(CroppedImagedata);
-
-    $.ajax({
-        type: 'post',
-        data:CroppedImagedata,
-        url: '/crop',
-        success:function(){
-
-        }
-});
-}
+//function SaveCroppedImage(src_filename, extension)
+//{
+//   console.log(CroppedImagedata);
+//
+//    CroppedImagedata['src_filename'] = src_filename;
+//    CroppedImagedata['extension'] = extension;
+//    console.log(CroppedImagedata);
+//
+//    $.ajax({
+//        type: 'post',
+//        data:CroppedImagedata,
+//        url: '/crop',
+//        success:function(){
+//
+//        }
+//});
+//}
 
 $(document).ready(function() {
 
     $(".listItem").each(function(){
-        console.log($(this).attr('href'));
+        //console.log($(this).attr('href'));
 
         var aHref = $(this).attr('href')
         var windowURL = window.location;
@@ -122,14 +122,14 @@ $(document).ready(function() {
         });
     });
 
- var dropzone = $('#my-awesome-dropzone');
- dropzone.options = {
-     paramName:"file",
-     maxFilesize:2
+    var dropzone = $('#my-awesome-dropzone');
+    dropzone.options = {
+        paramName:"file",
+        maxFilesize:2
 
- }
+    }
 
- var datepickers =$('.dp');
+    var datepickers =$('.dp');
 
     datepickers.each(function(){
 
@@ -150,27 +150,27 @@ $(document).ready(function() {
                 }
             }
         });
- })
+    })
 
- //automaticly search for all richtextbox editors on the page with classname
+    //automaticly search for all richtextbox editors on the page with classname
     var richtextboxes = $('.richTextBoxEditor');
     richtextboxes.each( function(){
         var textbox = $(this);
         var type = textbox.data('editor-template');
 
         if ( ! type || type == 'Simple' ){
-            CKEDITOR.replace('richTextBoxEditorSimple',{
+            CKEDITOR.replace(richtextboxes.get(0),{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configSimple.js'
             });
         }
 
         if ( type == 'Basic' ){
-            CKEDITOR.replace('richTextBoxEditorBasic' ,{
+            CKEDITOR.replace(richtextboxes.get(0) ,{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configBasic.js'
             });
         }
         if ( type == 'Advanced' ){
-            CKEDITOR.replace('richTextBoxEditorAdvanced' ,{
+            CKEDITOR.replace(richtextboxes.get(0) ,{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configAdvanced.js'
             });
         }
