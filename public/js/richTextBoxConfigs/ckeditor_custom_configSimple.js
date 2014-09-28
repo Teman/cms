@@ -6,7 +6,8 @@ CKEDITOR.editorConfig = function( config ) {
         [ 'NumberedList', 'BulletedList', 'Outdent', 'Indent' ],
         [ 'Link', 'Unlink' ],
         [ 'JustifyLeft', 'JustifyCenter','JustifyRight'],
-        [ 'RemoveFormat']
+        [ 'RemoveFormat' ],
+        [ 'Source' ]
     ];
 
 
