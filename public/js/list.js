@@ -98,14 +98,14 @@ $(document).ready(function() {
 
     });
 
-    cropper.cropper({
-        aspectRatio: 16 / 9,
-        done:function(data)
-        {
-            CroppedImagedata = data;
-
-        }
-    });
+//    cropper.cropper({
+//        aspectRatio: 16 / 9,
+//        done:function(data)
+//        {
+//            CroppedImagedata = data;
+//
+//        }
+//    });
 
     $("#cropper_reset").click(function() {
         cropper.cropper("reset");
