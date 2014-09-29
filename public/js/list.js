@@ -159,18 +159,18 @@ $(document).ready(function() {
         var type = textbox.data('editor-template');
 
         if ( ! type || type == 'Simple' ){
-            CKEDITOR.replace(richtextboxes.get(0),{
+            CKEDITOR.replace(textbox.get(0),{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configSimple.js'
             });
         }
 
         if ( type == 'Basic' ){
-            CKEDITOR.replace(richtextboxes.get(0) ,{
+            CKEDITOR.replace(textbox.get(0) ,{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configBasic.js'
             });
         }
         if ( type == 'Advanced' ){
-            CKEDITOR.replace(richtextboxes.get(0) ,{
+            CKEDITOR.replace(textbox.get(0) ,{
                 customConfig: 'richTextBoxConfigs/ckeditor_custom_configAdvanced.js'
             });
         }
