@@ -9,7 +9,8 @@ $('.btn-select-all').click ->
 $('.btn-deselect-all').click ->
   $('input[type=checkbox]').prop('checked', false)
 $('.btn-delete-all').click ->
-  confirm('Are you sure?')
+  if confirm('Are you sure?')
+    alert('sorry, not yet implemented')
 
 # rich text editor
 $('textarea.richtext').wysihtml5()

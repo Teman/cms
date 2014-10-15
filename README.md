@@ -1,11 +1,10 @@
-cms
-===
+cms refactored
+==============
 
 ### Installation
 
-
   1. Add a new folder into your desired directory
-  1. Go to www.github.com/Bagaar/homestead
+  1. Go to github.com/Bagaar/homestead
   1. Clone the repository in to your folder
   1. Navigate in the terminal to the directory and run vagrant up. This should create a Code folder in your directory
   1. Navigate with the terminal within the Code folder and run 'composer create-project laravel/laravel'
@@ -81,96 +80,26 @@ Here is an example of user with permission to the category and sub category. Bel
 ====== 
 
 
-### Adding/Using the Richtextbox Editor
-#### Adding a richTextbox to your view 
-1. First of all open a form (and close it)
-2. Inside the form put : @include('cms::sandbox.partials.richTextBoxEditor',array('txtbxName'=>'Simple'))
-  - this will add the partial to your view. The second argument is the definition of your configuration (Simple,        Basic or Advanced). We will come back to that later
-3. Your code should look something like this
+### Adding/Using WYSIWYG textboxes (rich text)
+1. Add class 'richtext' to textarea
+2. Your laravel-friendly code should look something like this
 ````
-    {{ Form::open(['method'=>'post','route' => 'admin.textbox.store']) }}
-
-        @include('cms::sandbox.partials.richTextBoxEditor',array('txtbxName' => 'Simple'))
-
-    {{Form::close()}}
+    {{ Form::textarea('body', null, ['class' => 'form-control richtext']) }}
 
 ````
-#### Configuration of your own RTE
-1. Every RTE links to a configuration file, at this moment there are 3. Located in : 'public/teman/cms/js/richTextBoxConfigs'
-  - in this file you will find config.toolbar array. In this array there are multiple other arrays representing a   group of items.
-  - You can add as many of the existing items as you want and devide them into your own groups
-1. You can also make a new config file. To link it to your RTE do the following :
-  - open list.js. Located in : 'public/teman/cms/js'
-  - Scroll down to this piece of code :
+
+#### Configuration of rich text
+You can use the following options for the textarea:
+````coffee
+$('#custom').wysihtml5
+  toolbar:
+    "font-styles": true #Font styling, e.g. h1, h2, etc. Default true
+    "emphasis": true #Italics, bold, etc. Default true
+    "lists": true #(Un)ordered lists, e.g. Bullets, Numbers. Default true
+    "html": false #Button which allows you to edit the generated HTML. Default false
+    "link": true #Button to insert a link. Default true
+    "image": true #Button to insert an image. Default true,
+    "color": false #Button to change color of font  
+    "blockquote": true #Blockquote  
+    "size": <buttonsize> #default: none, other options are xs, sm, lg
 ````
-        var richtextboxes = $('.richTextBoxEditor');
-        richtextboxes.each( function(){
-        var textbox = $(this);
-        console.log(textbox);
-        var type = textbox.data('editor-template');
-
-        if ( ! type || type == 'Simple' ){
-            CKEDITOR.replace('richTextBoxEditorSimple',{
-                customConfig: 'richTextBoxConfigs/ckeditor_custom_configSimple.js'
-            });
-        }
-
-        if ( type == 'Basic' ){
-            CKEDITOR.replace('richTextBoxEditorBasic' ,{
-                customConfig: 'richTextBoxConfigs/ckeditor_custom_configBasic.js'
-            });
-        }
-        if ( type == 'Advanced' ){
-            CKEDITOR.replace('richTextBoxEditorAdvanced' ,{
-                customConfig: 'richTextBoxConfigs/ckeditor_custom_configAdvanced.js'
-            });
-        }
-
-    });
-````
-   
-   
-    - Here add another if statement and fill in the correct names and paths       
-
-### HTML Purifier
-1. To clean up the submitten html from the textbox add the following to the controller
-````
-    $input = Input::only('richTextBoxEditorSimple')
-    $output = \Mews\Purifier\Purifier::clean($input,'simple');
-
-````
-  - $input represents the input given from the RTE unpurified
-  - $output is the cleaned HTML, as the second param give it the extension of your RTE
-       * $output = \Mews\Purifier\Purifier::clean($input,'simple');
-       * $output = \Mews\Purifier\Purifier::clean($input,'basic');
-       * $output = \Mews\Purifier\Purifier::clean($input,'advanced');
-  - When you have made your own configuration of a RTE (see previous) you must also make a config for the HTML purifier, so unwanted tags (options you haven't enabled) don't get passed trough
-       * Go to vendor/mews/purifier/src/config/config.php
-       * Add to the settings array your config
-       * Should look like this (variabel HTML.allowed ofcourse)
-````
-'simple' => array(
-            'HTML.Doctype'             => 'XHTML 1.0 Strict',
-            'HTML.Allowed'             => 'p[style],br,strong,h1,h2,h3,h4,h5,h6,strong,em,ol,li,ul,a[href|title],span[style]',
-            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
-            'AutoFormat.AutoParagraph' => false,
-            'AutoFormat.RemoveEmpty'   => true,
-        ),
-````
-    
-## Using a dateTimePicker
-1. There is a template for a datetimepicker located in the "cms::sandbox.partials.datePicker.php"
-2. To use it in your view add (between form tags) : @include('cms::sandbox.partials.datePicker')
-  - To give the datePicker a default date (maybe refering to when the user was created) the share with the view(trough the controller) the variabel $date, it will then automaticly set the date.
-
-       
-
-    
-
-
-
-
-
-
-
-

@@ -12,7 +12,9 @@ $('.btn-deselect-all').click(function() {
 });
 
 $('.btn-delete-all').click(function() {
-  return confirm('Are you sure?');
+  if (confirm('Are you sure?')) {
+    return alert('sorry, not yet implemented');
+  }
 });
 
 $('textarea.richtext').wysihtml5();

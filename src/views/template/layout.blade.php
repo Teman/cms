@@ -14,7 +14,7 @@
         <link href="{{ asset('packages/teman/cms/css/vendor/font-awesome.css') }}" rel="stylesheet">
         <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet">
 
-        <link href="{{ asset('packages/teman/cms/css/dashboard.css') }}" rel="stylesheet">
+        <link href="{{ asset('packages/teman/cms/css/cms.css') }}" rel="stylesheet">
         
         @yield('links')
 
@@ -57,8 +57,6 @@
             </div>
 
         </div>
-
-
 
         <script src="{{ asset('packages/teman/cms/js/vendor/jquery.1.11.1.min.js') }}"></script>
         <script src="{{ asset('packages/teman/cms/js/vendor/bootstrap.min.js') }}"></script>
