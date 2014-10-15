@@ -77,11 +77,11 @@ class CmsInstall extends Command {
 
 	}
 
-    private function validate($enterd_email, $enterd_password)
+    private function validate($entered_email, $entered_password)
     {
         $validator = Validator::make([
-            'email' => $enterd_email,
-            'password' => $enterd_password
+            'email' => $entered_email,
+            'password' => $entered_password
         ], [
             'email' => 'required|email',
             'password' => 'required|min:6'
@@ -102,7 +102,9 @@ class CmsInstall extends Command {
     private function migrateDatabase(){
 
         $this->info('Migrating database for translation manager');
-        $this->call('migrate', array('package' => 'barryvdh/laravel-translation-manager'));
+        $this->call('migrate', array(
+            'path' => 'vendor/barryvdh/laravel-translation-manager/src/migrations')
+        );
 
         $this->info('Migrating database');
         $this->call('migrate:publish', array('package' => 'teman/cms'));

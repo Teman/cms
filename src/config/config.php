@@ -25,6 +25,18 @@
                 ],
             ],
         ],
+        [
+            'title' => 'Languages',
+            'permission'=>'access_cms',
+            'adminMenuItems_subCategory' => [
+                [
+                    'permission'=>'access_cms',
+                    'route' => 'admin.languages.translations',
+                    'title'=>'Translations',
+                    'icon'=>'flag',
+                ],
+            ],
+        ],
 
     ],
 
