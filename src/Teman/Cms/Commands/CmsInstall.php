@@ -27,7 +27,6 @@ class CmsInstall extends Command {
     protected $entered_password;
 
 
-
     /**
      * Create a new command instance.
      *
@@ -46,15 +45,10 @@ class CmsInstall extends Command {
 	public function fire()
 	{
 
-        if ( $this->isCmsInstalled() ){
-            $this->comment('CMS already installed');
-            return;
-        }
-
-         $this->intro();
-         $this->migrateDatabase();
-         $this->publishAssets();
-         $this->publishConfigs();
+        $this->intro();
+        $this->migrateDatabase();
+        $this->publishAssets();
+        $this->publishConfigs();
 
         $this->askUserData();
 
@@ -107,13 +101,16 @@ class CmsInstall extends Command {
 
     private function migrateDatabase(){
 
+        $this->info('Migrating database for translation manager');
+        $this->call('migrate', array('package' => 'barryvdh/laravel-translation-manager'));
+
         $this->info('Migrating database');
         $this->call('migrate:publish', array('package' => 'teman/cms'));
 
         $this->call('migrate');
 
-
     }
+
     private function publishAssets(){
 
         $this->info('Publishing CMS assets');
@@ -125,6 +122,9 @@ class CmsInstall extends Command {
 
         $this->info('Publishing Polyglot config');
         $this->call('config:publish', array('package' => 'anahkiasen/polyglot'));
+
+        $this->info('Publishing translation config');
+        $this->call('config:publish', array('package' => 'barryvdh/laravel-translation-manager'));
 
         $this->info('Publishing cms config');
         $this->call('config:publish', array('package' => 'teman/cms'));
@@ -153,26 +153,6 @@ class CmsInstall extends Command {
         $this->info('User created');
 
     }
-
-    private function isCmsInstalled(){
-
-        try{
-            $installed = \Teman\Cms\Models\Cmsinstall::where('installed', 1)->count();
-        } catch( QueryException $e ){
-            $installed = 0;
-        }
-
-
-        return $installed ? true : false;
-
-    }
-
-
-    private function markInstalled(){
-
-        \Teman\Cms\Models\Cmsinstall::create(['installed' => true]);
-    }
-
 
     private function done(){
         $this->info('');

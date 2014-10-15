@@ -1,5 +1,7 @@
-<?php return array(
-
+<?php return [
+    
+    // prefix to use on tables related to cms (also entrust tables)
+    'table_prefix' => 'cms_',
 
     /*
      * The default title to display in the menu bar
@@ -26,4 +28,4 @@
 
     ],
 
-);
+];

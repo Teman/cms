@@ -24,7 +24,6 @@ class TemanPasswordService extends EloquentPasswordService  implements PasswordS
      */
     protected function sendEmail($user, $token)
     {
-        dd('lol');
         $config = $this->app['config'];
         $lang   = $this->app['translator'];
 

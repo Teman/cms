@@ -35,14 +35,6 @@ class CmsServiceProvider extends ServiceProvider {
          */
         include __DIR__ . '/helpers.php';
 
-        //make Auth use our own User model
-        if(\Config::get('cms::auth.use_cms_model')){
-            $this->app['config']->set('auth.model', '\Teman\Cms\Models\Entrust\User');
-        }
-
-        $this->app['config']->set('entrust::role', '\Teman\Cms\Models\Entrust\Role');
-        $this->app['config']->set('entrust::permission', '\Teman\Cms\Models\Entrust\Permission');
-
 	}
 
 	/**
@@ -60,6 +52,7 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app->register('Laracasts\Flash\FlashServiceProvider');
         $this->app->register('Way\Generators\GeneratorsServiceProvider');
         $this->app->register('Mews\Purifier\PurifierServiceProvider');
+        $this->app->register('Barryvdh\TranslationManager\ManagerServiceProvider');
         //alias facades
         $this->app->booting(function()
         {
@@ -77,7 +70,7 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app->bind('command.cms.adduser', 'Teman\Cms\Commands\CmsAddUser');
         $this->app->bind('command.cms.packageCreator','Teman\Cms\Commands\PackageGeneratorCommand');
 
-	$this->commands(['command.cms.install', 'command.cms.adduser', 'command.cms.packageCreator']);
+        $this->commands(['command.cms.install', 'command.cms.adduser', 'command.cms.packageCreator']);
 
         //exception handlers
         $this->registerExceptions();
@@ -108,8 +101,7 @@ class CmsServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array(
-        );
+		return [];
 	}
 
 }

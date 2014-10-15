@@ -1,28 +1,26 @@
 <?php namespace Teman\Cms\Models\Entrust;
 
-
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\UserTrait;
+
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Config;
+
 use LaravelBook\Ardent\Ardent;
 use Zizaco\Entrust\HasRole;
-use Illuminate\Support\Facades\Config;
 
 class User extends Ardent  implements UserInterface, RemindableInterface{
 
-    use HasRole;
-    use UserTrait, RemindableTrait;
-
+    use HasRole, UserTrait, RemindableTrait;
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'users';
-
+    protected $table;
 
     public static $rules = [
         "email" => 'required|email|unique:users',
@@ -36,9 +34,18 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
      */
     protected $hidden = array('password', 'remember_token');
 
-
     protected $fillable = ['email', 'password'];
 
+    /**
+     * Creates a new instance of the model.
+     *
+     * @return void
+     */
+    public function __construct(array $attributes = array())
+    {
+        parent::__construct($attributes);
+        $this->table = Config::get('cms::table_prefix').'users';
+    }
 
     /**
      * Passwords must always be hashed
