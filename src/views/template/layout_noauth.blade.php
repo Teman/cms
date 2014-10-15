@@ -9,14 +9,14 @@
 
     <title>{{ $cmsTitle }}</title>
 
-    <link href="{{ asset('packages/teman/cms/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('packages/teman/cms/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap-theme.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('packages/teman/cms/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('packages/teman/cms/css/noauth.css') }}" rel="stylesheet">
 
 </head>
 
-<body>
+<body class="noauth">
 
 <div class="container-fluid">
 

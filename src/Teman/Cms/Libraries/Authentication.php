@@ -19,6 +19,7 @@ class Authentication {
         $loginForm->validate($input = Input::only('email', 'password'));
 
         if (Auth::attempt($input)) {
+            Flash::success('Welcome');
             if($redirect = Input::get("redirect")){
                 Redirect::to($redirect);
             }else{

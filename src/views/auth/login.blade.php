@@ -1,30 +1,20 @@
 @extends('cms::template.layout_noauth')
 
 @section('content')
-            <h1>Login</h1>
 
-            {{ Form::open( ['route' => 'cms.noauth.login'] ) }}
+{{ Form::open( ['route' => 'cms.noauth.login'] ) }}
+    <h2>Login</h2>
 
-                <div class="form-group">
-                    {{ Form::label('email', 'Email') }}
-                    {{ Form::text('email', null, ['class' => 'form-control']) }}
-                    {{ $errors->first('email', '<span class="error">:message</span>') }}
-                </div>
+    {{ Form::text('email', null, ['class' => 'form-control', 'placeholder'=>'Email address', 'required'=>true,'autofocus']) }}
+    {{ $errors->first('email', '<span class="error">:message</span>') }}
 
-                <div class="form-group">
-                    {{ Form::label('password', 'Password') }}
-                    {{ Form::password('password', ['class' => 'form-control']) }}
-                    {{ $errors->first('password', '<span class="error">:message</span>') }}
-                </div>
+    {{ Form::password('password', ['class' => 'form-control', 'placeholder'=>'Password','required'=>true]) }}
+    {{ $errors->first('password', '<span class="error">:message</span>') }}
 
-                <div class="form-group">
-                    {{ Form::submit('Log in', ['class' => 'btn btn-primary']) }}
-                </div>
+    {{ Form::submit('Log in', ['class' => 'btn btn-lg btn-primary btn-block']) }}
 
-                <div class="form-group">
-                    {{ link_to_route('cms.noauth.forgot.form', 'Forgot your password?') }}
-                </div>
+    {{ link_to_route('cms.noauth.forgot.form', 'Forgot your password?') }}
 
-            {{ Form::close() }}
+{{ Form::close() }}
 
 @stop

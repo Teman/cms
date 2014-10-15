@@ -1,4 +1,4 @@
-<div class="col-sm-3 col-md-2" role="navigation">
+<div class="col-sm-3 col-md-2 sidebar">
     @foreach( $adminMenuItems as $adminMenuItem)
         @if(isset($adminMenuItem['permission']))
             @if($currentUser->can($adminMenuItem['permission']))

@@ -27,7 +27,7 @@
         <table id="keywords" class="tablesorter table table-condensed table-main">
             <thead>
                  <tr>
-                    <th class="first_row_of_table">Select</th>
+                    <th>Select</th>
                     <th>Email</th>
                     <th>Role</th>
 
@@ -40,12 +40,8 @@
                    @foreach($row as $user)
                     <tr id="item_{{$user->id}}">
                         <td>
-                            <div class="checkboxPage">
-                                {{ Form::checkbox('user', $user->id)}}
-                            </div>
-
-                            {{ link_to_route('admin.users.edit', 'Edit', $user->id, ['class' => 'btnEdit btn btn-default btn-xs']) }}
-
+                            {{ Form::checkbox('user', $user->id)}}
+                            {{ link_to_route('admin.users.edit', 'Edit', $user->id, ['class' => 'btn btn-default btn-xs']) }}
                         </td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->roles[0]->name }}</td

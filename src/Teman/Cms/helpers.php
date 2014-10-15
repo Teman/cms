@@ -49,3 +49,21 @@ if ( ! function_exists('set_page_title') ){
         View::share('pageTitle', $title);
     }
 }
+
+if ( ! function_exists('cms_menu') ) {
+
+    function cms_menu($route)
+    {
+        // fancy active state hackery by jroen
+        $url = explode( '/', str_replace( '://', '', route($route) ) );
+        $path = explode( '/', Route::current()->getPath() );
+        array_shift($url);
+        
+        // let's see if first two indexes of array are the same,
+        // so we don't need to match every action on a controller.
+        if ( array_slice($url,0,2) ==  array_slice($path,0,2) ) {
+            echo 'active';
+        }
+    }
+
+}
