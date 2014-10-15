@@ -1,4 +1,4 @@
-{{ Form::open(['route' => 'forgot.reset']) }}
+{{ Form::open(['route' => 'cms.noauth.forgot.reset']) }}
 {{ Form::hidden('token', $token) }}
 
 <div class="form-group">

@@ -16,7 +16,6 @@
         "anahkiasen/polyglot": "~1.2",
         "dimsav/laravel-translatable": "4.2.*",
         "way/generators": "2.6.1",
-        "ckeditor/ckeditor": "4.4.4",
         "mews/purifier": "1.0.1",
         "barryvdh/laravel-translation-manager": "*"
     },

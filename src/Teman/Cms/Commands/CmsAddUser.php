@@ -3,9 +3,11 @@
 use Teman\Cms\Models\Entrust\Permission;
 use Teman\Cms\Models\Entrust\Role;
 use Teman\Cms\Models\Entrust\User;
+
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Config;
 
 class CmsAddUser extends Command {
 
@@ -48,12 +50,16 @@ class CmsAddUser extends Command {
      */
     public function fire()
     {
+        $tbl_prefix = Config::get('cms::table_prefix');
+        Config::set('entrust::roles_table', $tbl_prefix.'roles');
+        Config::set('entrust::assigned_roles_table', $tbl_prefix.'assigned_roles');
+        Config::set('entrust::role', '\Teman\Cms\Models\Entrust\Role');
+
         $this->intro();
 
         $this->askUserData();
 
-        $validator = $this->validate($this->entered_email,$this->entered_password);
-
+        /*$validator = $this->validate($this->entered_email,$this->entered_password);
 
         while ( $validator->fails() ){
 
@@ -64,8 +70,8 @@ class CmsAddUser extends Command {
             $this->line('');
 
             $this->askUserData();
-            $validator = $this->validate($this->entered_email,$this->entered_password);
-        }
+            //$validator = $this->validate($this->entered_email,$this->entered_password);
+        }*/
 
         $this->createUser();
 
@@ -80,15 +86,17 @@ class CmsAddUser extends Command {
 
 
     }
+
     private function done(){
         $this->info('');
         $this->info('User Created ! Have fun');
     }
-    private function validate($enterd_email, $enterd_password)
+
+    private function validate($entered_email, $entered_password)
     {
         $validator = Validator::make([
-            'email' => $enterd_email,
-            'password' => $enterd_password
+            'email' => $entered_email,
+            'password' => $entered_password
         ], [
             'email' => 'required|email',
             'password' => 'required|min:6'

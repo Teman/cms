@@ -3,7 +3,7 @@
 @section('content')
             <h1>Login</h1>
 
-            {{ Form::open( ['route' => 'cms.login'] ) }}
+            {{ Form::open( ['route' => 'cms.noauth.login'] ) }}
 
                 <div class="form-group">
                     {{ Form::label('email', 'Email') }}
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="form-group">
-                    {{ link_to_route('forgot.password.form', 'Forgot your password?') }}
+                    {{ link_to_route('cms.noauth.forgot.form', 'Forgot your password?') }}
                 </div>
 
             {{ Form::close() }}

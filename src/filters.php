@@ -1,7 +1,7 @@
 <?php
 
 Route::filter('admin', function()
-{
+{   
     // override cms specific settings for used packages
     // yeah, tell me about it.
     $tbl_prefix = $this->app['config']->get('cms::table_prefix');
@@ -15,20 +15,23 @@ Route::filter('admin', function()
     
     $this->app['config']->set('auth.model', '\Teman\Cms\Models\Entrust\User');
     
-    if (Auth::guest())
-    {
-        if (Request::ajax())
+    // cms.noauth prefix means no auth. necessary
+    if (substr(Route::currentRouteName(), 0, 10) != 'cms.noauth') {
+        if (Auth::guest())
         {
-            return Response::make('Unauthorized', 401);
+            if (Request::ajax())
+            {
+                return Response::make('Unauthorized', 401);
+            }
+            else
+            {
+                return Redirect::guest( URL::route('cms.noauth.login') );
+            }
         }
-        else
-        {
-            return Redirect::guest( URL::route('cms.login') );
-        }
-    }
 
-    if ( ! Auth::user()->can('access_cms') ){
-        return Redirect::guest( URL::route('cms.login') );
+        if ( ! Auth::user()->can('access_cms') ){
+            return Redirect::guest( URL::route('cms.noauth.login') );
+        }
     }
 });
 

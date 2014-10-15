@@ -17,9 +17,9 @@
 <div class="list-form">
     <div class="btn-toolbar">
     {{ Form::open() }}
-        <button type="button" id="btnSelectAll" class="btnSelectAll btn btn-default btn-sm">Select all</button>
-        <button type="button" id="btnDeselectAll" class="btnDeselectAll btn btn-default btn-sm">Deselect all</button>
-        <button type="button" id="btnDeleteAll" class="btnDeleteAll btn btn-danger btn-xs">Delete</button>
+        <button type="button" class="btn-select-all btn btn-default btn-sm">Select all</button>
+        <button type="button" class="btn-deselect-all btn btn-default btn-sm">Deselect all</button>
+        <button type="button" class="btn-delete-all btn btn-danger btn-xs">Delete</button>
     {{ Form::close() }}
     </div>
 
@@ -38,7 +38,7 @@
             @foreach ($users->chunk(4) as $row)
             <div class="row"
                    @foreach($row as $user)
-                    <tr id="item_{{$user->id}}" class="first_row_of_table">
+                    <tr id="item_{{$user->id}}">
                         <td>
                             <div class="checkboxPage">
                                 {{ Form::checkbox('user', $user->id)}}

@@ -3,8 +3,8 @@
 <p>{{ Lang::get('confide::confide.email.password_reset.greetings', array( 'name' => $user['username'])) }},</p>
 
 <p>{{ Lang::get('confide::confide.email.password_reset.body') }}</p>
-<a href='{{ URL::to('users/reset_password/'.$token) }}'>
-    {{ URL::to('users/reset_password/'.$token)  }}
+<a href='{{ URL::route('cms.noauth.forgot.token',['token'=>$token]) }}'>
+    {{ URL::route('cms.noauth.forgot.token',['token'=>$token])  }}
 </a>
 
 <p>{{ Lang::get('confide::confide.email.password_reset.farewell') }}</p>

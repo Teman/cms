@@ -9,9 +9,11 @@
 
         <title>{{{ $pageTitle or $cmsTitle }}}</title>
 
-        <link href="{{ asset('packages/teman/cms/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('packages/teman/cms/css/bootstrap-theme.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('packages/teman/cms/css/font-awesome.css') }}" rel="stylesheet">
+        <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap-theme.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('packages/teman/cms/css/vendor/font-awesome.css') }}" rel="stylesheet">
+        <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet">
+
         <link href="{{ asset('packages/teman/cms/css/dashboard.css') }}" rel="stylesheet">
         
         @yield('links')
@@ -58,11 +60,11 @@
 
 
 
-        <script src="{{ asset('packages/teman/cms/js/jquery.1.11.1.min.js') }}"></script>
-        <script src="{{ asset('packages/teman/cms/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('packages/teman/cms/js/script.js') }}"></script>
-        <script src="{{ asset('packages/teman/cms/js/list.js') }}"></script>
-        
+        <script src="{{ asset('packages/teman/cms/js/vendor/jquery.1.11.1.min.js') }}"></script>
+        <script src="{{ asset('packages/teman/cms/js/vendor/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('packages/teman/cms/js/vendor/bootstrap3-wysihtml5.all.min.js') }}"></script>
+
+        <script src="{{ asset('packages/teman/cms/js/cms.js') }}"></script>
         @yield('scripts')
 
     </body>

@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a target="_blank" href="{{ url('/') }}">Site</a></li>
-                <li><a href="{{ route('cms.logout') }}">Logout</a></li>
+                <li><a href="{{ route('cms.noauth.logout') }}">Logout</a></li>
             </ul>
         </div>
     </div>

@@ -1,4 +1,4 @@
-{{ Form::open( ['route' => 'forgot.password.process'] ) }}
+{{ Form::open( ['route' => 'cms.noauth.forgot.process'] ) }}
 <div class="form-group forgot-password-form">
     <div class="input-append input-group">
         {{ Form::text('email', null, ['class' => 'form-control', 'placeholder'=>'E-mail address']) }}

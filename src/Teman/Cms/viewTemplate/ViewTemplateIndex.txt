@@ -16,9 +16,9 @@
 <div class="list-form">
     <div class="btn-toolbar">
         {{ Form::open() }}
-            <button type="button" id="btnSelectAll" class="btnSelectAll btn btn-default btn-sm">Select all</button>
-            <button type="button" id="btnDeselectAll" class="btnDeselectAll btn btn-default btn-sm">Deselect all</button>
-            <button type="button" id="btnDeleteAll" class="btnDeleteAll btn btn-danger btn-xs">Delete</button>
+            <button type="button" class="btn-select-all btn btn-default btn-sm">Select all</button>
+            <button type="button" class="btn-deselect-all btn btn-default btn-sm">Deselect all</button>
+            <button type="button" class="btn-delete-all btn btn-danger btn-xs">Delete</button>
         {{ Form::close() }}
     </div>
 
