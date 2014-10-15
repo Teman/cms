@@ -8,7 +8,7 @@ View::share('adminMenuItems', Config::get('cms::adminMenuItems'));
 /*
  * Set CMS title
  */
-View::share('cmsTitle', Config::get('cms::cmsTitle'));
+View::share('cms_title', Config::get('cms::title'));
 
 
 /*

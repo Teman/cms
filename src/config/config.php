@@ -6,7 +6,7 @@
     /*
      * The default title to display in the menu bar
      */
-    'cmsTitle' => 'Teman CMS',
+    'title' => 'teman-ager',
 
     /*
      * Menu items for admin interface
@@ -21,7 +21,7 @@
                     'permission'=>'access_cms',
                     'route' => 'admin.users.index',
                     'title'=>'Users',
-                    'iconClass'=>'fa fa-user',
+                    'icon'=>'user',
                 ],
             ],
         ],

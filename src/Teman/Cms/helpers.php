@@ -44,7 +44,7 @@ if ( ! function_exists('set_page_title') ){
     function set_page_title($title, $useCmsName=true)
     {
         if ($useCmsName) {
-            $title .= ' | ' . Config::get('cms::cmsTitle');
+            $title .= ' | ' . Config::get('cms::title');
         }
         View::share('pageTitle', $title);
     }
