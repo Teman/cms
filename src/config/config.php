@@ -26,13 +26,13 @@
             ],
         ],
         [
-            'title' => 'Languages',
+            'title' => 'Translations',
             'permission'=>'access_cms',
             'adminMenuItems_subCategory' => [
                 [
                     'permission'=>'access_cms',
-                    'route' => 'admin.languages.translations',
-                    'title'=>'Translations',
+                    'route' => 'admin.languages.interface',
+                    'title'=>'Interface',
                     'icon'=>'flag',
                 ],
             ],

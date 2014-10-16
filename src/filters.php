@@ -32,6 +32,8 @@ Route::filter('admin', function()
         if ( ! Auth::user()->can('access_cms') ){
             return Redirect::guest( URL::route('cms.noauth.login') );
         }
+
+        View::share("currentUser", Auth::user());
     }
 });
 

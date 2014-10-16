@@ -6,7 +6,7 @@ module.exports = (grunt) ->
       publish:
         options: 
           stdout: true
-        command: 'cd ~/Code && php artisan asset:publish --bench=teman/cms'
+        command: 'cd ~/Code && php artisan asset:publish'
 
     sass:
       compile:

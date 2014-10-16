@@ -40,5 +40,4 @@ Route::resource('/admin/users', 'Teman\Cms\Controllers\UsersController');
 /*
  * Translations management
  */
-Route::get('/admin/translations/index', ['as'=>'admin.languages.translations','uses'=>'Barryvdh\TranslationManager\Controller@getIndex']);
-Route::controller('/admin/translations', 'Barryvdh\TranslationManager\Controller');
+Route::controller('/admin/translations', 'Barryvdh\TranslationManager\Controller', ['getIndex'=>'admin.languages.interface']);

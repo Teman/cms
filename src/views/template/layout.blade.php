@@ -40,11 +40,18 @@
                         </button>
                     </p>
 
-                    @if (Session::has('flash_message'))
-                        <div class="alert alert-info" role="alert">{{ Session::get('flash_message') }}</div>
-                    @else
-                        @include('flash::message')
-                    @endif
+                    <div id="messages" class="row">
+                        <div class="col-md-5">
+                            @if (Session::has('flash_message'))
+                                <div class="alert alert-info fade in" role="alert">
+                                    {{ Session::get('flash_message') }}
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                </div>
+                            @else
+                                @include('flash::message')
+                            @endif
+                        </div>
+                    </div>
 
                     @yield('content')
 

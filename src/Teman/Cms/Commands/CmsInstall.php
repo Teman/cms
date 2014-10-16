@@ -3,9 +3,13 @@
 use Teman\Cms\Models\Entrust\Permission;
 use Teman\Cms\Models\Entrust\Role;
 use Teman\Cms\Models\Entrust\User;
+
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
+
+use Illuminate\Support\Facades\Config;
 
 class CmsInstall extends Command {
 
@@ -44,12 +48,16 @@ class CmsInstall extends Command {
 	 */
 	public function fire()
 	{
+        $tbl_prefix = Config::get('cms::table_prefix');
+        Config::set('entrust::roles_table', $tbl_prefix.'roles');
+        Config::set('entrust::assigned_roles_table', $tbl_prefix.'assigned_roles');
+        Config::set('entrust::role', '\Teman\Cms\Models\Entrust\Role');
 
         $this->intro();
         $this->migrateDatabase();
         $this->publishAssets();
         $this->publishConfigs();
-
+        $this->publishViews();
         $this->askUserData();
 
         $validator = $this->validate($this->entered_email,$this->entered_password);
@@ -70,10 +78,8 @@ class CmsInstall extends Command {
 
         $this->createUser();
 
-        $this->markInstalled();
-
-
         $this->done();
+        
 
 	}
 
@@ -100,14 +106,12 @@ class CmsInstall extends Command {
     }
 
     private function migrateDatabase(){
-
-        $this->info('Migrating database for translation manager');
-        $this->call('migrate', array(
-            'path' => 'vendor/barryvdh/laravel-translation-manager/src/migrations')
-        );
-
         $this->info('Migrating database');
         $this->call('migrate:publish', array('package' => 'teman/cms'));
+        $this->call('migrate:publish', array('package' => 'barryvdh/laravel-translation-manager'));
+
+        $this->info('Migrating database for translation manager');
+        $this->call('migrate');
 
         $this->call('migrate');
 
@@ -130,6 +134,18 @@ class CmsInstall extends Command {
 
         $this->info('Publishing cms config');
         $this->call('config:publish', array('package' => 'teman/cms'));
+    }
+
+    private function publishViews(){
+        $this->info('Publishing Translator views');
+        $this->call('view:publish', array('package' => 'barryvdh/laravel-translation-manager'));
+
+        // override the translation view template with our cms-friendly version
+        $this->info('overwriting translations view to match cms interface and custom tweaks');
+        File::copy(
+            'vendor/teman/cms/src/Teman/Cms/viewTemplate/translations.override.txt',
+            'app/views/packages/barryvdh/laravel-translation-manager/index.blade.php'
+        );
     }
 
 
