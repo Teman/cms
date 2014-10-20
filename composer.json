@@ -5,6 +5,10 @@
         {
             "name": "Tim Van den Bergh",
             "email": "tim@fikst.be"
+        },
+        {
+            "name": "Jeroen Knitel",
+            "email": "jeroen@karb.be"
         }
     ],
     "require": {
