@@ -106,13 +106,11 @@ class CmsInstall extends Command {
     }
 
     private function migrateDatabase(){
-        $this->info('Migrating database');
-        $this->call('migrate:publish', array('package' => 'teman/cms'));
+        $this->info('Publishing migrations for packages');
         $this->call('migrate:publish', array('package' => 'barryvdh/laravel-translation-manager'));
+        $this->call('migrate:publish', array('package' => 'teman/cms'));
 
-        $this->info('Migrating database for translation manager');
-        $this->call('migrate');
-
+        $this->info('Migrating database');
         $this->call('migrate');
 
     }

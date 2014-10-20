@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 use Illuminate\Support\Facades\Config;
 
-class CreateUsersTable extends Migration {
+class CreateCmsUsersTable extends Migration {
 
 	protected $table_prefix;
 

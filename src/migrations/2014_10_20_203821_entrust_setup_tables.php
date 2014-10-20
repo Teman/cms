@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Config;
 use Teman\Cms\Models\Entrust\Permission;
 use Teman\Cms\Models\Entrust\Role;
 
-class EntrustSetupTables extends Migration {
+class EntrustCmsSetupTables extends Migration {
 
     /**
      * Run the migrations.
