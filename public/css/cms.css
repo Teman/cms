@@ -29,4 +29,22 @@ a.status-1 {
   font-weight: bold;
 }
 
+.Addbtn:hover {
+  text-decoration: none;
+}
+
+.first_row_of_table {
+  width: 80px;
+  overflow: hidden;
+}
+.first_row_of_table > * {
+  display: block;
+  float: left;
+  margin-right: 5px;
+}
+
+form {
+  padding: 10px 0;
+}
+
 /*# sourceMappingURL=cms.css.map */
