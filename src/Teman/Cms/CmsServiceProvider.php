@@ -32,14 +32,14 @@ class CmsServiceProvider extends ServiceProvider {
         /**
          * Include authentication extender, routes and filters
          */
-        include __DIR__ . '/../../authextend.php';
-        include __DIR__ . '/../../routes.php';
-        include __DIR__ . '/../../filters.php';
+        require_once __DIR__ . '/../../authextend.php';
+        require_once __DIR__ . '/../../routes.php';
+        require_once __DIR__ . '/../../filters.php';
 
         /*
          * Include helpers
          */
-        include __DIR__ . '/helpers.php';
+        require_once __DIR__ . '/helpers.php';
 
 	}
 
