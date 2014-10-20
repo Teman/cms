@@ -3,6 +3,8 @@
 use Teman\Cms\Libraries\Authentication;
 use Teman\Cms\Forms\LoginForm;
 
+use Illuminate\Support\Facades\Config;
+
 class AuthController extends BaseController
 {
     protected $loginForm;

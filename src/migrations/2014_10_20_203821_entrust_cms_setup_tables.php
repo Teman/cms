@@ -69,6 +69,7 @@ class EntrustCmsSetupTables extends Migration {
         });
 
         //use cms namespaced models for migration
+        Config::set('entrust::roles_table', $this->table_prefix.'roles');
         Config::set('entrust::role', '\Teman\Cms\Models\Entrust\Role');
         Config::set('entrust::permission_role_table', $this->table_prefix.'permission_role');
 

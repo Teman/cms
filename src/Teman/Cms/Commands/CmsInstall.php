@@ -54,9 +54,9 @@ class CmsInstall extends Command {
         Config::set('entrust::role', '\Teman\Cms\Models\Entrust\Role');
 
         $this->intro();
+        $this->publishConfigs();
         $this->migrateDatabase();
         $this->publishAssets();
-        $this->publishConfigs();
         $this->publishViews();
         $this->askUserData();
 

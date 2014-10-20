@@ -1,9 +1,15 @@
 <?php namespace Teman\Cms;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+
 use Laracasts\Validation\FormValidationException;
 use Laracasts\Flash\Flash;
+
 use Teman\Cms\Commands\CmsInstall;
+use Teman\Cms\Libraries\CmsUserGuard;
 
 class CmsServiceProvider extends ServiceProvider {
 
@@ -21,12 +27,12 @@ class CmsServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-
-        $this->package('teman/cms');
+        $this->package('teman/cms');        
 
         /**
-         * Include routes and filters
+         * Include authentication extender, routes and filters
          */
+        include __DIR__ . '/../../authextend.php';
         include __DIR__ . '/../../routes.php';
         include __DIR__ . '/../../filters.php';
 
