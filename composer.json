@@ -27,5 +27,5 @@
             "Teman\\Cms\\": "src/Teman/Cms"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
