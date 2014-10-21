@@ -5,8 +5,8 @@ return array(
     'success'               => 'Your password has been reset.',
 
     'remind_greeting'       => 'Hi :name',
-    'remind_body'           => 'You’ve requested a new password for your account<br>lease click this link to reset your password:',
+    'remind_body'           => 'You’ve requested a new password for your account<br>Please click this link to reset your password:',
 
-    'emind_farewell'        => 'This link will expire in :minutes minutes.<br>Best regards.'
+    'remind_farewell'        => 'This link will expire in :minutes minutes.<br>Best regards.'
 
 );
