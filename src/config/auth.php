@@ -16,9 +16,7 @@ return array(
     //fallback for "intended" route
     'login_route'       => 'admin',
 
-    //Use the cms User Model
-    //If set to false User model must extend Teman\Cms\Models\Entrust\User
+    //User model has username?
     'has_username'      => true,
-    'use_cms_model'     => true
 
 );
