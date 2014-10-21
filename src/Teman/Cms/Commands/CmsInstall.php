@@ -127,9 +127,8 @@ class CmsInstall extends Command {
         $this->info('Publishing Polyglot config');
         $this->call('config:publish', array('package' => 'anahkiasen/polyglot'));
 
-        // since this is not in the tagged release we can't do this (yet)
-        // $this->info('Publishing translation config');
-        // $this->call('config:publish', array('package' => 'barryvdh/laravel-translation-manager'));
+        $this->info('Publishing translation config');
+        $this->call('config:publish', array('package' => 'barryvdh/laravel-translation-manager'));
 
         $this->info('Publishing cms config');
         $this->call('config:publish', array('package' => 'teman/cms'));
