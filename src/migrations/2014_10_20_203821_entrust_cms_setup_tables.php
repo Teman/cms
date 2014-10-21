@@ -104,7 +104,7 @@ class EntrustCmsSetupTables extends Migration {
             $table->dropForeign($this->table_prefix.'assigned_roles_role_id_foreign');
         });
 
-        Schema::table('permission_role', function(Blueprint $table) {
+        Schema::table($this->table_prefix.'permission_role', function(Blueprint $table) {
             $table->dropForeign($this->table_prefix.'permission_role_permission_id_foreign');
             $table->dropForeign($this->table_prefix.'permission_role_role_id_foreign');
         });
