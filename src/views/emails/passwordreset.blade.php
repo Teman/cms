@@ -1,10 +1,10 @@
-<h1>{{ Lang::get('confide::confide.email.password_reset.subject') }}</h1>
+<h1>{{ Lang::get('cms::forgot.remind_subject') }}</h1>
 
-<p>{{ Lang::get('confide::confide.email.password_reset.greetings', array( 'name' => $user['username'])) }},</p>
+<p>{{ Lang::get('cms::forgot.remind_greeting', array( 'name' => $user['username'])) }},</p>
 
-<p>{{ Lang::get('confide::confide.email.password_reset.body') }}</p>
+<p>{{ Lang::get('cms::forgot.remind_body') }}</p>
 <a href='{{ URL::route('cms.noauth.forgot.token',['token'=>$token]) }}'>
     {{ URL::route('cms.noauth.forgot.token',['token'=>$token])  }}
 </a>
 
-<p>{{ Lang::get('confide::confide.email.password_reset.farewell') }}</p>
+<p>{{ Lang::get('cms::forgot.remind_farewell', ['minutes' => Config::get('auth.reminder.expire', 60)]) }}</p>

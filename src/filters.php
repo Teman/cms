@@ -41,5 +41,6 @@ App::before(function($request){
         
         $this->app['config']->set('auth.model', '\Teman\Cms\Models\Entrust\User');
         $this->app['config']->set('auth.driver', 'cms.user');
+        $this->app['config']->set('auth.reminder.email', 'cms::emails.passwordreset');
     }
 });

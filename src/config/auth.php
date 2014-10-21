@@ -12,7 +12,7 @@ return array(
      * Default routes
      */
     //redirect after password change
-    'success_route'     => 'cms.login',
+    'success_route'     => 'cms.noauth.login',
     //fallback for "intended" route
     'login_route'       => 'admin',
 
