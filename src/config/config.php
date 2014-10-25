@@ -3,6 +3,9 @@
     // prefix to use on tables related to cms (also entrust tables)
     'table_prefix' => 'cms_',
 
+    //use translations from database
+    'use_db_trans' => false,
+
     /*
      * The default title to display in the menu bar
      */
