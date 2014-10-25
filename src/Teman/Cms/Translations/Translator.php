@@ -2,6 +2,7 @@
 namespace Teman\Cms\Translations;
 
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\URL;
 use Polyglot\Services\Lang;
 use Teman\Cms\Models\Translation;
 
@@ -36,6 +37,7 @@ class Translator extends Lang
      */
     public function get($key, array $replace = array(), $locale = null)
     {
+        if ( is_null($locale) ) $locale = URL::locale();
         if ( is_null($locale) ) $locale = $this->fallbackLocale();
 
         if ( isset( $this->db_keys[$locale][$key] ) ){
