@@ -1,15 +1,8 @@
 <?php namespace Teman\Cms;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades;
 use Laracasts\Validation\FormValidationException;
-use Laracasts\Flash\Flash;
-
-use Teman\Cms\Commands\CmsInstall;
-use Teman\Cms\Libraries\CmsUserGuard;
 
 class CmsServiceProvider extends ServiceProvider {
 
@@ -40,6 +33,10 @@ class CmsServiceProvider extends ServiceProvider {
          * Include helpers
          */
         require_once __DIR__ . '/helpers.php';
+
+        if ( $this->app['config']->get('cms::use_db_trans') ){
+            Facades\Lang::swap($this->app['cms.translator']);
+        }
 
 	}
 
@@ -77,6 +74,10 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app->bind('command.cms.packageCreator','Teman\Cms\Commands\PackageGeneratorCommand');
 
         $this->commands(['command.cms.install', 'command.cms.adduser', 'command.cms.packageCreator']);
+
+
+        $this->app->singleton('cms.translator', 'Teman\Cms\Translations\Translator');
+
 
         //exception handlers
         $this->registerExceptions();
