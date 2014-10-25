@@ -10,12 +10,12 @@ class Translator extends Lang
 {
 
     private $db_keys = [];
+    private $db_keys_loaded = false;
 
     public function __construct(Container $app)
     {
         parent::__construct($app);
 
-        $this->loadDbKeys();
     }
 
     private function loadDbKeys()
@@ -24,6 +24,8 @@ class Translator extends Lang
         foreach( $translations as $translation ){
             $this->db_keys[ $translation->locale ][ $translation->group . '.' . $translation->key ] = $translation->value;
         }
+
+        $this->db_keys_loaded = true;
     }
 
     /**
@@ -37,6 +39,8 @@ class Translator extends Lang
      */
     public function get($key, array $replace = array(), $locale = null)
     {
+        if ( ! $this->db_keys_loaded ) $this->loadDbKeys();
+
         if ( is_null($locale) ) $locale = URL::locale();
         if ( is_null($locale) ) $locale = $this->fallbackLocale();
 
