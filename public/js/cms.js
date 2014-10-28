@@ -27,7 +27,11 @@ $('.btn-delete-item').click(function() {
   }
 });
 
-$('textarea.richtext, textarea.richTextBoxEditor').wysihtml5();
+$('textarea.richtext, textarea.richTextBoxEditor').wysihtml5( {
+    'toolbar': {
+        'html': true
+    }
+} );
 
 flash = function(msg, type) {
   if (type == null) {
