@@ -56,6 +56,8 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app->register('Way\Generators\GeneratorsServiceProvider');
         $this->app->register('Mews\Purifier\PurifierServiceProvider');
         $this->app->register('Barryvdh\TranslationManager\ManagerServiceProvider');
+        $this->app->register('Maatwebsite\Excel\ExcelServiceProvider');
+
         //alias facades
         $this->app->booting(function()
         {
@@ -66,6 +68,8 @@ class CmsServiceProvider extends ServiceProvider {
             $loader->alias('Authentication', 'Teman\Cms\Authentication');
             $loader->alias('Purifier', 'Mews\Purifier\Facades\Purifier');
             $loader->alias('BaseController', 'Teman\Cms\Controllers\BaseController');
+            $loader->alias('Excel', 'Maatwebsite\Excel\Facades\Excel');
+
         });
 
         //register artisan commands
