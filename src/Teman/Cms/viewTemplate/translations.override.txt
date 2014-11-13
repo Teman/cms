@@ -1,6 +1,9 @@
 @extends('cms::template.layout')
 @section('content')
     <h1>Translation Manager</h1>
+
+    <a class="btn btn-primary" href="{{ route('translation.download') }}">Download all translations as .xls</a>
+
     <form role="form">
         <div class="form-group">
             <?= Form::label('group', 'Choose a group') ?>
