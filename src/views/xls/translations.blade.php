@@ -22,7 +22,7 @@
                         @foreach( $locales as $locale )
                             <td>
                                 @if( isset( $trans_locales[$locale] ) )
-                                {{ $trans_locales[$locale] }}
+                                {{ e($trans_locales[$locale]) }}
                                 @endif
                             </td>
                         @endforeach
