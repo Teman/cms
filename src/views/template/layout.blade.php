@@ -12,7 +12,6 @@
         <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap-theme.min.css') }}" rel="stylesheet">
         <link href="{{ asset('packages/teman/cms/css/vendor/font-awesome.css') }}" rel="stylesheet">
-        <link href="{{ asset('packages/teman/cms/css/vendor/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet">
 
         <link href="{{ asset('packages/teman/cms/css/cms.css') }}" rel="stylesheet">
         
@@ -63,7 +62,7 @@
 
         <script src="{{ asset('packages/teman/cms/js/vendor/jquery.1.11.1.min.js') }}"></script>
         <script src="{{ asset('packages/teman/cms/js/vendor/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('packages/teman/cms/js/vendor/bootstrap3-wysihtml5.all.min.js') }}"></script>
+        <script src="{{ asset('packages/teman/cms/js/vendor/tinymce/tinymce.min.js') }}"></script>
 
         <script src="{{ asset('packages/teman/cms/js/cms.js') }}"></script>
         @yield('scripts')

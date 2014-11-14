@@ -27,11 +27,12 @@ $('.btn-delete-item').click(function() {
   }
 });
 
-$('textarea.richtext, textarea.richTextBoxEditor').wysihtml5( {
-    'toolbar': {
-        'html': true
-    }
-} );
+tinymce.init({
+  selector: 'textarea.richtext, textarea.richTextBoxEditor',
+  menubar: false,
+  plugins: ["advlist autolink lists link charmap anchor", "searchreplace visualblocks code", "table contextmenu paste"],
+  toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | code"
+});
 
 flash = function(msg, type) {
   if (type == null) {
