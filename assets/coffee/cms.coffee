@@ -15,8 +15,19 @@ $('.btn-delete-all').click ->
 $('.btn-delete-item').click ->
   if confirm('Are you sure?')
     delete_item($(this).parent().parent())
+
 # rich text editor (last class is legacy support)
-$('textarea.richtext, textarea.richTextBoxEditor').wysihtml5()
+tinymce.init({
+  selector: 'textarea.richtext, textarea.richTextBoxEditor',
+  menubar: false,
+  plugins: [
+    "advlist autolink lists link charmap anchor",
+    "searchreplace visualblocks code",
+    "table contextmenu paste"
+  ],
+  toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | code",
+  height: 300
+});
 
 flash = (msg, type = "info") ->
   $("#messages").append "<div class='alert alert-#{type}' role='alert'>#{msg}</div>"
