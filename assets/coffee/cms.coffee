@@ -25,7 +25,8 @@ tinymce.init({
     "searchreplace visualblocks code",
     "table contextmenu paste"
   ],
-  toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | code"
+  toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | code",
+  height: 300
 });
 
 flash = (msg, type = "info") ->
