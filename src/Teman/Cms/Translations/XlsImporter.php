@@ -40,19 +40,23 @@ class XlsImporter
                                     $translation->status = 1;
                                     $translation->save();
 
-                                    $response->updated++;
                                 } else {
-                                    $response->ignored++;
-                                }
+                                    //insert
+                                    $translation = new Translation;
+                                    $translation->locale = $locale;
+                                    $translation->group = $group;
+                                    $translation->key = $key;
+                                    $translation->value = $value;
+                                    $translation->status = 1;
 
-                                //no insert
+                                    $translation->save();
+                                }
+                                $response->updated++;
 
                             } else {
                                 $response->ignored++;
                             }
 
-                        } else {
-                            $response->ignored++;
                         }
                     }
 
