@@ -76,8 +76,14 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app->bind('command.cms.install', 'Teman\Cms\Commands\CmsInstall');
         $this->app->bind('command.cms.adduser', 'Teman\Cms\Commands\CmsAddUser');
         $this->app->bind('command.cms.packageCreator','Teman\Cms\Commands\PackageGeneratorCommand');
+        $this->app->bind('command.cms.translationXlsImport','Teman\Cms\Commands\TranslationXlsImport');
 
-        $this->commands(['command.cms.install', 'command.cms.adduser', 'command.cms.packageCreator']);
+        $this->commands([
+                'command.cms.install',
+                'command.cms.adduser',
+                'command.cms.packageCreator',
+                'command.cms.translationXlsImport'
+            ]);
 
 
         $this->app->singleton('cms.translator', 'Teman\Cms\Translations\Translator');
