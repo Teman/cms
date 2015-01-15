@@ -1,5 +1,6 @@
 <?php namespace Teman\Cms\Controllers;
 
+use Illuminate\Support\Facades\Config;
 use Teman\Cms\Forms\UserForm;
 use Teman\Cms\Models\Entrust\Role;
 use Illuminate\Support\Facades\Input;
@@ -126,7 +127,7 @@ class UsersController extends BaseController {
 
         //own validator because unique rule is different for create or update
         $validator = Validator::make( $input, [
-                'email' => 'required|email|unique:users,id,' . $id,
+                'email' => 'required|email|unique:'.Config::get('cms::table_prefix').'users,id,' . $id,
                 'password' => 'min:6',
                 'role_id' => 'required|integer'
             ] );
