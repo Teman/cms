@@ -1,11 +1,18 @@
-{{ Form::open(['route' => 'cms.noauth.forgot.reset']) }}
-    {{ Form::hidden('token', $token) }}
+@extends('cms::template.layout_noauth')
 
-    <div class="form-group">
-        {{ Form::label('email', Lang::get('cms::auth.lbl_email')) }}
-        {{ Form::email('email', null, ['class'=>'form-control']) }}
-        {{ $errors->first('email', '<span class="help-block">:message</span>') }}
-    </div>
+@section('content')
+
+<h1>{{ Lang::get('cms::confirm.title') }}</h1>
+
+@if(Config::get('cms::auth.password_validation') == 'strict')
+    <p>{{ trans('cms::confirm.strict_guidelines') }}</p>
+@endif
+
+{{ Form::open(['route' => 'cms.noauth.password.store']) }}
+    {{ Form::hidden('token', $token) }}
+    {{ Form::hidden('id', $id) }}
+    {{ Form::hidden('email', $username) }}
+
 
     <div class="form-group">
         {{ Form::label('password', Lang::get('cms::auth.lbl_password')) }}
@@ -20,6 +27,9 @@
     </div>
 
     <div class="form-group">
-        {{ Form::submit(Lang::get('cms::auth.submit'), ['class'=>'btn btn-primary form-control']) }}
+        {{ Form::submit(Lang::get('cms::confirm.submit'), ['class'=>'btn btn-primary form-control']) }}
     </div>
-{{ Form::close() }}
+
+    {{ Form::close() }}
+
+@stop

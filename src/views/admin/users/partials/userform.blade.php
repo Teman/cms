@@ -16,6 +16,13 @@
     {{ $errors->first('role_id', '<span class="help-block">:message</span>') }}
 </div>
 
+@if(!isset($edit) and Config::get('cms::auth.can_set_password'))
+    <div class="form-group">
+        {{ Form::checkbox('set_password', 1) }}
+        {{ Form::label('set_password', 'User has to set their own password') }}
+    </div>
+@endif
+
 <div class="form-group">
     {{ Form::submit(isset($edit) ? 'Update user' : 'Add user', ['class' => 'btn btn-primary']) }}
 </div>

@@ -12,7 +12,12 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a target="_blank" href="{{ url('/') }}">Site</a></li>
-                <li><a href="{{ route('cms.noauth.logout') }}">Logout</a></li>
+
+                @if(Config::get('cms::auth.show_pass_change'))
+                    <li><a href="{{ route('cms.auth.change_password') }}">{{ trans('cms::auth.change_password') }}</a></li>
+                @endif
+
+                <li><a href="{{ route('cms.noauth.logout') }}">{{ trans('cms::auth.logout') }}</a></li>
             </ul>
         </div>
     </div>

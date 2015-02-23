@@ -19,4 +19,27 @@ return array(
     //User model has username?
     'has_username'      => true,
 
+    /**
+     * Extra security
+     */
+    //new users can set their own password
+    'can_set_password' => true,
+
+    'password_validation' => 'basic', //basic or strict
+    'password_validation_basic' => 'min:6',
+    'password_validation_strict' => 'min:8|max:24|different:email|case_diff|numbers|letters|symbols',
+
+    //username validation rules
+    'user_validation' => 'email',
+
+    //number of days until expiry, 0= never expire
+    'password_valid' => 0,
+
+    //confirmation email new account
+    'confirm_mail_tpl' => 'cms::emails.confirm',
+    'from_name' => 'Teman CMS',
+    'from_email' => 'no-reply@temancms.app',
+
+    //show password change in nav
+    'show_pass_change' => false,
 );

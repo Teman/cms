@@ -57,6 +57,7 @@ class CmsServiceProvider extends ServiceProvider {
         $this->app->register('Mews\Purifier\PurifierServiceProvider');
         $this->app->register('Barryvdh\TranslationManager\ManagerServiceProvider');
         $this->app->register('Maatwebsite\Excel\ExcelServiceProvider');
+        $this->app->register('Schuppo\PasswordStrength\PasswordStrengthServiceProvider');
 
         //alias facades
         $this->app->booting(function()

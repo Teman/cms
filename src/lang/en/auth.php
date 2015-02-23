@@ -8,6 +8,10 @@ return array(
     'lbl_email'             => 'E-mail:',
     'lbl_password'          => 'Password:',
     'lbl_password_conf'     => 'Password Confirmation:',
+    'lbl_password_current'     => 'Current Password:',
 
-
+    'change_password' => 'Change Password',
+    'logout' => 'Logout',
+    'hasmatch' => 'Your current password must match your account password',
+    'loggedin_as' => 'You are logged in as :name',
 );

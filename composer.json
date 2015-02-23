@@ -22,7 +22,8 @@
         "way/generators": "2.6.1",
         "mews/purifier": "1.0.1",
         "barryvdh/laravel-translation-manager": "0.1.2",
-        "maatwebsite/excel": "~1.2.1"
+        "maatwebsite/excel": "~1.2.1",
+        "schuppo/password-strength": "~0.7"
     },
     "autoload": {
         "classmap": [

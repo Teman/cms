@@ -1,6 +1,7 @@
 <?php namespace Teman\Cms\Controllers;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use Teman\Cms\Forms\UserForm;
 use Teman\Cms\Models\Entrust\Role;
 use Illuminate\Support\Facades\Input;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Teman\Cms\Models\Entrust\User;
 use Laracasts\Flash\Flash;
+use Teman\Cms\Libraries\PasswordSet;
 
 
 use \Laracasts\Validation\FormValidationException;
@@ -58,18 +60,46 @@ class UsersController extends BaseController {
 	 * @return Response
 	 */
 	public function store()
-	{
+    {
+
+        //if no password is set, keep previous
+        $input = Input::all();
+        if (!Input::get('set_password')) {
+            //manually setting password
+            $password_validation = 'required|' . Config::get('cms::auth.password_validation_' . Config::get('cms::auth.password_validation'));
+        }else{
+            //password set automatically (temp)
+            $password_validation = '';
+        }
+
+        //own validator because unique rule is different for create or update
+        $validator = Validator::make( $input, [
+            'email' => 'required|'.Config::get('cms::auth.user_validation').'|unique:'.Config::get('cms::table_prefix').'users',
+            'password' => $password_validation,
+            'role_id' => 'required|integer'
+        ] );
+
+        if ( $validator->fails() ){
+            throw new FormValidationException('Validation failed', $validator->errors());
+        }
+
 
         $user = new User;
-
         $user->email = Input::get('email');
-        $user->password = Input::get('password');
+        if (Input::get('set_password')){
+            //send email..
+            $user = PasswordSet::setPasswordAndSendMail($user);
+        }else{
+            $user->password = Input::get('password');
+        }
 
         if ( ! $user->save() ){
             return Redirect::back()->withErrors( $user->errors() );
         }
 
         $user->attachRole( Input::get('role_id') );
+
+
         Flash::success('User created');
         return Redirect::route('admin.users.index');
 	}
@@ -127,10 +157,10 @@ class UsersController extends BaseController {
 
         //own validator because unique rule is different for create or update
         $validator = Validator::make( $input, [
-                'email' => 'required|email|unique:'.Config::get('cms::table_prefix').'users,id,' . $id,
-                'password' => 'min:6',
+                'email' => 'required|'.Config::get('cms::auth.user_validation').'|unique:'.Config::get('cms::table_prefix').'users,id,' . $id,
+                'password' => Config::get('cms::auth.password_validation_'.Config::get('cms::auth.password_validation')),
                 'role_id' => 'required|integer'
-            ] );
+        ] );
 
         if ( $validator->fails() ){
             throw new FormValidationException('Validation failed', $validator->errors());
