@@ -3,7 +3,7 @@
 
     <div class="form-group">
         {{ Form::label('email', Lang::get('cms::auth.lbl_email')) }}
-        {{ Form::email('email', null, ['class'=>'form-control']) }}
+        {{ Form::email('email', null, ['autocomplete'=>'off','class'=>'form-control']) }}
         {{ $errors->first('email', '<span class="help-block">:message</span>') }}
     </div>
 
