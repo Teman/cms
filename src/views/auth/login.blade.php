@@ -8,7 +8,7 @@
     {{ Form::text('email', null, ['class' => 'form-control', 'placeholder'=>'Email address', 'required'=>true,'autofocus']) }}
     {{ $errors->first('email', '<span class="error">:message</span>') }}
 
-    {{ Form::password('password', ['class' => 'form-control', 'placeholder'=>'Password','required'=>true]) }}
+    {{ Form::password('password', ['class' => 'form-control', 'autocomplete'=>'off', 'placeholder'=>'Password','required'=>true]) }}
     {{ $errors->first('password', '<span class="error">:message</span>') }}
 
     {{ Form::submit('Log in', ['class' => 'btn btn-lg btn-primary btn-block']) }}

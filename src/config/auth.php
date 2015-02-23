@@ -23,7 +23,7 @@ return array(
      * Extra security
      */
     //new users can set their own password
-    'can_set_password' => true,
+    'can_set_password' => false,
 
     'password_validation' => 'basic', //basic or strict
     'password_validation_basic' => 'min:6',
