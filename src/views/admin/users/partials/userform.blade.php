@@ -1,12 +1,12 @@
 <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
     {{ Form::label('email', 'Email') }}
-    {{ Form::text('email', null, ['class' => 'form-control']) }}
+    {{ Form::text('email', null, ['autocomplete'=>'off', 'class' => 'form-control']) }}
     {{ $errors->first('email', '<span class="help-block">:message</span>') }}
 </div>
 
 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
     {{ Form::label('password', '') }}
-    {{ Form::password('password', ['class' => 'form-control']) }}
+    {{ Form::password('password', ['autocomplete'=>'off', 'class' => 'form-control']) }}
     {{ $errors->first('password', '<span class="help-block">:message</span>') }}
 </div>
 
