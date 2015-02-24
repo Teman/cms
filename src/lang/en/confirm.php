@@ -13,5 +13,5 @@ return array(
     'invalid_token' => 'Invalid password token or password already set',
     'submit'    => 'Set password',
 
-    'strict_guidelines' => 'Password must be at leeast 8 characters long, using both upper and lowercase characters and contain at least a number and a special character.',
+    'strict_guidelines' => 'Password must be at least 8 characters long, using both upper and lowercase characters and contain at least a number and a special character.',
 );
