@@ -112,4 +112,43 @@ class PasswordController extends BaseController
 
         return Redirect::to(route('admin'));
     }
+
+    public function expired(){
+        $user = Auth::user();
+        if($user and $user->isExpired()) {
+            return View::make('cms::auth.password.expired')->withUsername($user->username);
+        }else{
+            return Redirect::to(route('admin'));
+        }
+    }
+
+    public function save_expired(){
+        $user = Auth::user();
+        if($user) {
+            $input = Input::all();
+            $password_validation = 'required|confirmed|hashmatch|' . Config::get('cms::auth.password_validation_' . Config::get('cms::auth.password_validation'));
+
+            Validator::extend('hashmatch', function($attribute, $value, $parameters)
+            {
+                return !(Hash::check($value, Auth::user()->password));
+            });
+
+            $messages = ['hashmatch'=>trans('cms::auth.mustbedifferent')];
+
+            $validator = Validator::make($input, [
+                'password' => $password_validation,
+            ], $messages);
+
+            if ($validator->fails()) {
+                throw new FormValidationException('Validation failed', $validator->errors());
+            }
+
+            //Save password
+            $user->password = Input::get('password');
+            $user->save();
+            Flash::success(trans('cms::change.success'));
+        }
+
+        return Redirect::to(route('admin'));
+    }
 }

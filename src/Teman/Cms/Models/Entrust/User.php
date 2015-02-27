@@ -1,5 +1,6 @@
 <?php namespace Teman\Cms\Models\Entrust;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserInterface;
@@ -8,6 +9,7 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Config;
 
+use Laracasts\Flash\Flash;
 use LaravelBook\Ardent\Ardent;
 use Zizaco\Entrust\HasRole;
 
@@ -48,6 +50,27 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
      */
     public function setPasswordAttribute($password){
         $this->attributes['password'] = Hash::make($password);
+        //trigger password expiry date increase
+        $this->setPasswordExpiry();
+    }
+
+
+    public function setPasswordExpiry(){
+        if($days = Config::get('cms::auth.password_valid')) {
+            $this->expires = Carbon::now()->addDays($days);
+        }
+        return $this;
+    }
+
+    //is the user's password expired?
+    public function isExpired(){
+        if($days = Config::get('cms::auth.password_valid')) {
+            $diff = strtotime($this->expires) - time();
+            if($diff<=0){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -70,6 +93,6 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
     }
 
     public function getDates(){
-        return ['created_at', 'updated_at', 'last_login_attempt'];
+        return ['created_at', 'updated_at', 'expries', 'last_login_attempt'];
     }
 }

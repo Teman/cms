@@ -13,6 +13,7 @@ return array(
     'change_password' => 'Change Password',
     'logout' => 'Logout',
     'hasmatch' => 'Your current password must match your account password',
+    'mustbedifferent' => 'Your new password must be different from your current',
     'loggedin_as' => 'You are logged in as :name',
 
     'maxattempts' =>'Max login attempts reached, account locked.',

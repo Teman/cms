@@ -11,7 +11,38 @@ use Laracasts\Flash\Flash;
 use Teman\Cms\Models\Entrust\User;
 
 class Authentication {
+    /**
+     * Process login
+     * @param $loginForm
+     * @return mixed
+     */
+    public static function doLogin($loginForm){
+        $loginForm->validate($input = Input::only('email', 'password'));
 
+        if (static::maxLoginAttemptNotReached() and Auth::attempt($input)) {
+            static::succesfullLogin(Auth::user());
+
+            if($redirect = Input::get("redirect")){
+                return Redirect::to($redirect);
+            }else{
+                //Default redirect
+                return  Redirect::intended(route(Config::get('cms::auth.login_route')));
+            }
+        }
+        //set the flash message
+        static::failedLogin();
+        return Redirect::back()->withInput();
+    }
+
+
+    /**
+     * Perform logout
+     * @return mixed
+     */
+    public static function logout(){
+        Auth::logout();
+        return Redirect::to('/');
+    }
     /**
      * Set invalid login flash message and keep track of failed attempts
      * @param bool $email
@@ -64,35 +95,5 @@ class Authentication {
         }
     }
 
-    /**
-     * Process login
-     * @param $loginForm
-     * @return mixed
-     */
-    public static function doLogin($loginForm){
-        $loginForm->validate($input = Input::only('email', 'password'));
 
-        if (static::maxLoginAttemptNotReached() and Auth::attempt($input)) {
-            static::succesfullLogin(Auth::user());
-            if($redirect = Input::get("redirect")){
-                Redirect::to($redirect);
-            }else{
-                //Default redirect
-                return  Redirect::intended(route(Config::get('cms::auth.login_route')));
-            }
-        }
-        //set the flash message
-        static::failedLogin();
-        return Redirect::back()->withInput();
-    }
-
-
-    /**
-     * Perform logout
-     * @return mixed
-     */
-    public static function logout(){
-        Auth::logout();
-        return Redirect::to('/');
-    }
 } 

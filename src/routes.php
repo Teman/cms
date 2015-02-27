@@ -21,6 +21,9 @@ Route::get('/admin/auth/logout', array( 'as' => 'cms.noauth.logout', 'uses' => '
 Route::get('/admin/auth/set_password/{token}', ['as'=> 'cms.noauth.password.form', 'uses'=>'Teman\Cms\Controllers\PasswordController@create']);
 Route::post('/admin/auth/set_password', ['as'=> 'cms.noauth.password.store', 'uses'=>'Teman\Cms\Controllers\PasswordController@store']);
 
+Route::get('/admin/auth/expired', ['as'=> 'cms.noauth.password_expired.form', 'uses'=>'Teman\Cms\Controllers\PasswordController@expired']);
+Route::post('/admin/auth/set_expired', ['as'=> 'cms.noauth.password_expired.save', 'uses'=>'Teman\Cms\Controllers\PasswordController@save_expired']);
+
 Route::get('/admin/auth/change_password', ['as'=> 'cms.auth.change_password', 'uses'=>'Teman\Cms\Controllers\PasswordController@change']);
 Route::post('/admin/auth/change_password', ['as'=> 'cms.auth.change_password.save', 'uses'=>'Teman\Cms\Controllers\PasswordController@save_password']);
 

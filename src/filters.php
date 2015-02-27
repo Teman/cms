@@ -1,6 +1,12 @@
 <?php
 
-Route::filter('admin', function()
+
+use Carbon\Carbon;
+
+Route::filter('admin', /**
+     *
+     */
+    function()
 {   
     if (substr(Route::currentRouteName(), 0, 10) != 'cms.noauth') {
         
@@ -16,11 +22,25 @@ Route::filter('admin', function()
             }
         }
 
-        if ( ! Auth::user()->can('access_cms') ){
+        $user = Auth::user();
+
+        if ( ! $user->can('access_cms') ){
             return Redirect::guest( URL::route('cms.noauth.login') );
         }
 
-        View::share("currentUser", Auth::user());
+        //does user need to change password?
+        if($days = Config::get('cms::auth.password_valid')){
+            if($user->expires){
+                if($user->isExpired()){
+                    return Redirect::to(route('cms.noauth.password_expired.form'));
+                }
+            }else{
+                //no expiry date set
+                $user->setPasswordExpiry()->save();
+            }
+        }
+
+        View::share("currentUser", $user);
     }
 });
 
