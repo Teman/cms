@@ -14,4 +14,8 @@ return array(
     'logout' => 'Logout',
     'hasmatch' => 'Your current password must match your account password',
     'loggedin_as' => 'You are logged in as :name',
+
+    'maxattempts' =>'Max login attempts reached, account locked.',
+    'invalid' =>'Invalid credentials',
+    'welcome' => 'Welcome, you are logged in',
 );

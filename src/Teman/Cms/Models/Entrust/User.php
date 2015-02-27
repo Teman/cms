@@ -68,4 +68,8 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
             $this->attributes['username'] = $email;
         }
     }
+
+    public function getDates(){
+        return ['created_at', 'updated_at', 'last_login_attempt'];
+    }
 }

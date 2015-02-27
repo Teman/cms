@@ -17,9 +17,9 @@ use Laracasts\Flash\Flash;
 use Teman\Cms\Models\Entrust\User;
 
 /**
- * ForgotController Class
+ * PasswordController Class
  *
- * Implements actions regarding user password resetting
+ * Allow users to change their password
  */
 class PasswordController extends BaseController
 {

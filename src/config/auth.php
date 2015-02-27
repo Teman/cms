@@ -42,4 +42,7 @@ return array(
 
     //show password change in nav
     'show_pass_change' => false,
+
+    //number of failed attempts until account lockout
+    'lockout_after_attempts' => false,
 );

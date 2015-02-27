@@ -94,6 +94,10 @@ class ForgotController extends BaseController
         $response = Password::reset($credentials, function($user, $password)
         {
             $user->password = $password;
+            //reset login attempts (if active)
+            if(Config::get('cms::auth.lockout_after_attempts')) {
+                $user->login_attempts = 0;
+            }
             $user->forceSave();
         });
 
