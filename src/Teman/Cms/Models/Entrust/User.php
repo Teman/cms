@@ -93,6 +93,6 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
     }
 
     public function getDates(){
-        return ['created_at', 'updated_at', 'expries', 'last_login_attempt'];
+        return ['created_at', 'updated_at', 'expires', 'last_login_attempt'];
     }
 }
