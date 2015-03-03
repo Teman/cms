@@ -58,10 +58,12 @@ class Authentication {
                 Flash::error(trans('cms::auth.maxattempts'));
             }
 
-            //save last failed attempt
-            $user->login_attempts++;
-            $user->last_login_attempt = Carbon::now();
-            $user->save();
+            //save last failed attempt if valid user
+            if($user){
+                $user->login_attempts++;
+                $user->last_login_attempt = Carbon::now();
+                $user->save();
+            }
         }
     }
 
