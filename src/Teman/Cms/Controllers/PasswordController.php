@@ -24,9 +24,13 @@ use Teman\Cms\Models\Entrust\User;
 class PasswordController extends BaseController
 {
 
+    public $messages;
 
     function __construct()
     {
+        $this->messages = ['hashmatch'=>trans('cms::auth.hasmatch'),
+                           'usedbefore'=>trans('cms::auth.mustbedifferent', ['x'=>Config::get('cms::auth.password_different')])];
+
     }
 
     public function create($token){
@@ -50,7 +54,7 @@ class PasswordController extends BaseController
         $validator = Validator::make($input, [
             'token' => 'required',
             'password' => $password_validation,
-        ]);
+        ], $this->messages);
 
         $token = Input::get('token');
         $id = Input::get('id');
@@ -87,17 +91,10 @@ class PasswordController extends BaseController
             $input = Input::all();
             $password_validation = 'required|confirmed|' . Config::get('cms::auth.password_validation_' . Config::get('cms::auth.password_validation'));
 
-            Validator::extend('hashmatch', function($attribute, $value, $parameters)
-            {
-                return Hash::check($value, Auth::user()->password);
-            });
-
-            $messages = ['hashmatch'=>trans('cms::auth.hasmatch')];
-
             $validator = Validator::make($input, [
                 'current_password' => 'required|hashmatch',
                 'password' => $password_validation,
-            ], $messages);
+            ], $this->messages);
 
             if ($validator->fails()) {
                 throw new FormValidationException('Validation failed', $validator->errors());
@@ -115,7 +112,7 @@ class PasswordController extends BaseController
 
     public function expired(){
         $user = Auth::user();
-        if($user and $user->isExpired()) {
+        if($user){ // and $user->isExpired()) {
             return View::make('cms::auth.password.expired')->withUsername($user->username);
         }else{
             return Redirect::to(route('admin'));
@@ -126,18 +123,11 @@ class PasswordController extends BaseController
         $user = Auth::user();
         if($user) {
             $input = Input::all();
-            $password_validation = 'required|confirmed|hashmatch|' . Config::get('cms::auth.password_validation_' . Config::get('cms::auth.password_validation'));
-
-            Validator::extend('hashmatch', function($attribute, $value, $parameters)
-            {
-                return !(Hash::check($value, Auth::user()->password));
-            });
-
-            $messages = ['hashmatch'=>trans('cms::auth.mustbedifferent')];
+            $password_validation = 'required|confirmed|usedbefore|' . Config::get('cms::auth.password_validation_' . Config::get('cms::auth.password_validation'));
 
             $validator = Validator::make($input, [
                 'password' => $password_validation,
-            ], $messages);
+            ], $this->messages);
 
             if ($validator->fails()) {
                 throw new FormValidationException('Validation failed', $validator->errors());

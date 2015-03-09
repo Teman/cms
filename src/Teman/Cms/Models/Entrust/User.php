@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Config;
 use Laracasts\Flash\Flash;
 use LaravelBook\Ardent\Ardent;
 use Zizaco\Entrust\HasRole;
+use Teman\Cms\Models\Entrust\PasswordHistory;
 
 class User extends Ardent  implements UserInterface, RemindableInterface{
 
@@ -59,6 +60,12 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
         if($days = Config::get('cms::auth.password_valid')) {
             $this->expires = Carbon::now()->addDays($days);
         }
+
+        if(Config::get('cms::auth.password_different')){
+            //old password
+            PasswordHistory::create(['user_id'=>$this->id, 'password'=>$this->attributes['password']]);
+        }
+
         return $this;
     }
 
@@ -94,5 +101,14 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
 
     public function getDates(){
         return ['created_at', 'updated_at', 'expires', 'last_login_attempt'];
+    }
+
+    //returns array of last X passwords
+    public function oldPasswords(){
+        if(Config::get('cms::auth.password_different')>0) {
+            return $this->hasMany('Teman\Cms\Models\Entrust\PasswordHistory')->latest()->take(Config::get('cms::auth.password_different'))->lists('password');
+        }else{
+            return [];
+        }
     }
 }

@@ -27,7 +27,7 @@ return array(
 
     'password_validation' => 'basic', //basic or strict
     'password_validation_basic' => 'min:6',
-    'password_validation_strict' => 'min:8|max:24|different:email|case_diff|numbers|letters|symbols',
+    'password_validation_strict' => 'min:8|max:24|different:email|case_diff|numbers|letters|symbols|usedbefore',
 
     //username validation rules
     'user_validation' => 'email',
@@ -45,4 +45,7 @@ return array(
 
     //number of failed attempts until account lockout
     'lockout_after_attempts' => false,
+
+    //password must be different from last X passwords, 0 = don't check
+    'password_different' => 0,
 );

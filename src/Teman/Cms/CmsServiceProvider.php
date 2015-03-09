@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades;
 use Laracasts\Validation\FormValidationException;
+use Teman\Cms\Validator\UserValidator;
 
 class CmsServiceProvider extends ServiceProvider {
 
@@ -38,6 +39,12 @@ class CmsServiceProvider extends ServiceProvider {
             Facades\Lang::swap($this->app['cms.translator']);
         }
 
+
+        //custom validators
+        $this->app->validator->resolver(function($translator, $data, $rules, $messages)
+        {
+            return new UserValidator($translator, $data, $rules, $messages);
+        });
 	}
 
 	/**
