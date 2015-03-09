@@ -7,7 +7,11 @@ Route::filter('admin', /**
      *
      */
     function()
-{   
+{
+
+    $user = Auth::user();
+    View::share("currentUser", $user);
+
     if (substr(Route::currentRouteName(), 0, 10) != 'cms.noauth') {
         
         if (Auth::guest())
@@ -21,8 +25,6 @@ Route::filter('admin', /**
                 return Redirect::guest( URL::route('cms.noauth.login') );
             }
         }
-
-        $user = Auth::user();
 
         if ( ! $user->can('access_cms') ){
             return Redirect::guest( URL::route('cms.noauth.login') );
@@ -40,7 +42,6 @@ Route::filter('admin', /**
             }
         }
 
-        View::share("currentUser", $user);
     }
 });
 
@@ -48,6 +49,7 @@ Route::when('admin', 'admin');
 Route::when('admin/*', 'admin');
 
 App::before(function($request){
+
     if ($request->is('admin*'))
     {        
         $tbl_prefix = $this->app['config']->get('cms::table_prefix');
