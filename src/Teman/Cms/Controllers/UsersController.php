@@ -98,6 +98,8 @@ class UsersController extends BaseController {
         }
 
         $user->attachRole( Input::get('role_id') );
+        //now user is saved set password expiry again to save history
+        $user->setPasswordExpiry()->save();
 
 
         Flash::success('User created');

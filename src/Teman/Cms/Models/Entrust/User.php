@@ -61,7 +61,7 @@ class User extends Ardent  implements UserInterface, RemindableInterface{
             $this->expires = Carbon::now()->addDays($days);
         }
 
-        if(Config::get('cms::auth.password_different')){
+        if(Config::get('cms::auth.password_different') and $this->id>0){
             //old password
             PasswordHistory::create(['user_id'=>$this->id, 'password'=>$this->attributes['password']]);
         }
