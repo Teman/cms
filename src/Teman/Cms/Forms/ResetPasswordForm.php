@@ -20,6 +20,7 @@ class ResetPasswordForm extends FormValidator{
     {
         $this->validator = $validator;
 
+        $this->messages = ['usedbefore'=>trans('cms::auth.mustbedifferent', ['x'=>Config::get('cms::auth.password_different')])];
         //load strict or basic vlidation from config
         $this->rules['password'] = "required|confirmed|".Config::get('cms::auth.password_validation_'.Config::get('cms::auth.password_validation'));
     }
