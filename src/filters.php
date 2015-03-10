@@ -2,6 +2,7 @@
 
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Request;
 
 Route::filter('admin', /**
      *
@@ -64,5 +65,33 @@ App::before(function($request){
         $this->app['config']->set('auth.model', '\Teman\Cms\Models\Entrust\User');
         $this->app['config']->set('auth.driver', 'cms.user');
         $this->app['config']->set('auth.reminder.email', 'cms::emails.passwordreset');
+    }
+});
+
+
+Route::filter('permission', function($route, $request, $param){
+    $permissions = explode(';', $param);
+
+    //user must have all permissions
+    $user = Auth::user();
+    if($user){
+        $has_permission = true;
+        //user must have all permissions
+        foreach($permissions as $perm) {
+            if (!$user->can($perm)){
+                $has_permission = false;
+            }
+        }
+    }else{
+        $has_permission = false;
+    }
+
+    if(!$has_permission) {
+        if(Request::ajax()){
+            return App::abort(403, 'Access denied');
+        }else {
+            Flash::error(trans('auth.permission_denied'));
+            return Redirect::to(route('admin'));
+        }
     }
 });

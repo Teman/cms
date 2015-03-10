@@ -19,4 +19,6 @@ return array(
     'maxattempts' =>'Max login attempts reached, account locked.',
     'invalid' =>'Invalid credentials',
     'welcome' => 'Welcome, you are logged in',
+
+    'permission_denied' => 'Permission denied',
 );
