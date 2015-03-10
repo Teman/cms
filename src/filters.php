@@ -90,7 +90,7 @@ Route::filter('permission', function($route, $request, $param){
         if(Request::ajax()){
             return App::abort(403, 'Access denied');
         }else {
-            Flash::error(trans('auth.permission_denied'));
+            Flash::error(trans('cms::auth.permission_denied'));
             return Redirect::to(route('admin'));
         }
     }
