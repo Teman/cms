@@ -1,6 +1,7 @@
 <?php namespace Teman\Cms\Controllers;
 
 
+use Illuminate\Support\Facades\Event;
 use Teman\Cms\Forms\ForgotForm;
 use Teman\Cms\Forms\ResetPasswordForm;
 use Laracasts\Validation\FormValidationException;
@@ -111,6 +112,7 @@ class ForgotController extends BaseController
 
             case Password::PASSWORD_RESET:
                 Flash::success(Lang::get('cms::forgot.success'));
+                Event::fire('auth.password_reset', $credentials);
                 return Redirect::route(Config::get('cms::auth.success_route'));
         }
     }

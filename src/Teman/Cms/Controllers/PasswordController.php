@@ -112,7 +112,7 @@ class PasswordController extends BaseController
 
     public function expired(){
         $user = Auth::user();
-        if($user){ // and $user->isExpired()) {
+        if($user and $user->isExpired()) {
             return View::make('cms::auth.password.expired')->withUsername($user->username);
         }else{
             return Redirect::to(route('admin'));
