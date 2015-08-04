@@ -20,9 +20,17 @@ class Translator extends Lang
 
     private function loadDbKeys()
     {
-        $translations = Translation::all();
-        foreach( $translations as $translation ){
-            $this->db_keys[ $translation->locale ][ $translation->group . '.' . $translation->key ] = $translation->value;
+        if (\Cache::has('teman.trans.keys')){
+            $this->db_keys = \Cache::get('teman.trans.keys');
+        } else {
+            $translations = Translation::all();
+            foreach( $translations as $translation ){
+                $this->db_keys[ $translation->locale ][ $translation->group . '.' . $translation->key ] = $translation->value;
+            }
+
+            if ( \Config::get('cms::use_trans_cache') ){
+                \Cache::put('teman.trans.keys', $this->db_keys, 60);
+            }
         }
 
         $this->db_keys_loaded = true;
