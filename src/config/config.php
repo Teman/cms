@@ -5,7 +5,7 @@
 
     //use translations from database
     'use_db_trans' => false,
-
+    'use_trans_cache' => false,
     /*
      * The default title to display in the menu bar
      */
