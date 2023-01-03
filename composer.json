@@ -1,6 +1,7 @@
 {
     "name": "teman/cms",
     "description": "",
+    "abandoned": true,  
     "authors": [
         {
             "name": "Tim Van den Bergh",
